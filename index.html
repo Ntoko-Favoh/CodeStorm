@@ -545,7 +545,7 @@
             bottom: 0;
             width: 50px;
             height: 2px;
-            background: linear-gradient(45deg, var(--primary-blue), var(--primary-pink));
+            background: #ff6b8b;
         }
 
         .footer-column ul {
@@ -847,7 +847,7 @@
         }
         
         .chatbot-header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: linear-gradient(135deg, var(--primary-pink), var(--accent-color));
             color: white;
             padding: 1rem;
             display: flex;
@@ -887,7 +887,7 @@
         }
         
         .user-message {
-            background-color: var(--primary);
+            background-color: var(--primary-pink);
             color: white;
             margin-left: auto;
         }
@@ -907,7 +907,7 @@
         }
         
         .send-btn {
-            background-color: var(--primary);
+            background-color: var(--primary-pink);
             color: white;
             border: none;
             border-radius: 50%;
@@ -1111,20 +1111,20 @@
 
      <!-- Chatbot Widget -->
     <div class="chatbot-widget">
-        <div class="chatbot-btn">💬</div>
-        <div class="chatbot-box">
+        <div class="chatbot-btn" id="chatbotBtn">💬</div>
+        <div class="chatbot-box" id="chatbotBox">
             <div class="chatbot-header">
                 <h3>HerVital Health Assistant</h3>
-                <button class="close-chatbot">×</button>
+                <button class="close-chatbot" id="closeChatbot">×</button>
             </div>
-            <div class="chatbot-body" id="chatbot-body">
+            <div class="chatbot-body" id="chatbotBody">
                 <div class="chat-message bot-message">
                     Hello! I'm your HerVital health assistant. How can I help you today? You can ask about symptoms, pregnancy, menstrual health, or any women's health concern.
                 </div>
             </div>
             <div class="chatbot-input">
-                <input type="text" placeholder="Type your health question..." id="user-input">
-                <button class="send-btn">➤</button>
+                <input type="text" placeholder="Type your health question..." id="userInput">
+                <button class="send-btn" id="sendBtn">➤</button>
             </div>
         </div>
     </div>
@@ -1136,11 +1136,11 @@
                     <h2>Download Our Mobile App</h2>
                     <p>Take control of your health journey with our award-winning app. Track your health metrics, schedule appointments, chat with healthcare providers, and access educational resources - all from your smartphone.</p>
                     <div class="app-buttons">
-                        <a href="#" class="app-btn">
+                        <a href="https://drive.google.com/file/d/1pPh4DOZeNnpyYjMcXP7pdYrhV1LMDrZG/view?usp=sharing" class="app-btn">
                             <i class="fab fa-apple"></i>
                             <span>App Store</span>
                         </a>
-                        <a href="#" class="app-btn">
+                        <a href="https://drive.google.com/file/d/1pPh4DOZeNnpyYjMcXP7pdYrhV1LMDrZG/view?usp=sharing" class="app-btn">
                             <i class="fab fa-google-play"></i>
                             <span>Google Play</span>
                         </a>
@@ -1189,14 +1189,14 @@
                 <div class="footer-column">
                     <h3 data-translate="footer_contact">Contact Us</h3>
                     <ul>
-                        <li><i class="fas fa-map-marker-alt"></i> 123 Health St, Wellness City</li>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Health St, Durban</li>
                         <li><i class="fas fa-phone"></i> (123) 456-7890</li>
                         <li><i class="fas fa-envelope"></i> info@hervital.com</li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 HerVital. <span data-translate="footer_rights">All rights reserved.</span></p>
+                <p>&copy; 2025 HerVital. <span data-translate="footer_rights">All rights reserved.</span></p>
             </div>
         </div>
     </footer>
@@ -1693,7 +1693,7 @@
                 service_settings: "Zwiitisi",
                 service_settings_desc: "Ita uri zwithu zwa vhutshilo ha vhukuma zwi tevhedze zwawe",
                 service_delete: "Sula Mafhungo",
-                service_delete_desc: "Lawa na u sula mafhungo a vhutshilo ha vhukuma hawe",
+                service_delete_desc: "Lawula na u sula mafhungo a vhutshilo ha vhukuma hawe",
                 profile: "Profaulu",
                 language: "Luambo",
                 themes: "Themba",
@@ -1782,11 +1782,20 @@
         const profileModal = document.getElementById('profileModal');
         const profileForm = document.getElementById('profileForm');
 
+        // Chatbot elements
+        const chatbotBtn = document.getElementById('chatbotBtn');
+        const chatbotBox = document.getElementById('chatbotBox');
+        const closeChatbot = document.getElementById('closeChatbot');
+        const chatBody = document.getElementById('chatbotBody');
+        const userInput = document.getElementById('userInput');
+        const sendBtn = document.getElementById('sendBtn');
+
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
             loadUserProfile();
             updateTranslations();
             initializeAnimations();
+            setupChatbot();
         });
 
         // Mobile Menu Toggle
@@ -1959,6 +1968,90 @@
             }, 300);
         }
 
+        // Chatbot Functions
+        function setupChatbot() {
+            // Toggle chatbot visibility
+            chatbotBtn.addEventListener('click', () => {
+                chatbotBox.style.display = chatbotBox.style.display === 'block' ? 'none' : 'block';
+            });
+
+            // Close chatbot
+            closeChatbot.addEventListener('click', () => {
+                chatbotBox.style.display = 'none';
+            });
+
+            // Send message when button is clicked
+            sendBtn.addEventListener('click', sendMessage);
+
+            // Send message when Enter key is pressed
+            userInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+        }
+
+        function sendMessage() {
+            const message = userInput.value.trim();
+            if (message) {
+                // Add user message
+                const userMsg = document.createElement('div');
+                userMsg.className = 'chat-message user-message';
+                userMsg.textContent = message;
+                chatBody.appendChild(userMsg);
+                
+                // Clear input
+                userInput.value = '';
+                
+                // Scroll to bottom
+                chatBody.scrollTop = chatBody.scrollHeight;
+                
+                // Simulate bot response after a short delay
+                setTimeout(() => {
+                    const botMsg = document.createElement('div');
+                    botMsg.className = 'chat-message bot-message';
+                    
+                    // Simple responses based on keywords
+                    if (message.toLowerCase().includes('pregnancy') || message.toLowerCase().includes('pregnant')) {
+                        botMsg.textContent = currentLanguage === 'en' ? 
+                            "For pregnancy-related concerns, I recommend consulting with your healthcare provider. Would you like help finding a nearby clinic?" :
+                            currentLanguage === 'zu' ?
+                            "Mayelana nokukhathazeka okuhlobene nokukhulelwa, ngincoma ukuthi uxhumane nomhlinzeki wakho wezempilo. Ungathanda usizo lokuthola isikhungo esiseduze?" :
+                            currentLanguage === 'xh' ?
+                            "Ngokubhekiselele kwiingxaki ezimalunga nokukhulelwa, ndicebisa ukuba uqhagamshele nomxhasi wakho wezempilo. Ungathanda uncedo lokufumana ikliniki ekufutshane?" :
+                            "Vir swangerskapverwante bekommernisse, beveel ek aan dat u met u gesondheidsorgverskaffer konsulteer. Wil u hulp hê om 'n nabygeleë kliniek te vind?";
+                    } else if (message.toLowerCase().includes('period') || message.toLowerCase().includes('menstrual')) {
+                        botMsg.textContent = currentLanguage === 'en' ? 
+                            "Menstrual health is important. Are you experiencing any unusual symptoms with your cycle?" :
+                            currentLanguage === 'zu' ?
+                            "Impilo yenyanga ibalulekile. Ngabe uhlangabezana nezimpawu ezingajwayelekile ngesikhathi sakho?" :
+                            currentLanguage === 'xh' ?
+                            "Impilo yenyanga ibalulekile. Ingaba ujongana naziphi iimpawu ezingaqhelekanga kwisikhathi sakho?" :
+                            "Menstruasiegesondheid is belangrik. Ervaar u enige ongewone simptome met u siklus?";
+                    } else if (message.toLowerCase().includes('symptom') || message.toLowerCase().includes('pain')) {
+                        botMsg.textContent = currentLanguage === 'en' ? 
+                            "I'm not a doctor, but I can help direct you to appropriate care. Can you describe your symptoms in more detail?" :
+                            currentLanguage === 'zu' ?
+                            "Angidokotela, kodwa ngingakusiza ukuthi udlulele ekunakekelweni okufanele. Ungachaza izimpawu zakho ngokuningiliziwe?" :
+                            currentLanguage === 'xh' ?
+                            "Andingugqirha, kodwa ndinokukunceda ukuba uye ekunakekelweni okufanelekileyo. Ungachaza iimpawu zakho ngokugcwele?" :
+                            "Ek is nie 'n dokter nie, maar ek kan help om u na toepaslike sorg te lei. Kan u u simptome in meer besonderhede beskryf?";
+                    } else {
+                        botMsg.textContent = currentLanguage === 'en' ? 
+                            "Thank you for your message. For more specific health advice, I recommend contacting your healthcare provider directly." :
+                            currentLanguage === 'zu' ?
+                            "Ngiyabonga ngomyalezo wakho. Ukuze uthole izeluleko ezinembile ngezempilo, ngincoma ukuthi uxhumane nomhlinzeki wakho wezempilo ngqo." :
+                            currentLanguage === 'xh' ?
+                            "Enkosi ngomyalezo wakho. Ukufumana iseluleko esithe ngqo ngezempilo, ndicebisa ukuba uqhagamshele ngqo nomxhasi wakho wezempilo." :
+                            "Dankie vir u boodskap. Vir meer spesifieke gesondheidsadvies, beveel ek aan dat u u gesondheidsorgverskaffer direk kontak.";
+                    }
+                    
+                    chatBody.appendChild(botMsg);
+                    chatBody.scrollTop = chatBody.scrollHeight;
+                }, 1000);
+            }
+        }
+
         // Local Storage Functions
         function saveUserProfile() {
             const profileData = {
@@ -2042,6 +2135,9 @@
                 }
                 if (profileModal.classList.contains('active')) {
                     closeProfileModal();
+                }
+                if (chatbotBox.style.display === 'block') {
+                    chatbotBox.style.display = 'none';
                 }
                 dropdownMenu.classList.remove('active');
             }
