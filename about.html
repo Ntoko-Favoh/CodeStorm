@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About HerVital | Women's Health & Wellness</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-pink: #FF69B4;
+            --light-pink: #FFB6C1;
+            --soft-pink: #FFF0F5;
+            --white: #FFFFFF;
+            --dark-text: #333333;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--white);
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #ff6b8b,#a78bfa );
+            color: var(--white);
+            padding: 1rem 0;
+            box-shadow: var(--shadow);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 35px;
+            font-weight: 700;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            color: var(--white);
+        }
+
+        .logo h1 {
+            font-size: 35px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            align-items: center;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid transparent;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        nav ul li a:hover {
+            border-bottom: 2px solid white;
+        }
+
+        .profile-dropdown {
+            position: relative;
+            margin-left: auto; /* Push to far right */
+        }
+
+        .profile-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            background-color: transparent;
+            display: flex;
+            align-items: center;
+        }
+
+        .profile-btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1001;
+        }
+
+        .dropdown-menu.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-item {
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+            color: var(--dark-text);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .dropdown-item:hover {
+            background-color: var(--soft-pink);
+        }
+
+        .dropdown-item:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-item i {
+            width: 20px;
+            text-align: center;
+        }
+
+        .language-options {
+            max-height: 300px;
+            overflow-y: auto;
+            display: none;
+        }
+
+        .language-options.active {
+            display: block;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 240, 245, 0.9)), 
+                        url('https://images.unsplash.com/photo-1498758536662-35b82cd15e29?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 5rem 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            color: var(--primary-pink);
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        /* About Sections */
+        .about-section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-pink);
+            margin-bottom: 1rem;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-image {
+            flex: 1;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Mission/Vision */
+        .mission-vision {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card i {
+            font-size: 3rem;
+            color: var(--primary-pink);
+            margin-bottom: 1.5rem;
+        }
+
+        .card h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-pink);
+        }
+
+        /* Team Section */
+        .team-section {
+            background-color: var(--soft-pink);
+            padding: 4rem 0;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .team-member {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+        }
+
+        .member-image {
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .member-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .team-member:hover .member-image img {
+            transform: scale(1.1);
+        }
+
+        .member-info {
+            padding: 1.5rem;
+        }
+
+        .member-info h3 {
+            color: var(--primary-pink);
+            margin-bottom: 0.5rem;
+        }
+
+        .member-info p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            color: var(--primary-pink);
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--light-pink);
+        }
+
+        /* Values Section */
+        .values-section {
+            padding: 4rem 0;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .value-item {
+            text-align: center;
+            padding: 2rem;
+            background: var(--white);
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+        }
+
+        .value-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--soft-pink);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            color: var(--primary-pink);
+            font-size: 2rem;
+        }
+
+        /* Footer */
+        footer {
+            background:#4a1d41;
+            color: var(--white);
+            padding: 3rem 0 1rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background: #ff6b8b;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-column ul li a {
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-column ul li a:hover {
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .logo-text {
+            font-size: 22px;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .logo-text span.her {
+            color: #ff6b8b;
+        }
+        
+        .logo-text span.vital {
+            color: #20b2aa;
+        }
+
+        .text-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .about-content {
+                flex-direction: column;
+            }
+
+            .about-image {
+                order: -1;
+            }
+
+            nav {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: linear-gradient(135deg, #ff6b8b,#a78bfa );
+                padding: 1rem;
+                box-shadow: var(--shadow);
+            }
+
+            nav.active {
+                display: block;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-heartbeat"></i>
+                    <h1 class="logo-text"><span class="her">Her</span><span class="vital">Vital</span></h1>
+                </div>
+                
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <nav id="mainNav">
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-home"></i> <span data-translate="nav_home">Home</span></a></li>
+                        <li><a href="features.html"><i class="fas fa-star"></i> <span data-translate="nav_features">Features</span></a></li>
+                        <li><a href="about.html" class="active"><i class="fas fa-info-circle"></i> <span data-translate="nav_about">About</span></a></li>
+                        <li><a href="findcare.html"><i class="fas fa-search-location"></i> <span data-translate="nav_findcare">Find Care</span></a></li>
+                        <li><a href="contact.html"><i class="fas fa-envelope"></i> <span data-translate="nav_contact">Contact</span></a></li>
+                        
+                        <!-- Profile dropdown as part of the nav -->
+                        <li class="profile-dropdown">
+                            <button class="profile-btn" id="profileBtn">
+                                <i class="fas fa-bars"></i>
+                            </button>
+                            <div class="dropdown-menu" id="dropdownMenu">
+                                <div class="dropdown-item" onclick="openProfileModal()">
+                                    <i class="fas fa-user"></i>
+                                    <span data-translate="profile">Profile</span>
+                                </div>
+                                <div class="dropdown-item" id="languageToggle">
+                                    <i class="fas fa-globe"></i>
+                                    <span data-translate="language">Language</span>
+                                    <i class="fas fa-chevron-down" style="margin-left: auto;"></i>
+                                </div>
+                                <div class="language-options" id="languageOptions">
+                                    <div class="dropdown-item" onclick="changeLanguage('en')"><i class="fas fa-language"></i> English</div>
+                                    <div class="dropdown-item" onclick="changeLanguage('zu')"><i class="fas fa-language"></i> IsiZulu</div>
+                                    <div class="dropdown-item" onclick="changeLanguage('xh')"><i class="fas fa-language"></i> IsiXhosa</div>
+                                    <div class="dropdown-item" onclick="changeLanguage('af')"><i class="fas fa-language"></i> Afrikaans</div>
+                                    <div class="dropdown-item" onclick="changeLanguage('nso')"><i class="fas fa-language"></i> Sepedi</div>
+                                    <div class="dropdown-item" onclick="changeLanguage('tn')"><i class="fas fa-language"></i> Setswana</div>
+                                    <div class="dropdown-item" onclick="changeLanguage('st')"><i class="fas fa-language"></i> Sesotho</div>
+                                    <div class="dropdown-item" onclick="changeLanguage('ts')"><i class="fas fa-language"></i> Xitsonga</div>
+                                    <div class="dropdown-item" onclick="changeLanguage('ss')"><i class="fas fa-language"></i> SiSwati</div>
+                                    <div class="dropdown-item" onclick="changeLanguage('ve')"><i class="fas fa-language"></i> Tshivenda</div>
+                                    <div class="dropdown-item" onclick="changeLanguage('nr')"><i class="fas fa-language"></i> IsiNdebele</div>
+                                </div>
+                                <div class="dropdown-item" onclick="toggleThemeModal()">
+                                    <i class="fas fa-palette"></i>
+                                    <span data-translate="themes">Themes</span>
+                                </div>
+                                <div class="dropdown-item" onclick="logout()">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                    <span data-translate="logout">Logout</span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Rest of your HTML content remains the same -->
+    <section class="hero">
+        <div class="container">
+            <h1 data-translate="about_title">About HerVital</h1>
+            <p data-translate="about_subtitle">Empowering women through accessible healthcare solutions and personalized wellness support.</p>
+        </div>
+    </section>
+
+    <section class="about-section">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2 data-translate="our_story">Our Story</h2>
+                    <p data-translate="story_p1">Founded in 2020, HerVital was born from a simple yet powerful idea: every woman deserves access to comprehensive, compassionate healthcare tailored to her unique needs.</p>
+                    <p data-translate="story_p2">After noticing gaps in women's healthcare accessibility, our founder Dr. Sarah Johnson assembled a team of healthcare professionals and technologists to create a platform that bridges these gaps through innovation and empathy.</p>
+                    <p data-translate="story_p3">Today, HerVital serves thousands of women across the country, providing digital tools and services that improve access to essential healthcare, maternal health support, and preventive care.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1579684453423-f84349ef60b0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Women discussing health">
+                </div>
+            </div>
+
+            <div class="mission-vision">
+                <div class="card">
+                    <i class="fas fa-bullseye"></i>
+                    <h3 data-translate="our_mission">Our Mission</h3>
+                    <p data-translate="mission_text">To empower women with accessible, personalized healthcare solutions that address their unique needs at every stage of life.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-eye"></i>
+                    <h3 data-translate="our_vision">Our Vision</h3>
+                    <p data-translate="vision_text">A world where every woman has the tools, knowledge, and support to take control of her health and wellbeing.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-heart"></i>
+                    <h3 data-translate="our_promise">Our Promise</h3>
+                    <p data-translate="promise_text">To provide compassionate, evidence-based care with respect for each woman's individual journey and needs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="team-section">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-translate="meet_team">Meet Our Team</h2>
+                <p data-translate="team_subtitle">The passionate professionals behind HerVital</p>
+            </div>
+
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Dr. Sarah Johnson">
+                    </div>
+                    <div class="member-info">
+                        <h3>Dr. Sarah Johnson</h3>
+                        <p data-translate="founder_title">Founder & CEO</p>
+                        <p data-translate="founder_desc">Board-certified OB/GYN with 15+ years experience</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Dr. Maya Patel">
+                    </div>
+                    <div class="member-info">
+                        <h3>Dr. Maya Patel</h3>
+                        <p data-translate="cmo_title">Chief Medical Officer</p>
+                        <p data-translate="cmo_desc">Specialist in preventive women's healthcare</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Jessica Williams">
+                    </div>
+                    <div class="member-info">
+                        <h3>Jessica Williams</h3>
+                        <p data-translate="product_title">Head of Product</p>
+                        <p data-translate="product_desc">Tech innovator focused on health solutions</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="https://images.unsplash.com/photo-1590086783191-a0694c7d1e6e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="David Kim">
+                    </div>
+                    <div class="member-info">
+                        <h3>David Kim</h3>
+                        <p data-translate="dev_title">Lead Developer</p>
+                        <p data-translate="dev_desc">AI and healthcare technology expert</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="values-section">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-translate="core_values">Our Core Values</h2>
+                <p data-translate="values_subtitle">The principles that guide everything we do</p>
+            </div>
+
+            <div class="values-grid">
+                <div class="value-item">
+                    <div class="value-icon">
+                        <i class="fas fa-hand-holding-heart"></i>
+                    </div>
+                    <h3 data-translate="compassion">Compassion</h3>
+                    <p data-translate="compassion_text">We approach every interaction with empathy and understanding.</p>
+                </div>
+
+                <div class="value-item">
+                    <div class="value-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h3 data-translate="evidence">Evidence</h3>
+                    <p data-translate="evidence_text">Our recommendations are grounded in the latest medical research.</p>
+                </div>
+
+                <div class="value-item">
+                    <div class="value-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3 data-translate="privacy">Privacy</h3>
+                    <p data-translate="privacy_text">Your health information is protected with the highest security standards.</p>
+                </div>
+
+                <div class="value-item">
+                    <div class="value-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 data-translate="inclusivity">Inclusivity</h3>
+                    <p data-translate="inclusivity_text">We serve women of all backgrounds, ages, and health needs.</p>
+                </div>
+
+                <div class="value-item">
+                    <div class="value-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3 data-translate="innovation">Innovation</h3>
+                    <p data-translate="innovation_text">We continuously improve our tools to better serve your needs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>HerVital</h3>
+                    <p data-translate="footer_desc">Digital tools and services that improve women's access to essential healthcare, maternal health support, and preventive care.</p>
+                </div>
+                <div class="footer-column">
+                    <h3 data-translate="quick_links">Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-home"></i> <span data-translate="nav_home">Home</span></a></li>
+                        <li><a href="features.html"><i class="fas fa-star"></i> <span data-translate="nav_features">Features</span></a></li>
+                        <li><a href="about.html"><i class="fas fa-info-circle"></i> <span data-translate="nav_about">About</span></a></li>
+                        <li><a href="contact.html"><i class="fas fa-envelope"></i> <span data-translate="nav_contact">Contact</span></a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3 data-translate="services">Services</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-heartbeat"></i> <span data-translate="health_tracking">Health Tracking</span></a></li>
+                        <li><a href="#"><i class="fas fa-baby-carriage"></i> <span data-translate="maternal_health">Maternal Health</span></a></li>
+                        <li><a href="#"><i class="fas fa-shield-alt"></i> <span data-translate="preventive_care">Preventive Care</span></a></li>
+                        <li><a href="#"><i class="fas fa-video"></i> <span data-translate="telemedicine">Telemedicine</span></a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3 data-translate="contact_us">Contact Us</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> <span>123 Health St, Durban</span></li>
+                        <li><i class="fas fa-phone"></i> <span>(031) 456-7890</span></li>
+                        <li><i class="fas fa-envelope"></i> <span>info@hervital.com</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 HerVital. <span data-translate="all_rights">All rights reserved.</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    // Translations object
+        const translations = {
+            en: {
+                nav_home: "Home",
+                nav_features: "Features",
+                nav_about: "About",
+                nav_findcare: "Find Care",
+                nav_contact: "Contact",
+                profile: "Profile",
+                language: "Language",
+                themes: "Themes",
+                logout: "Logout",
+                about_title: "About HerVital",
+                about_subtitle: "Empowering women through accessible healthcare solutions and personalized wellness support.",
+                our_story: "Our Story",
+                story_p1: "Founded in 2020, HerVital was born from a simple yet powerful idea: every woman deserves access to comprehensive, compassionate healthcare tailored to her unique needs.",
+                story_p2: "After noticing gaps in women's healthcare accessibility, our founder Dr. Sarah Johnson assembled a team of healthcare professionals and technologists to create a platform that bridges these gaps through innovation and empathy.",
+                story_p3: "Today, HerVital serves thousands of women across the country, providing digital tools and services that improve access to essential healthcare, maternal health support, and preventive care.",
+                our_mission: "Our Mission",
+                mission_text: "To empower women with accessible, personalized healthcare solutions that address their unique needs at every stage of life.",
+                our_vision: "Our Vision",
+                vision_text: "A world where every woman has the tools, knowledge, and support to take control of her health and wellbeing.",
+                our_promise: "Our Promise",
+                promise_text: "To provide compassionate, evidence-based care with respect for each woman's individual journey and needs.",
+                meet_team: "Meet Our Team",
+                team_subtitle: "The passionate professionals behind HerVital",
+                founder_title: "Founder & CEO",
+                founder_desc: "Board-certified OB/GYN with 15+ years experience",
+                cmo_title: "Chief Medical Officer",
+                cmo_desc: "Specialist in preventive women's healthcare",
+                product_title: "Head of Product",
+                product_desc: "Tech innovator focused on health solutions",
+                dev_title: "Lead Developer",
+                dev_desc: "AI and healthcare technology expert",
+                core_values: "Our Core Values",
+                values_subtitle: "The principles that guide everything we do",
+                compassion: "Compassion",
+                compassion_text: "We approach every interaction with empathy and understanding.",
+                evidence: "Evidence",
+                evidence_text: "Our recommendations are grounded in the latest medical research.",
+                privacy: "Privacy",
+                privacy_text: "Your health information is protected with the highest security standards.",
+                inclusivity: "Inclusivity",
+                inclusivity_text: "We serve women of all backgrounds, ages, and health needs.",
+                innovation: "Innovation",
+                innovation_text: "We continuously improve our tools to better serve your needs.",
+                footer_desc: "Digital tools and services that improve women's access to essential healthcare, maternal health support, and preventive care.",
+                quick_links: "Quick Links",
+                services: "Services",
+                health_tracking: "Health Tracking",
+                maternal_health: "Maternal Health",
+                preventive_care: "Preventive Care",
+                telemedicine: "Telemedicine",
+                contact_us: "Contact Us",
+                all_rights: "All rights reserved."
+            },
+            zu: {
+                nav_home: "Ikhaya",
+                nav_features: "Izici",
+                nav_about: "Mayelana",
+                nav_findcare: "Thola Ukunakekelwa",
+                nav_contact: "Xhumana",
+                profile: "Iphrofayili",
+                language: "Ulimi",
+                themes: "Izindikimba",
+                logout: "Phuma",
+                about_title: "Mayelana ne-HerVital",
+                about_subtitle: "Sikhuphula amandla abesifazane ngokusebenzisa izixazululo zezempilo ezifinyelelekayo nokwesekwa kwezemvelo okuhlelekile.",
+                our_story: "Indaba Yethu",
+                story_p1: "Isungulwe ngo-2020, i-HerVital yazalwa ngombono olula kodwa onamandla: wonke owesifazane ufanele ukuthola ukunakekelwa kwezempilo okuphelele, okunozwelo okuhlelelwe izidingo zakhe ezihlukile.",
+                story_p2: "Ngemva kokubona izikhala ekufinyelelekeni kwezempilo kwabesifazane, umsunguli wethu uDkt. U-Sarah Johnson uhlanganise iqembu lochwepheshe bezempilo notochwepheshe bekhono lokudala ipulatifomu elihlanganisa lezi zikhala ngokusebenzisa ubuciko nokuzwisisa.",
+                story_p3: "Namuhla, i-HerVital isebenza nabantu besifazane abayizinkulungwane eziningi ezweni lonke, ihlinzeka ngamathuluzi edijithali nemisebenzi ethuthukisa ukufinyelela ekunakekelweni okuyisisekelo kwezempilo, ukwesekwa kwezempilo yabantwana, nokunakekelwa kokuvimbela.",
+                our_mission: "Inhloso Yethu",
+                mission_text: "Ukuhlomisa amandla abesifazane ngokusebenzisa izixazululo zezempilo ezifinyelelekayo, ezihlelekile ezibhekana nezidingo zabo ezihlukile kuzo zonke izigaba zokuphila.",
+                our_vision: "Umbono Wethu",
+                vision_text: "Umhlaba lapho wonke owesifazane enawo amathuluzi, ulwazi, nokwesekwa okuzokwenza alawule impilo yakhe nenhlalakahle yakhe.",
+                our_promise: "Isithembiso Sethu",
+                promise_text: "Ukuhlinzeka ngokunakekelwa okunozwelo, okususelwa ebufakathini ngokuhlonipha uhambo lomuntu ngamunye nezidingo.",
+                meet_team: "Hlangana Neqembu Lethu",
+                team_subtitle: "Ochwepheshe abanothando abangemuva kwe-HerVital",
+                founder_title: "Umsunguli & CEO",
+                founder_desc: "I-OB/GYN eqinisekisiwe ebhodi eneminyaka engaphezu kweyi-15 yokuhlangenwe nakho",
+                cmo_title: "Ihhala Lezempilo",
+                cmo_desc: "Uchwepheshe ekunakekelweni kwezempilo kwabesifazane kokuvimbela",
+                product_title: "Inhloko Yomkhiqizo",
+                product_desc: "Umqambi wekhono ogxile ezixazululweni zezempilo",
+                dev_title: "Umqondisi Wokuthuthukisa",
+                dev_desc: "Uchwepheshe wekhono le-AI nezempilo",
+                core_values: "Izimiso Zethu Eziyinhloko",
+                values_subtitle: "Izimiso eziqondisa konke esikwenzayo",
+                compassion: "Uzwelo",
+                compassion_text: "Sibhekana nayo yonke ingxoxo ngokuzwisisa nokuqonda.",
+                evidence: "Ubufakazi",
+                evidence_text: "Izincomo zethu zisekelwe ocwaningweni lwezempilo lwakamuva.",
+                privacy: "Ubumfihlo",
+                privacy_text: "Ulwazi lwakho lwezempilo luvikelwe ngamazinga aphezulu okuphepha.",
+                inclusivity: "Ukubandakanya",
+                inclusivity_text: "Sisebenza nabantu besifazane bakuzo zonke izizukulwane, iminyaka, nezidingo zezempilo.",
+                innovation: "Ubuciko",
+                innovation_text: "Siqhubeka nokwenza ngcono amathuluzi ethu ukuze sikwazi ukukhonza kangcono izidingo zakho.",
+                footer_desc: "Amathuluzi edijithali nemisebenzi ethuthukisa ukufinyelela kwabesifazane ekunakekelweni okuyisisekelo kwezempilo, ukwesekwa kwezempilo yabantwana, nokunakekelwa kokuvimbela.",
+                quick_links: "Izixhumanisi Ezisheshayo",
+                services: "Izinsiza",
+                health_tracking: "Ukulandelela Kwezempilo",
+                maternal_health: "Ezempilo Yabantwana",
+                preventive_care: "Ukunakekelwa Kokuvimbela",
+                telemedicine: "I-Telemedicine",
+                contact_us: "Sithole",
+                all_rights: "Wonke amalungelo agodliwe."
+            },
+            xh: {
+                nav_home: "Ikhaya",
+                nav_features: "Iimpawu",
+                nav_about: "Nge",
+                nav_findcare: "Fumana Ukhathalelo",
+                nav_contact: "Qhagamshelana",
+                profile: "Iprofayile",
+                language: "Ulwimi",
+                themes: "Imixholo",
+                logout: "Phuma",
+                about_title: "Nge-HerVital",
+                about_subtitle: "Ukuxhobisa amabhinqa ngezisombululo zempilo ezifikelelekayo kunye nenkxaso yobuhle bomntu.",
+                our_story: "Ibali Lethu",
+                story_p1: "Yasekwa ngo-2020, i-HerVital yazalwa kwingcamango elula kodwa enamandla: wonke umfazi ufanele ukufikelela kukhathalelo lwempilo olupheleleyo, oluvelwano olulungiselelwe iimfuno zakhe ezikhethekileyo.",
+                story_p2: "Emva kokubona izikhewu ekufumanekeni kokhathalelo lwempilo lwabafazi, umseki wethu uGqr. USarah Johnson wahlanganisa iqela leengcali zempilo kunye neengcali zobuchwepheshe ukudala iqonga elidibanisa ezi zikhewu ngokusebenzisa ubugcisa kunye novelwano.",
+                story_p3: "Namhlanje, i-HerVital isebenza namawaka amabhinqa kulo lonke ilizwe, ibonelela ngezixhobo zedijithali neenkonzo eziphucula ukufikelela kukhathalelo lwempilo olubalulekileyo, inkxaso yempilo yoomama, kunye nokhathalelo lokuthintela.",
+                our_mission: "Injongo Yethu",
+                mission_text: "Ukuxhobisa abafazi ngezisombululo zempilo ezifumanekayo, ezikhethekileyo ezijongana neemfuno zabo ezikhethekileyo kuwo onke amanqanaba obomi.",
+                our_vision: "Imbono Yethu",
+                vision_text: "Ilizwe apho wonke umfazi anezixhobo, ulwazi, kunye nenkxaso yokulawula impilo yakhe kunye nentlalo-ntle yakhe.",
+                our_promise: "Isithembiso Sethu",
+                promise_text: "Ukubonelela ngokhathalelo oluvelwano, olusekwe kubungqina ngentlonipho kuhambo ngamnye womntu kunye neemfuno.",
+                meet_team: "Diban' neQela Lethu",
+                team_subtitle: "Iingcali ezinomdla ezisemva kwe-HerVital",
+                founder_title: "Umseki & CEO",
+                founder_desc: "I-OB/GYN eqinisekisiwe yebhodi eneminyaka eyi-15+ yamava",
+                cmo_title: "Igosa Eliphambili Lezonyango",
+                cmo_desc: "Ingcali kukhathalelo lwempilo lwabafazi oluthintela",
+                product_title: "Intloko Yemveliso",
+                product_desc: "Umqambi wobuchwepheshe ogxile kwizisombululo zempilo",
+                dev_title: "Umphuhlisi Oyintloko",
+                dev_desc: "Ingcali ye-AI kunye nobuchwepheshe bempilo",
+                core_values: "Imilinganiselo Yethu Engundoqo",
+                values_subtitle: "Imigaqo ekhokela konke esikwenzayo",
+                compassion: "Uvelwano",
+                compassion_text: "Siqhubana nawo onke unxibelelwano ngevelwano nokuqonda.",
+                evidence: "Ubungqina",
+                evidence_text: "Iingcebiso zethu zisekelwe kuphando lwakutshanje lwezonyango.",
+                privacy: "Ubumfihlo",
+                privacy_text: "Ulwazi lwakho lwempilo lukhuselwe ngemigangatho ephezulu yokhuseleko.",
+                inclusivity: "Ukubandakanya",
+                inclusivity_text: "Sisebenza nabafazi bazo zonke iimvelaphi, iminyaka, kunye neemfuno zempilo.",
+                innovation: "Ubugcisa",
+                innovation_text: "Siqhubeka nokuphucula izixhobo zethu ukuze sikwazi ukukhonza ngcono iimfuno zakho.",
+                footer_desc: "Izixhobo zedijithali kunye neenkonzo eziphucula ukufikelela kwabafazi kukhathalelo lwempilo olubalulekileyo, inkxaso yempilo yoomama, kunye nokhathalelo lokuthintela.",
+                quick_links: "Amakhongolose Akhawulezayo",
+                services: "Iinkonzo",
+                health_tracking: "Ukulandelela Kwempilo",
+                maternal_health: "Impilo Yoomama",
+                preventive_care: "Ukhathalelo Lokuthintela",
+                telemedicine: "I-Telemedicine",
+                contact_us: "Qhagamshelan' Nathi",
+                all_rights: "Onke amalungelo agodliwe."
+            },
+            af: {
+                nav_home: "Tuis",
+                nav_features: "Kenmerke",
+                nav_about: "Omtrent",
+                nav_findcare: "Vind Sorg",
+                nav_contact: "Kontak",
+                profile: "Profiel",
+                language: "Taal",
+                themes: "Temas",
+                logout: "Teken Uit",
+                about_title: "Omtrent HerVital",
+                about_subtitle: "Bemagtiging van vroue deur toeganklike gesondheidsorgoplossings en persoonlike welstandsondersteuning.",
+                our_story: "Ons Verhaal",
+                story_p1: "Gestig in 2020, is HerVital gebore uit 'n eenvoudige maar kragtige idee: elke vrou verdien toegang tot omvattende, deernisvol gesondheidsorg wat aangepas is by haar unieke behoeftes.",
+                story_p2: "Nadat gapings in vroue se gesondheidsorg-toeganklikheid opgemerk is, het ons stigter Dr. Sarah Johnson 'n span gesondheidsprofessionele en tegnoloe bymekaar gebring om 'n platform te skep wat hierdie gapings oorbrug deur innovasie en empatie.",
+                story_p3: "Vandag bedien HerVital duisende vroue regoor die land en verskaf digitale gereedskap en dienste wat toegang tot noodsaaklike gesondheidsorg, moederlike gesondheidsondersteuning en voorkomende sorg verbeter.",
+                our_mission: "Ons Missie",
+                mission_text: "Om vroue te bemagtig met toeganklike, persoonlike gesondheidsorgoplossings wat hul unieke behoeftes in elke lewensfase aanspreek.",
+                our_vision: "Ons Visie",
+                vision_text: "'n Wêreld waar elke vrou die gereedskap, kennis en ondersteuning het om beheer oor haar gesondheid en welstand te neem.",
+                our_promise: "Ons Belofte",
+                promise_text: "Om deernisvol, bewys-gebaseerde sorg te verskaf met respek vir elke vrou se individuele reis en behoeftes.",
+                meet_team: "Ontmoet Ons Span",
+                team_subtitle: "Die passievol professionele agter HerVital",
+                founder_title: "Stigter & CEO",
+                founder_desc: "Raad-gesertifiseerde OB/GYN met 15+ jaar ondervinding",
+                cmo_title: "Hoof Mediese Beampte",
+                cmo_desc: "Spesialis in voorkomende vrouegesondheidsorg",
+                product_title: "Hoof van Produk",
+                product_desc: "Tegnologie-innoveerder gefokus op gesondheidsoplossings",
+                dev_title: "Hoofontwikkelaar",
+                dev_desc: "AI en gesondheidsorg tegnologie-kundige",
+                core_values: "Ons Kernwaardes",
+                values_subtitle: "Die beginsels wat alles wat ons doen lei",
+                compassion: "Deernis",
+                compassion_text: "Ons benader elke interaksie met empatie en begrip.",
+                evidence: "Bewys",
+                evidence_text: "Ons aanbevelings is gegrond in die nuutste mediese navorsing.",
+                privacy: "Privaatheid",
+                privacy_text: "Jou gesondheidsinligting word beskerm met die hoogste sekuriteitsstandaarde.",
+                inclusivity: "Inklusiwiteit",
+                inclusivity_text: "Ons bedien vroue van alle agtergronde, ouderdomme en gesondheidsbehoeftes.",
+                innovation: "Innovasie",
+                innovation_text: "Ons verbeter voortdurend ons gereedskap om jou behoeftes beter te bedien.",
+                footer_desc: "Digitale gereedskap en dienste wat vroue se toegang tot noodsaaklike gesondheidsorg, moederlike gesondheidsondersteuning en voorkomende sorg verbeter.",
+                quick_links: "Vinnige Skakels",
+                services: "Dienste",
+                health_tracking: "Gesondheidsopsporing",
+                maternal_health: "Moederlike Gesondheid",
+                preventive_care: "Voorkomende Sorg",
+                telemedicine: "Telemedisyne",
+                contact_us: "Kontak Ons",
+                all_rights: "Alle regte voorbehou."
+            },
+            nso: {
+                nav_home: "Gae",
+                nav_features: "Dika",
+                nav_about: "Ka ga",
+                nav_findcare: "Hwetša Tlhokomelo",
+                nav_contact: "Ikgokaganye",
+                profile: "Profaele",
+                language: "Polelo",
+                themes: "Dihlogo",
+                logout: "Tswa",
+                about_title: "Ka ga HerVital",
+                about_subtitle: "Go maatlafatša basadi ka ditharollo tša maphelo tše di hwetšegago le thekgo ya boitekanelo.",
+                our_story: "Kanegelo ya Rena",
+                story_p1: "E theilwe ka 2020, HerVital e belegwe go tšwa kgopolong ye bonolo eupša ye maatla: mosadi yo mongwe le yo mongwe o swanetše go hwetša tlhokomelo ya maphelo ye feletsego, ya kwelobohloko yeo e beakantšwe go ya ka dinyakwa tša gagwe tše di kgethegilego.",
+                story_p2: "Ka morago ga go lemoga dikheo tlhokagalong ya tlhokomelo ya maphelo ya basadi, mothehi wa rena Dkt. Sarah Johnson o kgobokeditše sehlopha sa boramahlale ba maphelo le boitseanape go hlola sethala seo se kopanego dikheo tše ka phetogo le kwešišo.",
+                story_p3: "Lehono, HerVital e šomela dikete tša basadi go ralala naga, e fana ka didirišwa tša titšithale le ditirelo tšeo di kaonafatšago phihlelelo tlhokomeleng ya maphelo ya bohlokwa, thekgong ya maphelo a bomme, le tlhokomeleng ya thibelo.",
+                our_mission: "Maikemišetšo a Rena",
+                mission_text: "Go maatlafatša basadi ka ditharollo tša maphelo tše di hwetšegago, tše di rulagantšwego tšeo di lebeletšego dinyakwa tša bona tše di kgethegilego mehlatong yohle ya bophelo.",
+                our_vision: "Pono ya Rena",
+                vision_text: "Lefase leo mosadi yo mongwe le yo mongwe a nago le didirišwa, tsebo, le thekgo ya go laola maphelo le boitekanelo bja gagwe.",
+                our_promise: "Tshepišo ya Rena",
+                promise_text: "Go fana ka tlhokomelo ya kwelobohloko, yeo e theilwego ponalong ka tlhompho leeto la motho yo mongwe le yo mongwe le dinyakwa.",
+                meet_team: "Kopana le Sehlopha sa Rena",
+                team_subtitle: "Boitseanape bja kgašo bo latelago HerVital",
+                founder_title: "Mothehi & CEO",
+                founder_desc: "OB/GYN ya netefatšitšwego ke boto ya nago le mengwaga e 15+ ya maitemogelo",
+                cmo_title: "Mogolwane wa Tša Kalafo",
+                cmo_desc: "Ramoitseanape tlhokomeleng ya maphelo ya basadi ya thibelo",
+                product_title: "Hlogo ya Setšweletšwa",
+                product_desc: "Mophetogi wa theknolotši yo lebišitšwego ditharollong tša maphelo",
+                dev_title: "Mophuhlusi yo Mogolo",
+                dev_desc: "Ramoitseanape wa AI le theknolotši ya maphelo",
+                core_values: "Boleng bja Rena bja Motheo",
+                values_subtitle: "Melawana yeo e hlohleletšago sohle seo re se dirago",
+                compassion: "Kwelobohloko",
+                compassion_text: "Re ataloga yo mongwe le yo mongwe tirisanommogo ka kwešišo le kwešišo.",
+                evidence: "Bohlatse",
+                evidence_text: "Dikatišišo tša rena di theilwe nyakišišong ya tša kalafo ya moragorago.",
+                privacy: "Sephiri",
+                privacy_text: "Tshedimošo ya gago ya maphelo e šireletšwe ka maemo a godimo ga tšhireletšo.",
+                inclusivity: "Go Akaretša",
+                inclusivity_text: "Re šomela basadi ba maemo ohle, mengwaga, le dinyakwa tša maphelo.",
+                innovation: "Phetogo",
+                innovation_text: "Re tšwela pele go kaonafatša didirišwa tša rena go šoma kaone dinyakwa tša gago.",
+                footer_desc: "Didirišwa tša titšithale le ditirelo tšeo di kaonafatšago phihlelelo ya basadi tlhokomeleng ya maphelo ya bohlokwa, thekgong ya maphelo a bomme, le tlhokomeleng ya thibelo.",
+                quick_links: "Dikgokaganyo tše Kapelo",
+                services: "Ditirelo",
+                health_tracking: "Tsepamelo ya Maphelo",
+                maternal_health: "Maphelo a Bomme",
+                preventive_care: "Tlhokomelo ya Thibelo",
+                telemedicine: "Telemedicine",
+                contact_us: "Re Kgokaganye",
+                all_rights: "Ditokelo tšohle di bolokilwe."
+            }
+        };
+
+        let currentLanguage = 'en';
+
+        // Mobile menu functionality
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            const nav = document.getElementById('mainNav');
+            nav.classList.toggle('active');
+        });
+
+        // Profile dropdown functionality
+        document.getElementById('profileBtn').addEventListener('click', function(e) {
+            e.stopPropagation();
+            const dropdown = document.getElementById('dropdownMenu');
+            dropdown.classList.toggle('active');
+        });
+
+        // Language toggle functionality
+        document.getElementById('languageToggle').addEventListener('click', function(e) {
+            e.stopPropagation();
+            const languageOptions = document.getElementById('languageOptions');
+            languageOptions.classList.toggle('active');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function() {
+            const dropdown = document.getElementById('dropdownMenu');
+            const languageOptions = document.getElementById('languageOptions');
+            dropdown.classList.remove('active');
+            languageOptions.classList.remove('active');
+        });
+
+        // Language change function
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+            updateContent();
+            
+            // Close dropdowns
+            document.getElementById('dropdownMenu').classList.remove('active');
+            document.getElementById('languageOptions').classList.remove('active');
+        }
+
+        // Update content based on selected language
+        function updateContent() {
+            const elements = document.querySelectorAll('[data-translate]');
+            elements.forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[currentLanguage] && translations[currentLanguage][key]) {
+                    element.textContent = translations[currentLanguage][key];
+                }
+            });
+        }
+
+        // Profile modal function (placeholder)
+        function openProfileModal() {
+            alert(translations[currentLanguage].profile || 'Profile');
+            document.getElementById('dropdownMenu').classList.remove('active');
+        }
+
+        // Theme modal function (placeholder)
+        function toggleThemeModal() {
+            alert(translations[currentLanguage].themes || 'Themes');
+            document.getElementById('dropdownMenu').classList.remove('active');
+        }
+
+        // Logout function (placeholder)
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                alert('Logged out successfully');
+                // Redirect to login page or perform logout logic
+            }
+            document.getElementById('dropdownMenu').classList.remove('active');
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add loading animation for images
+        document.addEventListener('DOMContentLoaded', function() {
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                img.addEventListener('load', function() {
+                    this.style.opacity = '1';
+                });
+                
+                // Add error handling for images
+                img.addEventListener('error', function() {
+                    this.style.display = 'none';
+                });
+            });
+        });
+
+        // Add scroll effects
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.backgroundColor = 'rgba(255, 107, 139, 0.95)';
+            } else {
+                header.style.backgroundColor = '';
+            }
+        });
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            updateContent();
+            
+            // Add fade-in animation to cards
+            const cards = document.querySelectorAll('.card, .team-member, .value-item');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+        });
+
+        // Add keyboard navigation support
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.getElementById('dropdownMenu').classList.remove('active');
+                document.getElementById('languageOptions').classList.remove('active');
+            }
+        });
+
+        // Add touch support for mobile
+        let touchStartY = 0;
+        document.addEventListener('touchstart', function(e) {
+            touchStartY = e.touches[0].clientY;
+        });
+
+        document.addEventListener('touchend', function(e) {
+            const touchEndY = e.changedTouches[0].clientY;
+            const diff = touchStartY - touchEndY;
+            
+            // Add subtle parallax effect on mobile scroll
+            if (Math.abs(diff) > 50) {
+                const hero = document.querySelector('.hero');
+                if (hero) {
+                    hero.style.transform = `translateY(${diff * 0.1}px)`;
+                }
+            }
+        });
+        </script>
+</body>
+</html>

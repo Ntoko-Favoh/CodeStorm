@@ -1,0 +1,2346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HerVital | Features</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css">
+    <style>
+        :root {
+            --primary-blue: #4169E1;
+            --primary-pink: #FF69B4;
+            --secondary-color: #ffb8c6;
+            --accent-color: #a78bfa;
+            --light-color: #fff5f7;
+            --dark-color: #4a1d41;
+            --text-color: #333333;
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --glow-shadow: 0 0 30px rgba(255, 105, 180, 0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-pink), var(--accent-color));
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            color: var(--light-color);
+        }
+
+        .logo-text {
+            font-size: 35px;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .logo-text span.her {
+            color: #ff6b8b;
+        }
+        
+        .logo-text span.vital {
+            color: #20b2aa;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid transparent;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        nav ul li a:hover {
+            border-bottom: 2px solid white;
+        }
+
+        .profile-dropdown {
+            position: relative;
+        }
+
+        .profile-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.8rem;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+        }
+
+        .profile-btn:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: scale(1.05);
+        }
+
+        .profile-btn:active {
+            transform: scale(0.95);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: calc(100% + 10px);
+            right: 0;
+            background: white;
+            border-radius: 10px;
+            box-shadow: var(--card-shadow);
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1001;
+            border: 1px solid #eee;
+        }
+
+        .dropdown-menu.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-item {
+            padding: 1rem 1.2rem;
+            border-bottom: 1px solid #eee;
+            color: var(--text-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .dropdown-item:hover {
+            background-color: var(--light-color);
+            color: var(--primary-pink);
+        }
+
+        .dropdown-item:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-item i {
+            width: 20px;
+            text-align: center;
+        }
+
+        .language-submenu {
+            position: relative;
+        }
+
+        .language-options {
+            position: absolute;
+            left: 100%;
+            top: 0;
+            background: white;
+            border-radius: 10px;
+            box-shadow: var(--card-shadow);
+            min-width: 150px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateX(-10px);
+            transition: all 0.3s ease;
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid #eee;
+        }
+
+        .language-submenu:hover .language-options {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--dark-color);
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--primary-blue), var(--primary-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--primary-blue), var(--primary-pink));
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-pink);
+        }
+
+        .feature-card h3 {
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+
+        /* Chatbot Section */
+        .chatbot-section {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: var(--card-shadow);
+        }
+
+        .chatbot-container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chatbot-header {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .chatbot-header h2 {
+            color: var(--dark-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .chat-interface {
+            border: 1px solid #eee;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .chat-messages {
+            height: 400px;
+            overflow-y: auto;
+            padding: 1rem;
+            background: #f9f9f9;
+        }
+
+        .message {
+            margin-bottom: 1rem;
+            padding: 0.8rem 1rem;
+            border-radius: 10px;
+            max-width: 80%;
+        }
+
+        .bot-message {
+            background: white;
+            border: 1px solid #eee;
+            margin-right: auto;
+        }
+
+        .user-message {
+            background: var(--primary-pink);
+            color: white;
+            margin-left: auto;
+        }
+
+        .chat-input-container {
+            display: flex;
+            padding: 1rem;
+            background: white;
+            border-top: 1px solid #eee;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            margin-right: 0.5rem;
+        }
+
+        .send-button {
+            background: var(--primary-pink);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            padding: 0 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Calendar Section */
+        .calendar-section {
+            margin: 3rem 0;
+        }
+
+        #calendar {
+            background: white;
+            border-radius: 10px;
+            padding: 1rem;
+            box-shadow: var(--card-shadow);
+        }
+
+        /* Video Consultation */
+        .consultation-section {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: var(--card-shadow);
+        }
+
+        .consultation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .consultation-card {
+            border: 1px solid #eee;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .consultation-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .consultation-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .consultation-content {
+            padding: 1.5rem;
+        }
+
+        .consultation-content h3 {
+            margin-bottom: 0.5rem;
+            color: var(--dark-color);
+        }
+
+        .consultation-content p {
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+
+        /* Zoom Meeting Container */
+        .zoom-meeting {
+            display: none;
+            width: 100%;
+            height: 500px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 2rem;
+            box-shadow: var(--card-shadow);
+        }
+
+        .zoom-header {
+            background: linear-gradient(45deg, var(--primary-blue), var(--primary-pink));
+            color: white;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .zoom-controls {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem;
+            background: white;
+            justify-content: center;
+        }
+
+        .zoom-control-btn {
+            background: #f1f1f1;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .zoom-control-btn:hover {
+            background: #e1e1e1;
+        }
+
+        .zoom-end-call {
+            background: #ff4444;
+            color: white;
+        }
+
+        .zoom-end-call:hover {
+            background: #cc0000;
+        }
+
+        /* Booking Section */
+        .booking-section {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: var(--card-shadow);
+        }
+
+        .booking-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .booking-form {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input, 
+        .form-group select, 
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .booking-image {
+            flex: 1;
+            min-width: 300px;
+            background: url('https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover;
+            border-radius: 10px;
+        }
+
+        /* AI Questionnaire */
+        .questionnaire-section {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: var(--card-shadow);
+        }
+
+        .questionnaire-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .question {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .question h3 {
+            margin-bottom: 1rem;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .option:hover {
+            background: #f5f5f5;
+        }
+
+        .option input {
+            margin-right: 0.5rem;
+        }
+
+        .progress-bar {
+            height: 10px;
+            background: #eee;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            background: var(--primary-pink);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        /* Facial Recognition */
+        .facial-recognition {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: var(--card-shadow);
+            text-align: center;
+        }
+
+        .camera-container {
+            width: 300px;
+            height: 300px;
+            margin: 1rem auto;
+            border: 2px dashed #ddd;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #camera-feed {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+        }
+
+        .camera-placeholder {
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .camera-placeholder i {
+            font-size: 3rem;
+            color: var(--primary-pink);
+            margin-bottom: 1rem;
+        }
+
+        .capture-btn {
+            margin-top: 1rem;
+            background: var(--primary-pink);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+        }
+
+        /* Profile Modal */
+        .profile-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .profile-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .profile-form {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 500px;
+            width: 90%;
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+        }
+
+        .profile-modal.active .profile-form {
+            transform: scale(1);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-color);
+        }
+
+        .theme-selector {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .theme-option {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .theme-option.theme-light {
+            background: linear-gradient(45deg, #fff, #f0f0f0);
+        }
+
+        .theme-option.theme-dark {
+            background: linear-gradient(45deg, #333, #000);
+        }
+
+        .theme-option.theme-blue {
+            background: linear-gradient(45deg, var(--primary-blue), #87ceeb);
+        }
+
+        .theme-option.active {
+            border-color: var(--primary-pink);
+            transform: scale(1.1);
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, var(--dark-color), #2d1327);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background: #ff6b8b;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--primary-pink);
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(45deg, var(--primary-blue), var(--primary-pink));
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px) scale(1.1);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Seat Reminders */
+        .reminders-section {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: var(--card-shadow);
+        }
+
+        .reminders-list {
+            list-style: none;
+        }
+
+        .reminder-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .reminder-item:last-child {
+            border-bottom: none;
+        }
+
+        .reminder-icon {
+            font-size: 1.5rem;
+            color: var(--primary-pink);
+            margin-right: 1rem;
+        }
+
+        .reminder-content {
+            flex: 1;
+        }
+
+        .reminder-content h4 {
+            margin-bottom: 0.3rem;
+        }
+
+        .reminder-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .reminder-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--primary-pink);
+        }
+
+        /* Modal for Zoom */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 800px;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .booking-container {
+                flex-direction: column;
+            }
+            
+            .calendar-section {
+                overflow-x: auto;
+            }
+            
+            #calendar {
+                min-width: 600px;
+            }
+
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: linear-gradient(135deg, var(--primary-pink), var(--accent-color));
+                flex-direction: column;
+                padding: 1rem 0;
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            nav ul li {
+                margin: 0;
+                padding: 0.5rem 1rem;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .header-right {
+                gap: 1rem;
+            }
+
+            .zoom-meeting {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .feature-card {
+                padding: 1.5rem;
+            }
+
+            .feature-icon {
+                font-size: 2.5rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .camera-container {
+                width: 250px;
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="slide-top">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-heartbeat"></i>
+                    <h1 class="logo-text"><span class="her">Her</span><span class="vital">Vital</span></h1>
+                </div>
+                <div class="header-right">
+                    <button class="mobile-menu-btn" id="mobileMenuBtn">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <nav id="mainNav">
+                        <ul>
+                            <li><a href="index.html"><i class="fas fa-home"></i> <span data-translate="nav_home">Home</span></a></li>
+                            <li><a href="services.html"><i class="fas fa-concierge-bell"></i> <span data-translate="nav_services">Services</span></a></li>
+                            <li><a href="features.html" class="active"><i class="fas fa-star"></i> <span data-translate="nav_features">Features</span></a></li>
+                            <li><a href="about.html"><i class="fas fa-info-circle"></i> <span data-translate="nav_about">About</span></a></li>
+                            <li><a href="contact.html"><i class="fas fa-envelope"></i> <span data-translate="nav_contact">Contact</span></a></li>
+                        </ul>
+                    </nav>
+                    <div class="profile-dropdown">
+                        <button class="profile-btn" id="profileBtn">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                        <div class="dropdown-menu" id="dropdownMenu">
+                            <div class="dropdown-item" onclick="openProfileModal()">
+                                <i class="fas fa-user"></i>
+                                <span data-translate="profile">Profile</span>
+                            </div>
+                            <div class="dropdown-item language-submenu">
+                                <i class="fas fa-globe"></i>
+                                <span data-translate="language">Language</span>
+                                <div class="language-options">
+                                    <div class="dropdown-item" onclick="changeLanguage('en')"><i class="fas fa-language"></i> English</div>
+                                    <div class="dropdown-item" onclick="changeLanguage('zu')"><i class="fas fa-language"></i> IsiZulu</div>
+                                    <div class="dropdown-item" onclick="changeLanguage('xh')"><i class="fas fa-language"></i> IsiXhosa</div>
+                                    <div class="dropdown-item" onclick="changeLanguage('af')"><i class="fas fa-language"></i> Afrikaans</div>
+                                    <div class="dropdown-item" onclick="changeLanguage('nso')"><i class="fas fa-language"></i> Sepedi</div>
+                                    <div class="dropdown-item" onclick="changeLanguage('tn')"><i class="fas fa-language"></i> Setswana</div>
+                                    <div class="dropdown-item" onclick="changeLanguage('st')"><i class="fas fa-language"></i> Sesotho</div>
+                                    <div class="dropdown-item" onclick="changeLanguage('ts')"><i class="fas fa-language"></i> Xitsonga</div>
+                                    <div class="dropdown-item" onclick="changeLanguage('ss')"><i class="fas fa-language"></i> SiSwati</div>
+                                    <div class="dropdown-item" onclick="changeLanguage('ve')"><i class="fas fa-language"></i> Tshivenda</div>
+                                    <div class="dropdown-item" onclick="changeLanguage('nr')"><i class="fas fa-language"></i> IsiNdebele</div>
+                                </div>
+                            </div>
+                            <div class="dropdown-item" onclick="toggleThemeModal()">
+                                <i class="fas fa-palette"></i>
+                                <span data-translate="themes">Themes</span>
+                            </div>
+                            <div class="dropdown-item" onclick="logout()">
+                                <i class="fas fa-sign-out-alt"></i>
+                                <span data-translate="logout">Logout</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="section-title">
+            <h2 data-translate="features_title">Your Complete Health Companion</h2>
+            <p data-translate="features_subtitle">HerVital provides essential tools and information to support women at every stage of their health journey.</p>
+        </div>
+
+        <!-- Features Grid -->
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-comment-medical"></i></div>
+                <h3 data-translate="feature_chat_title">Health Assistant Chat</h3>
+                <p data-translate="feature_chat_desc">Get instant answers to your health questions with our AI-powered chatbot.</p>
+                <a href="#chatbot" class="btn" data-translate="feature_try">Try Now</a>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-calendar-alt"></i></div>
+                <h3 data-translate="feature_calendar_title">Health Calendar</h3>
+                <p data-translate="feature_calendar_desc">Track appointments, menstrual cycles, and important health dates.</p>
+                <a href="#calendar-section" class="btn" data-translate="feature_view">View Calendar</a>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-video"></i></div>
+                <h3 data-translate="feature_video_title">Video Consultations</h3>
+                <p data-translate="feature_video_desc">Connect with healthcare professionals from the comfort of your home.</p>
+                <a href="#consultation" class="btn" data-translate="feature_book">Book Now</a>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-notes-medical"></i></div>
+                <h3 data-translate="feature_questionnaire_title">Health Questionnaire</h3>
+                <p data-translate="feature_questionnaire_desc">Complete AI-powered assessments for personalized health insights.</p>
+                <a href="#questionnaire" class="btn" data-translate="feature_start">Start Assessment</a>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-camera"></i></div>
+                <h3 data-translate="feature_facial_title">Facial Analysis</h3>
+                <p data-translate="feature_facial_desc">Get health insights through AI-powered facial recognition technology.</p>
+                <a href="#facial-recognition" class="btn" data-translate="feature_try">Try Analysis</a>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-bell"></i></div>
+                <h3 data-translate="feature_reminders_title">Health Reminders</h3>
+                <p data-translate="feature_reminders_desc">Never miss important appointments, medications, or health checks.</p>
+                <a href="#reminders" class="btn" data-translate="feature_view">View Reminders</a>
+            </div>
+        </div>
+
+        <!-- Chatbot Section -->
+        <section id="chatbot" class="chatbot-section">
+            <div class="chatbot-container">
+                <div class="chatbot-header">
+                    <h2 data-translate="chatbot_title">Health Assistant Chat</h2>
+                    <p data-translate="chatbot_subtitle">Get instant answers to your health questions</p>
+                </div>
+                <div class="chat-interface">
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="message bot-message" data-translate="chatbot_welcome">
+                            Hello! I'm your HerVital health assistant. How can I help you with your health questions today?
+                        </div>
+                    </div>
+                    <div class="chat-input-container">
+                        <input type="text" class="chat-input" id="chatInput" placeholder="Ask me about women's health..." data-translate-placeholder="chatbot_placeholder" onkeypress="handleKeyPress(event)">
+                        <button class="send-button" onclick="sendMessage()" data-translate="chatbot_send">Send</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Calendar Section -->
+        <section id="calendar-section" class="calendar-section">
+            <div class="section-title">
+                <h2 data-translate="calendar_title">Health Calendar</h2>
+                <p data-translate="calendar_subtitle">Track your appointments, menstrual cycle, and important health dates</p>
+            </div>
+            <div id="calendar"></div>
+        </section>
+
+        <!-- Video Consultation Section -->
+        <section id="consultation" class="consultation-section">
+            <div class="section-title">
+                <h2 data-translate="consultation_title">Video Consultations</h2>
+                <p data-translate="consultation_subtitle">Connect with healthcare professionals from anywhere</p>
+            </div>
+            <div class="consultation-grid">
+                <div class="consultation-card">
+                    <div class="consultation-image" style="background-image: url('https://images.unsplash.com/photo-1581056771107-24ca5f033842?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                    <div class="consultation-content">
+                        <h3 data-translate="consultation_gp">General Practitioner</h3>
+                        <p data-translate="consultation_gp_desc">Discuss general health concerns with licensed doctors.</p>
+                        <button class="btn" onclick="startZoomConsultation('General Practitioner')" data-translate="consultation_book">Book Now</button>
+                    </div>
+                </div>
+                <div class="consultation-card">
+                    <div class="consultation-image" style="background-image: url('https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                    <div class="consultation-content">
+                        <h3 data-translate="consultation_gynecologist">Gynecologist</h3>
+                        <p data-translate="consultation_gynecologist_desc">Specialized care for women's reproductive health.</p>
+                        <button class="btn" onclick="startZoomConsultation('Gynecologist')" data-translate="consultation_book">Book Now</button>
+                    </div>
+                </div>
+                <div class="consultation-card">
+                    <div class="consultation-image" style="background-image: url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                    <div class="consultation-content">
+                        <h3 data-translate="consultation_nutritionist">Nutritionist</h3>
+                        <p data-translate="consultation_nutritionist_desc">Get personalized dietary advice and meal plans.</p>
+                        <button class="btn" onclick="startZoomConsultation('Nutritionist')" data-translate="consultation_book">Book Now</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Zoom Meeting Container (hidden by default) -->
+            <div class="zoom-meeting" id="zoomMeeting">
+                <div class="zoom-header">
+                    <h3 id="zoomMeetingTitle">Video Consultation</h3>
+                    <button class="close-btn" onclick="endZoomMeeting()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div id="zoomEmbedContainer" style="width: 100%; height: 400px; background: #000;"></div>
+                <div class="zoom-controls">
+                    <button class="zoom-control-btn" onclick="toggleMute()">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                    <button class="zoom-control-btn" onclick="toggleVideo()">
+                        <i class="fas fa-video"></i>
+                    </button>
+                    <button class="zoom-control-btn zoom-end-call" onclick="endZoomMeeting()">
+                        <i class="fas fa-phone"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Booking Section -->
+        <section id="booking" class="booking-section">
+            <div class="section-title">
+                <h2 data-translate="booking_title">Book an Appointment</h2>
+                <p data-translate="booking_subtitle">Schedule your consultation with our healthcare professionals</p>
+            </div>
+            <div class="booking-container">
+                <div class="booking-form">
+                    <form id="appointmentForm">
+                        <div class="form-group">
+                            <label for="service-type" data-translate="booking_service">Service Type</label>
+                            <select id="service-type" required>
+                                <option value="" data-translate="booking_select">Select a service</option>
+                                <option value="General Consultation" data-translate="booking_general">General Consultation</option>
+                                <option value="Gynecological Consultation" data-translate="booking_gynecological">Gynecological Consultation</option>
+                                <option value="Nutrition Consultation" data-translate="booking_nutrition">Nutrition Consultation</option>
+                                <option value="Mental Health Consultation" data-translate="booking_mental">Mental Health Consultation</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="appointment-date" data-translate="booking_date">Date</label>
+                            <input type="date" id="appointment-date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="appointment-time" data-translate="booking_time">Time</label>
+                            <input type="time" id="appointment-time" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="notes" data-translate="booking_notes">Notes (Optional)</label>
+                            <textarea id="notes" rows="3" placeholder="Any additional information..." data-translate-placeholder="booking_notes_placeholder"></textarea>
+                        </div>
+                        <button type="submit" class="btn" data-translate="booking_button">Book Appointment</button>
+                    </form>
+                </div>
+                <div class="booking-image"></div>
+            </div>
+        </section>
+
+        <!-- AI Questionnaire Section -->
+        <section id="questionnaire" class="questionnaire-section">
+            <div class="section-title">
+                <h2 data-translate="questionnaire_title">Health Assessment</h2>
+                <p data-translate="questionnaire_subtitle">Complete this questionnaire for personalized health insights</p>
+            </div>
+            <div class="questionnaire-container">
+                <div class="progress-bar">
+                    <div class="progress" id="questionnaire-progress"></div>
+                </div>
+                <div id="questionnaire-questions">
+                    <div class="question current-question" data-question="1">
+                        <h3 data-translate="question_1">1. How would you rate your overall health?</h3>
+                        <div class="options">
+                            <label class="option">
+                                <input type="radio" name="q1" value="Excellent"> <span data-translate="option_excellent">Excellent</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q1" value="Good"> <span data-translate="option_good">Good</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q1" value="Fair"> <span data-translate="option_fair">Fair</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q1" value="Poor"> <span data-translate="option_poor">Poor</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="question" data-question="2" style="display: none;">
+                        <h3 data-translate="question_2">2. How often do you experience menstrual pain?</h3>
+                        <div class="options">
+                            <label class="option">
+                                <input type="radio" name="q2" value="Never"> <span data-translate="option_never">Never</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q2" value="Occasionally"> <span data-translate="option_occasionally">Occasionally</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q2" value="Frequently"> <span data-translate="option_frequently">Frequently</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q2" value="Always"> <span data-translate="option_always">Always</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="question" data-question="3" style="display: none;">
+                        <h3 data-translate="question_3">3. Do you have any chronic health conditions?</h3>
+                        <div class="options">
+                            <label class="option">
+                                <input type="radio" name="q3" value="No"> <span data-translate="option_no">No</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q3" value="Yes"> <span data-translate="option_yes">Yes (please specify in notes)</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="questionnaire-nav">
+                    <button class="btn" id="prev-question" style="display: none;" data-translate="button_previous">Previous</button>
+                    <button class="btn" id="next-question" data-translate="button_next">Next</button>
+                    <button class="btn" id="submit-questionnaire" style="display: none;" data-translate="button_submit">Submit</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Facial Recognition Section -->
+        <section id="facial-recognition" class="facial-recognition">
+            <div class="section-title">
+                <h2 data-translate="facial_title">Facial Health Analysis</h2>
+                <p data-translate="facial_subtitle">Get instant health insights through AI-powered facial recognition</p>
+            </div>
+            <div class="camera-container">
+                <video id="camera-feed" autoplay></video>
+                <div class="camera-placeholder">
+                    <i class="fas fa-camera"></i>
+                    <p data-translate="facial_placeholder">Camera feed will appear here</p>
+                </div>
+            </div>
+            <button class="btn" id="start-camera" data-translate="facial_start">Start Camera</button>
+            <button class="btn capture-btn" id="capture-btn" style="display: none;" data-translate="facial_capture">Capture Image</button>
+            <div id="analysis-results" style="margin-top: 1rem;"></div>
+        </section>
+
+        <!-- Seat Reminders Section -->
+        <section id="reminders" class="reminders-section">
+            <div class="section-title">
+                <h2 data-translate="reminders_title">Your Health Reminders</h2>
+                <p data-translate="reminders_subtitle">Never miss important health appointments and checkups</p>
+            </div>
+            <ul class="reminders-list">
+                <li class="reminder-item">
+                    <div class="reminder-icon"><i class="fas fa-calendar-check"></i></div>
+                    <div class="reminder-content">
+                        <h4 data-translate="reminder_checkup">Annual Checkup</h4>
+                        <p data-translate="reminder_checkup_desc">Due in 2 weeks - Dr. Smith at Wellness Clinic</p>
+                    </div>
+                    <div class="reminder-actions">
+                        <button class="reminder-btn"><i class="fas fa-bell"></i></button>
+                        <button class="reminder-btn"><i class="fas fa-edit"></i></button>
+                        <button class="reminder-btn"><i class="fas fa-trash"></i></button>
+                    </div>
+                </li>
+                <li class="reminder-item">
+                    <div class="reminder-icon"><i class="fas fa-pills"></i></div>
+                    <div class="reminder-content">
+                        <h4 data-translate="reminder_medication">Take Multivitamin</h4>
+                        <p data-translate="reminder_medication_desc">Daily at 8:00 AM</p>
+                    </div>
+                    <div class="reminder-actions">
+                        <button class="reminder-btn"><i class="fas fa-bell"></i></button>
+                        <button class="reminder-btn"><i class="fas fa-edit"></i></button>
+                        <button class="reminder-btn"><i class="fas fa-trash"></i></button>
+                    </div>
+                </li>
+                <li class="reminder-item">
+                    <div class="reminder-icon"><i class="fas fa-syringe"></i></div>
+                    <div class="reminder-content">
+                        <h4 data-translate="reminder_vaccine">Flu Vaccination</h4>
+                        <p data-translate="reminder_vaccine_desc">Due in 1 month - Local Pharmacy</p>
+                    </div>
+                    <div class="reminder-actions">
+                        <button class="reminder-btn"><i class="fas fa-bell"></i></button>
+                        <button class="reminder-btn"><i class="fas fa-edit"></i></button>
+                        <button class="reminder-btn"><i class="fas fa-trash"></i></button>
+                    </div>
+                </li>
+            </ul>
+            <button class="btn" style="margin-top: 1rem;" data-translate="reminder_add">Add New Reminder</button>
+        </section>
+    </div>
+
+    <!-- Profile Modal -->
+    <div class="profile-modal" id="profileModal">
+        <div class="profile-form">
+            <div class="modal-header">
+                <h2 data-translate="profile_title">Profile Settings</h2>
+                <button class="close-btn" onclick="closeProfileModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="profileForm">
+                <div class="form-group">
+                    <label for="fullName" data-translate="profile_name">Full Name</label>
+                    <input type="text" id="fullName" name="fullName" placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label for="email" data-translate="profile_email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="phone" data-translate="profile_phone">Phone</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
+                </div>
+                <div class="form-group">
+                    <label for="age" data-translate="profile_age">Age</label>
+                    <input type="number" id="age" name="age" placeholder="Enter your age">
+                </div>
+                <div class="form-group">
+                    <label data-translate="profile_theme">Theme Selection</label>
+                    <div class="theme-selector">
+                        <div class="theme-option theme-light active" onclick="setTheme('light')" title="Light Theme"></div>
+                        <div class="theme-option theme-dark" onclick="setTheme('dark')" title="Dark Theme"></div>
+                        <div class="theme-option theme-blue" onclick="setTheme('blue')" title="Blue Theme"></div>
+                    </div>
+                </div>
+                <button type="submit" class="btn" data-translate="profile_save">Save Profile</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-content slide-bottom">
+                <div class="footer-column">
+                    <h3 data-translate="footer_about">HerVital</h3>
+                    <p data-translate="footer_description">Digital tools and services that improve women's access to essential healthcare, maternal health support, and preventive care.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3 data-translate="footer_links">Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-home"></i> <span data-translate="nav_home">Home</span></a></li>
+                        <li><a href="services.html"><i class="fas fa-concierge-bell"></i> <span data-translate="nav_services">Services</span></a></li>
+                        <li><a href="features.html"><i class="fas fa-star"></i> <span data-translate="nav_features">Features</span></a></li>
+                        <li><a href="about.html"><i class="fas fa-info-circle"></i> <span data-translate="nav_about">About</span></a></li>
+                        <li><a href="contact.html"><i class="fas fa-envelope"></i> <span data-translate="nav_contact">Contact</span></a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3 data-translate="footer_services">Services</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-baby-carriage"></i> <span data-translate="service_maternal">Maternal Health</span></a></li>
+                        <li><a href="#"><i class="fas fa-shield-alt"></i> <span data-translate="service_preventive">Preventive Care</span></a></li>
+                        <li><a href="#"><i class="fas fa-video"></i> <span data-translate="service_telemedicine">Telemedicine</span></a></li>
+                        <li><a href="#"><i class="fas fa-brain"></i> <span data-translate="service_mental">Mental Health</span></a></li>
+                        <li><a href="#"><i class="fas fa-utensils"></i> <span data-translate="service_nutrition">Nutrition Guidance</span></a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3 data-translate="footer_contact">Contact Us</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> <span data-translate="footer_address">123 Health St, Durban</span></li>
+                        <li><i class="fas fa-phone"></i> <span data-translate="footer_phone">(031) 456-7890</span></li>
+                        <li><i class="fas fa-envelope"></i> <span data-translate="footer_email">info@hervital.com</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 HerVital. <span data-translate="footer_rights">All rights reserved.</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+    <script>
+        // ======================
+        // GLOBAL VARIABLES
+        // ======================
+        let currentLanguage = 'en';
+        let currentQuestion = 1;
+        const totalQuestions = 3;
+        let isVideoOn = true;
+        let isAudioOn = true;
+        let zoomMeetingActive = false;
+        let userProfile = {
+            fullName: '',
+            email: '',
+            phone: '',
+            age: '',
+            theme: 'light',
+            language: 'en'
+        };
+
+        // ======================
+        // LANGUAGE TRANSLATIONS
+        // ======================
+        const translations = {
+            en: {
+                // Navigation
+                nav_home: "Home",
+                nav_services: "Services",
+                nav_features: "Features",
+                nav_about: "About",
+                nav_contact: "Contact",
+                nav_findcare: "Find Care",
+                
+                // Profile Dropdown
+                profile: "Profile",
+                language: "Language",
+                themes: "Themes",
+                logout: "Logout",
+                
+                // Features Section
+                features_title: "Your Complete Health Companion",
+                features_subtitle: "HerVital provides essential tools and information to support women at every stage of their health journey.",
+                feature_chat_title: "Health Assistant Chat",
+                feature_chat_desc: "Get instant answers to your health questions with our AI-powered chatbot.",
+                feature_calendar_title: "Health Calendar",
+                feature_calendar_desc: "Track appointments, menstrual cycles, and important health dates.",
+                feature_video_title: "Video Consultations",
+                feature_video_desc: "Connect with healthcare professionals from the comfort of your home.",
+                feature_questionnaire_title: "Health Questionnaire",
+                feature_questionnaire_desc: "Complete AI-powered assessments for personalized health insights.",
+                feature_facial_title: "Facial Analysis",
+                feature_facial_desc: "Get health insights through AI-powered facial recognition technology.",
+                feature_reminders_title: "Health Reminders",
+                feature_reminders_desc: "Never miss important appointments, medications, or health checks.",
+                feature_try: "Try Now",
+                feature_view: "View Calendar",
+                feature_book: "Book Now",
+                feature_start: "Start Assessment",
+                
+                // Chatbot
+                chatbot_title: "Health Assistant Chat",
+                chatbot_subtitle: "Get instant answers to your health questions",
+                chatbot_welcome: "Hello! I'm your HerVital health assistant. How can I help you with your health questions today?",
+                chatbot_placeholder: "Ask me about women's health...",
+                chatbot_send: "Send",
+                
+                // Calendar
+                calendar_title: "Health Calendar",
+                calendar_subtitle: "Track your appointments, menstrual cycle, and important health dates",
+                
+                // Video Consultation
+                consultation_title: "Video Consultations",
+                consultation_subtitle: "Connect with healthcare professionals from anywhere",
+                consultation_gp: "General Practitioner",
+                consultation_gp_desc: "Discuss general health concerns with licensed doctors.",
+                consultation_gynecologist: "Gynecologist",
+                consultation_gynecologist_desc: "Specialized care for women's reproductive health.",
+                consultation_nutritionist: "Nutritionist",
+                consultation_nutritionist_desc: "Get personalized dietary advice and meal plans.",
+                consultation_book: "Book Now",
+                
+                // Booking
+                booking_title: "Book an Appointment",
+                booking_subtitle: "Schedule your consultation with our healthcare professionals",
+                booking_service: "Service Type",
+                booking_select: "Select a service",
+                booking_general: "General Consultation",
+                booking_gynecological: "Gynecological Consultation",
+                booking_nutrition: "Nutrition Consultation",
+                booking_mental: "Mental Health Consultation",
+                booking_date: "Date",
+                booking_time: "Time",
+                booking_notes: "Notes (Optional)",
+                booking_notes_placeholder: "Any additional information...",
+                booking_button: "Book Appointment",
+                
+                // Questionnaire
+                questionnaire_title: "Health Assessment",
+                questionnaire_subtitle: "Complete this questionnaire for personalized health insights",
+                question_1: "1. How would you rate your overall health?",
+                question_2: "2. How often do you experience menstrual pain?",
+                question_3: "3. Do you have any chronic health conditions?",
+                option_excellent: "Excellent",
+                option_good: "Good",
+                option_fair: "Fair",
+                option_poor: "Poor",
+                option_never: "Never",
+                option_occasionally: "Occasionally",
+                option_frequently: "Frequently",
+                option_always: "Always",
+                option_no: "No",
+                option_yes: "Yes (please specify in notes)",
+                button_previous: "Previous",
+                button_next: "Next",
+                button_submit: "Submit",
+                
+                // Facial Recognition
+                facial_title: "Facial Health Analysis",
+                facial_subtitle: "Get instant health insights through AI-powered facial recognition",
+                facial_placeholder: "Camera feed will appear here",
+                facial_start: "Start Camera",
+                facial_capture: "Capture Image",
+                
+                // Reminders
+                reminders_title: "Your Health Reminders",
+                reminders_subtitle: "Never miss important health appointments and checkups",
+                reminder_checkup: "Annual Checkup",
+                reminder_checkup_desc: "Due in 2 weeks - Dr. Smith at Wellness Clinic",
+                reminder_medication: "Take Multivitamin",
+                reminder_medication_desc: "Daily at 8:00 AM",
+                reminder_vaccine: "Flu Vaccination",
+                reminder_vaccine_desc: "Due in 1 month - Local Pharmacy",
+                reminder_add: "Add New Reminder",
+                
+                // Profile Modal
+                profile_title: "Profile Settings",
+                profile_name: "Full Name",
+                profile_email: "Email",
+                profile_phone: "Phone",
+                profile_age: "Age",
+                profile_theme: "Theme Selection",
+                profile_save: "Save Profile",
+                
+                // Footer
+                footer_about: "HerVital",
+                footer_description: "Digital tools and services that improve women's access to essential healthcare, maternal health support, and preventive care.",
+                footer_links: "Quick Links",
+                footer_services: "Services",
+                footer_contact: "Contact Us",
+                footer_address: "123 Health St, Wellness City",
+                footer_phone: "(123) 456-7890",
+                footer_email: "info@hervital.com",
+                footer_rights: "All rights reserved.",
+                service_maternal: "Maternal Health",
+                service_preventive: "Preventive Care",
+                service_telemedicine: "Telemedicine",
+                service_mental: "Mental Health",
+                service_nutrition: "Nutrition Guidance",
+                
+                // Additional translations
+                chatbot_response_pain: "I'm sorry to hear you're experiencing pain. For persistent or severe pain, please consult with a healthcare provider. Would you like me to help you find a nearby clinic?",
+                chatbot_response_pregnancy: "Pregnancy is an important time to monitor your health. Our maternal tracker can help you follow your pregnancy week by week. Would you like to try it?",
+                chatbot_response_period: "Menstrual health is important. Tracking your cycle can help identify patterns. Would you like to log your symptoms in our period tracker?",
+                chatbot_response_default: "Thank you for your question. For personalized medical advice, I recommend consulting with a healthcare provider. Would you like to book a video consultation?",
+                profile_save_success: "Profile saved successfully!",
+                logout_confirm: "Are you sure you want to logout?",
+                logout_success: "You have been logged out successfully.",
+                booking_required: "Please fill in all required fields.",
+                booking_success: "Appointment booked successfully! A confirmation has been sent to your email.",
+                questionnaire_submit: "Thank you for completing the questionnaire! Your personalized health insights will be generated.",
+                camera_error: "Unable to access camera",
+                camera_unsupported: "Camera access not supported by your browser",
+                facial_results_title: "Analysis Results",
+                facial_results_skin: "Skin Health:",
+                facial_results_skin_desc: "Normal hydration detected",
+                facial_results_concerns: "Potential Concerns:",
+                facial_results_concerns_desc: "Mild dark circles detected (may indicate fatigue or dehydration)",
+                facial_results_recommendations: "Recommendations:",
+                facial_results_sleep: "Ensure adequate sleep (7-9 hours)",
+                facial_results_water: "Drink at least 8 glasses of water daily",
+                facial_results_cream: "Consider using a hydrating eye cream",
+                facial_results_note: "Note: This analysis is not a substitute for professional medical advice.",
+                zoom_connecting: "Connecting to Video Consultation...",
+                zoom_connecting_desc: "Please wait while we connect you with your healthcare provider",
+                zoom_connected: "Connected with",
+                zoom_connected_desc: "Your video consultation has started",
+                zoom_video_on: "Video turned on",
+                zoom_video_off: "Video turned off",
+                zoom_audio_on: "Audio unmuted",
+                zoom_audio_off: "Audio muted",
+                calendar_event_checkup: "Checkup",
+                calendar_event_reminder: "Reminder",
+                calendar_event_screening: "Screening",
+                calendar_date_click: "Clicked on: {date}\nWould you like to add an event?"
+            },
+            zu: {
+                // Navigation
+                nav_home: "Ikhaya",
+                nav_services: "Izinsiza",
+                nav_features: "Izici",
+                nav_about: "Mayelana",
+                nav_contact: "Xhumana",
+                nav_findcare: "Thola Unakekelwano",
+                
+                // Profile Dropdown
+                profile: "Iphrofayili",
+                language: "Ulimi",
+                themes: "Izindikimba",
+                logout: "Phuma",
+                
+                // Features Section
+                features_title: "Umngane Wakho Wempilo Ephelele",
+                features_subtitle: "I-HerVital inikeza amathuluzi nolwazi olubalulekile ukuxhasa abesifazane kuzo zonke izigaba zohambo lwabo lwempilo.",
+                feature_chat_title: "Inxusa Lomngane Wempilo",
+                feature_chat_desc: "Thola izimpendulo zisheshayo zemibuzo yakho yezempilo ngenxusa lethu elisekelwa i-AI.",
+                feature_calendar_title: "Ikhalenda Lezempilo",
+                feature_calendar_desc: "Landelela izihlolisi, imijikelezo yokuthomba, nezinsuku ezibalulekile zempilo.",
+                feature_video_title: "Izinhlolokhono Zevidiyo",
+                feature_video_desc: "Xhumana nochwepheshe bezempilo usukela ekhaya lakho.",
+                feature_questionnaire_title: "Uhlu Lwemibuzo Lwempilo",
+                feature_questionnaire_desc: "Qedela ukuhlolwa okusekelwe ku-AI ukuze uthole imininingwane yezempilo eyenzelwe wena.",
+                feature_facial_title: "Ukuhlaziywa Kobuso",
+                feature_facial_desc: "Thola imininingwane yezempilo ngobuchwepheshe bokuqashelwa kobuso obusekelwe ku-AI.",
+                feature_reminders_title: "Izikhumbuzi Zempilo",
+                feature_reminders_desc: "Ungaphuthelwa izihlolisi ezibalulekile, imithi, noma ukuhlolwa kwempilo.",
+                feature_try: "Zama Manje",
+                feature_view: "Buka Ikhalenda",
+                feature_book: "Bhukha Manje",
+                feature_start: "Qala Ukuhlolwa"
+            }
+        };
+
+        // ======================
+        // DOM ELEMENTS & INITIALIZATION
+        // ======================
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM Content Loaded - Initializing...');
+            
+            // Load user profile and preferences
+            loadUserProfile();
+            
+            // Initialize calendar
+            initCalendar();
+            
+            // Set up all event listeners
+            setupEventListeners();
+            
+            // Update translations based on current language
+            updateTranslations();
+            
+            console.log('Initialization complete');
+        });
+
+        function setupEventListeners() {
+            console.log('Setting up event listeners...');
+            
+            // Get DOM elements
+            const profileBtn = document.getElementById('profileBtn');
+            const dropdownMenu = document.getElementById('dropdownMenu');
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mainNav = document.getElementById('mainNav');
+            const profileModal = document.getElementById('profileModal');
+            const profileForm = document.getElementById('profileForm');
+            const chatInput = document.getElementById('chatInput');
+            const sendBtn = document.querySelector('.send-button');
+            const startCameraBtn = document.getElementById('start-camera');
+            const captureBtn = document.getElementById('capture-btn');
+            const prevQuestionBtn = document.getElementById('prev-question');
+            const nextQuestionBtn = document.getElementById('next-question');
+            const submitQuestionnaireBtn = document.getElementById('submit-questionnaire');
+            const appointmentForm = document.getElementById('appointmentForm');
+
+            // Profile dropdown - FIXED VERSION
+            if (profileBtn && dropdownMenu) {
+                console.log('Setting up profile button...');
+                
+                profileBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    console.log('Profile button clicked');
+                    toggleDropdown();
+                });
+
+                // Close dropdown when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!profileBtn.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                        dropdownMenu.classList.remove('active');
+                    }
+                });
+            } else {
+                console.error('Profile button or dropdown menu not found!');
+            }
+            
+            // Mobile menu
+            if (mobileMenuBtn && mainNav) {
+                mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+            }
+            
+            // Chatbot
+            if (sendBtn && chatInput) {
+                sendBtn.addEventListener('click', sendMessage);
+                chatInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        sendMessage();
+                    }
+                });
+            }
+            
+            // Questionnaire navigation
+            if (prevQuestionBtn && nextQuestionBtn && submitQuestionnaireBtn) {
+                prevQuestionBtn.addEventListener('click', showPreviousQuestion);
+                nextQuestionBtn.addEventListener('click', showNextQuestion);
+                submitQuestionnaireBtn.addEventListener('click', submitQuestionnaire);
+            }
+            
+            // Appointment form
+            if (appointmentForm) {
+                appointmentForm.addEventListener('submit', bookAppointment);
+            }
+            
+            // Camera
+            if (startCameraBtn && captureBtn) {
+                startCameraBtn.addEventListener('click', startCamera);
+                captureBtn.addEventListener('click', captureImage);
+            }
+            
+            // Profile form
+            if (profileForm) {
+                profileForm.addEventListener('submit', saveProfile);
+            }
+            
+            // Close modals with Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    if (profileModal && profileModal.classList.contains('active')) {
+                        closeProfileModal();
+                    }
+                    if (dropdownMenu) {
+                        dropdownMenu.classList.remove('active');
+                    }
+                    if (mainNav) {
+                        mainNav.classList.remove('active');
+                    }
+                }
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const target = document.querySelector(targetId);
+                    if (target) {
+                        window.scrollTo({
+                            top: target.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Close mobile menu if open
+                        if (mainNav) mainNav.classList.remove('active');
+                        
+                        // Close dropdown if open
+                        if (dropdownMenu) dropdownMenu.classList.remove('active');
+                    }
+                });
+            });
+            
+            console.log('Event listeners set up complete');
+        }
+
+        // ======================
+        // PROFILE FUNCTIONS
+        // ======================
+        function toggleDropdown() {
+            console.log('Toggling dropdown...');
+            const dropdownMenu = document.getElementById('dropdownMenu');
+            if (dropdownMenu) {
+                const isActive = dropdownMenu.classList.contains('active');
+                dropdownMenu.classList.toggle('active');
+                console.log('Dropdown is now:', !isActive ? 'active' : 'inactive');
+            }
+        }
+
+        function openProfileModal() {
+            console.log('Opening profile modal...');
+            const profileModal = document.getElementById('profileModal');
+            if (profileModal) {
+                profileModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                populateProfileForm();
+                
+                // Close dropdown
+                const dropdownMenu = document.getElementById('dropdownMenu');
+                if (dropdownMenu) {
+                    dropdownMenu.classList.remove('active');
+                }
+            }
+        }
+
+        function closeProfileModal() {
+            console.log('Closing profile modal...');
+            const profileModal = document.getElementById('profileModal');
+            if (profileModal) {
+                profileModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        function populateProfileForm() {
+            const fullNameInput = document.getElementById('fullName');
+            const emailInput = document.getElementById('email');
+            const phoneInput = document.getElementById('phone');
+            const ageInput = document.getElementById('age');
+            
+            if (fullNameInput) fullNameInput.value = userProfile.fullName || '';
+            if (emailInput) emailInput.value = userProfile.email || '';
+            if (phoneInput) phoneInput.value = userProfile.phone || '';
+            if (ageInput) ageInput.value = userProfile.age || '';
+            
+            // Update theme selection
+            document.querySelectorAll('.theme-option').forEach(option => {
+                option.classList.remove('active');
+            });
+            const activeTheme = document.querySelector(`.theme-${userProfile.theme}`);
+            if (activeTheme) {
+                activeTheme.classList.add('active');
+            }
+        }
+
+        function saveProfile(e) {
+            e.preventDefault();
+            console.log('Saving profile...');
+            
+            const fullNameInput = document.getElementById('fullName');
+            const emailInput = document.getElementById('email');
+            const phoneInput = document.getElementById('phone');
+            const ageInput = document.getElementById('age');
+            
+            userProfile.fullName = fullNameInput ? fullNameInput.value : '';
+            userProfile.email = emailInput ? emailInput.value : '';
+            userProfile.phone = phoneInput ? phoneInput.value : '';
+            userProfile.age = ageInput ? ageInput.value : '';
+            
+            // Save to memory (localStorage equivalent in this environment)
+            try {
+                window.hervitalProfile = userProfile;
+                alert(getTranslation('profile_save_success') || 'Profile saved successfully!');
+                closeProfileModal();
+            } catch (error) {
+                console.error('Error saving profile:', error);
+                alert('Error saving profile. Please try again.');
+            }
+        }
+
+        function logout() {
+            const confirmLogout = confirm(getTranslation('logout_confirm') || 'Are you sure you want to logout?');
+            if (confirmLogout) {
+                alert(getTranslation('logout_success') || 'You have been logged out successfully.');
+                // In a real app, you would redirect to login page
+            }
+            const dropdownMenu = document.getElementById('dropdownMenu');
+            if (dropdownMenu) {
+                dropdownMenu.classList.remove('active');
+            }
+        }
+
+        // ======================
+        // LANGUAGE FUNCTIONS
+        // ======================
+        function changeLanguage(lang) {
+            console.log('Changing language to:', lang);
+            currentLanguage = lang;
+            userProfile.language = lang;
+            window.hervitalProfile = userProfile; // Save to memory
+            updateTranslations();
+            
+            const dropdownMenu = document.getElementById('dropdownMenu');
+            if (dropdownMenu) {
+                dropdownMenu.classList.remove('active');
+            }
+        }
+
+        function updateTranslations() {
+            console.log('Updating translations for language:', currentLanguage);
+            
+            // Update all elements with data-translate attribute
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                const translation = getTranslation(key);
+                if (translation) {
+                    element.textContent = translation;
+                }
+            });
+            
+            // Update all placeholder translations
+            document.querySelectorAll('[data-translate-placeholder]').forEach(element => {
+                const key = element.getAttribute('data-translate-placeholder');
+                const translation = getTranslation(key);
+                if (translation) {
+                    element.setAttribute('placeholder', translation);
+                }
+            });
+        }
+
+        function getTranslation(key) {
+            return translations[currentLanguage]?.[key] || translations['en']?.[key] || key;
+        }
+
+        // ======================
+        // THEME FUNCTIONS
+        // ======================
+        function setTheme(theme) {
+            console.log('Setting theme to:', theme);
+            userProfile.theme = theme;
+            applyTheme(theme);
+            
+            // Update theme selector
+            document.querySelectorAll('.theme-option').forEach(option => {
+                option.classList.remove('active');
+            });
+            const selectedTheme = document.querySelector(`.theme-${theme}`);
+            if (selectedTheme) {
+                selectedTheme.classList.add('active');
+            }
+            
+            // Save to memory
+            window.hervitalProfile = userProfile;
+        }
+
+        function applyTheme(theme) {
+            document.body.classList.remove('dark-theme', 'blue-theme');
+            
+            if (theme === 'dark') {
+                document.body.classList.add('dark-theme');
+            } else if (theme === 'blue') {
+                document.body.classList.add('blue-theme');
+            }
+        }
+
+        function toggleThemeModal() {
+            openProfileModal();
+            // Scroll to theme section after modal opens
+            setTimeout(() => {
+                const themeSelector = document.querySelector('.theme-selector');
+                if (themeSelector) {
+                    themeSelector.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'center' 
+                    });
+                }
+            }, 300);
+        }
+
+        // ======================
+        // MOBILE MENU
+        // ======================
+        function toggleMobileMenu() {
+            const mainNav = document.getElementById('mainNav');
+            if (mainNav) {
+                mainNav.classList.toggle('active');
+            }
+        }
+
+        // ======================
+        // CHATBOT FUNCTIONS
+        // ======================
+        function sendMessage() {
+            const chatInput = document.getElementById('chatInput');
+            const chatMessages = document.getElementById('chatMessages');
+            
+            if (!chatInput || !chatMessages) return;
+            
+            const message = chatInput.value.trim();
+            
+            if (message) {
+                // Add user message
+                addChatMessage(message, 'user');
+                
+                // Clear input
+                chatInput.value = '';
+                
+                // Simulate bot response
+                setTimeout(() => {
+                    const botResponse = generateBotResponse(message);
+                    addChatMessage(botResponse, 'bot');
+                }, 1000);
+            }
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        function addChatMessage(message, sender) {
+            const chatMessages = document.getElementById('chatMessages');
+            if (!chatMessages) return;
+            
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}-message`;
+            messageDiv.textContent = message;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function generateBotResponse(message) {
+            const lowerMessage = message.toLowerCase();
+            
+            if (lowerMessage.includes('pain') || lowerMessage.includes('hurt')) {
+                return getTranslation('chatbot_response_pain');
+            } else if (lowerMessage.includes('pregnant') || lowerMessage.includes('pregnancy')) {
+                return getTranslation('chatbot_response_pregnancy');
+            } else if (lowerMessage.includes('period') || lowerMessage.includes('menstrual')) {
+                return getTranslation('chatbot_response_period');
+            } else {
+                return getTranslation('chatbot_response_default');
+            }
+        }
+
+        // ======================
+        // CALENDAR FUNCTIONS
+        // ======================
+        function initCalendar() {
+            const calendarEl = document.getElementById('calendar');
+            if (!calendarEl) return;
+            
+            try {
+                const calendar = new FullCalendar.Calendar(calendarEl, {
+                    initialView: 'dayGridMonth',
+                    headerToolbar: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                    },
+                    events: [
+                        {
+                            title: getTranslation('calendar_event_checkup') || 'Checkup',
+                            start: new Date(),
+                            color: '#FF69B4'
+                        },
+                        {
+                            title: getTranslation('calendar_event_reminder') || 'Reminder',
+                            start: new Date(new Date().setDate(new Date().getDate() + 5)),
+                            color: '#4169E1'
+                        },
+                        {
+                            title: getTranslation('calendar_event_screening') || 'Screening',
+                            start: new Date(new Date().setMonth(new Date().getMonth() + 1)),
+                            color: '#20B2AA'
+                        }
+                    ],
+                    dateClick: function(info) {
+                        const message = getTranslation('calendar_date_click') || 'Clicked on: {date}\nWould you like to add an event?';
+                        alert(message.replace('{date}', info.dateStr));
+                    }
+                });
+                calendar.render();
+                console.log('Calendar initialized successfully');
+            } catch (error) {
+                console.error('Error initializing calendar:', error);
+            }
+        }
+
+        // ======================
+        // VIDEO CONSULTATION (ZOOM) FUNCTIONS
+        // ======================
+        function startZoomConsultation(serviceType) {
+            console.log('Starting zoom consultation for:', serviceType);
+            
+            const zoomMeeting = document.getElementById('zoomMeeting');
+            const zoomMeetingTitle = document.getElementById('zoomMeetingTitle');
+            const zoomEmbedContainer = document.getElementById('zoomEmbedContainer');
+            
+            if (!zoomMeeting || !zoomMeetingTitle || !zoomEmbedContainer) return;
+            
+            zoomMeetingTitle.textContent = `${getTranslation('consultation_title')} - ${serviceType}`;
+            zoomMeeting.style.display = 'block';
+            zoomMeetingActive = true;
+            
+            // Simulate connection
+            zoomEmbedContainer.innerHTML = `
+                <div style="width:100%; height:100%; display:flex; justify-content:center; align-items:center; background:#000; color:#fff;">
+                    <div style="text-align:center;">
+                        <i class="fas fa-video" style="font-size:3rem; margin-bottom:1rem;"></i>
+                        <h3>${getTranslation('zoom_connecting')}</h3>
+                        <p>${getTranslation('zoom_connecting_desc')}</p>
+                    </div>
+                </div>
+            `;
+            
+            // Simulate connection after 2 seconds
+            setTimeout(() => {
+                zoomEmbedContainer.innerHTML = `
+                    <div style="width:100%; height:100%; display:flex; justify-content:center; align-items:center; background:#000; color:#fff;">
+                        <div style="text-align:center;">
+                            <i class="fas fa-user-md" style="font-size:3rem; margin-bottom:1rem;"></i>
+                            <h3>${getTranslation('zoom_connected')} ${serviceType}</h3>
+                            <p>${getTranslation('zoom_connected_desc')}</p>
+                        </div>
+                    </div>
+                `;
+            }, 2000);
+            
+            // Scroll to zoom meeting
+            setTimeout(() => {
+                zoomMeeting.scrollIntoView({ behavior: 'smooth' });
+            }, 300);
+        }
+
+        function endZoomMeeting() {
+            const zoomMeeting = document.getElementById('zoomMeeting');
+            const zoomEmbedContainer = document.getElementById('zoomEmbedContainer');
+            
+            if (zoomMeeting) zoomMeeting.style.display = 'none';
+            if (zoomEmbedContainer) zoomEmbedContainer.innerHTML = '';
+            
+            zoomMeetingActive = false;
+        }
+
+        function toggleVideo() {
+            isVideoOn = !isVideoOn;
+            const message = isVideoOn ? getTranslation('zoom_video_on') : getTranslation('zoom_video_off');
+            alert(message);
+        }
+
+        function toggleMute() {
+            isAudioOn = !isAudioOn;
+            const message = isAudioOn ? getTranslation('zoom_audio_on') : getTranslation('zoom_audio_off');
+            alert(message);
+        }
+
+        // ======================
+        // BOOKING FUNCTIONS
+        // ======================
+        function bookAppointment(e) {
+            e.preventDefault();
+            
+            const serviceType = document.getElementById('service-type')?.value;
+            const date = document.getElementById('appointment-date')?.value;
+            const time = document.getElementById('appointment-time')?.value;
+            const notes = document.getElementById('notes')?.value;
+            
+            if (!serviceType || !date || !time) {
+                alert(getTranslation('booking_required'));
+                return;
+            }
+            
+            alert(getTranslation('booking_success'));
+            
+            const appointmentForm = document.getElementById('appointmentForm');
+            if (appointmentForm) {
+                appointmentForm.reset();
+            }
+        }
+
+        // ======================
+        // QUESTIONNAIRE FUNCTIONS
+        // ======================
+        function showNextQuestion() {
+            if (currentQuestion < totalQuestions) {
+                const currentQ = document.querySelector(`.question[data-question="${currentQuestion}"]`);
+                const nextQ = document.querySelector(`.question[data-question="${currentQuestion + 1}"]`);
+                
+                if (currentQ) currentQ.style.display = 'none';
+                currentQuestion++;
+                if (nextQ) nextQ.style.display = 'block';
+                
+                updateProgressBar();
+                
+                const prevBtn = document.getElementById('prev-question');
+                const nextBtn = document.getElementById('next-question');
+                const submitBtn = document.getElementById('submit-questionnaire');
+                
+                if (prevBtn) prevBtn.style.display = 'inline-block';
+                
+                if (currentQuestion === totalQuestions) {
+                    if (nextBtn) nextBtn.style.display = 'none';
+                    if (submitBtn) submitBtn.style.display = 'inline-block';
+                }
+            }
+        }
+
+        function showPreviousQuestion() {
+            if (currentQuestion > 1) {
+                const currentQ = document.querySelector(`.question[data-question="${currentQuestion}"]`);
+                const prevQ = document.querySelector(`.question[data-question="${currentQuestion - 1}"]`);
+                
+                if (currentQ) currentQ.style.display = 'none';
+                currentQuestion--;
+                if (prevQ) prevQ.style.display = 'block';
+                
+                updateProgressBar();
+                
+                const prevBtn = document.getElementById('prev-question');
+                const nextBtn = document.getElementById('next-question');
+                const submitBtn = document.getElementById('submit-questionnaire');
+                
+                if (submitBtn) submitBtn.style.display = 'none';
+                if (nextBtn) nextBtn.style.display = 'inline-block';
+                
+                if (currentQuestion === 1 && prevBtn) {
+                    prevBtn.style.display = 'none';
+                }
+            }
+        }
+
+        function updateProgressBar() {
+            const progress = (currentQuestion / totalQuestions) * 100;
+            const progressBar = document.getElementById('questionnaire-progress');
+            if (progressBar) {
+                progressBar.style.width = `${progress}%`;
+            }
+        }
+
+        function submitQuestionnaire() {
+            alert(getTranslation('questionnaire_submit'));
+            
+            // Reset questionnaire
+            currentQuestion = 1;
+            document.querySelectorAll('.question').forEach((q, i) => {
+                q.style.display = i === 0 ? 'block' : 'none';
+            });
+            document.querySelectorAll('input[type="radio"]').forEach(radio => {
+                radio.checked = false;
+            });
+            updateProgressBar();
+            
+            const prevBtn = document.getElementById('prev-question');
+            const nextBtn = document.getElementById('next-question');
+            const submitBtn = document.getElementById('submit-questionnaire');
+            
+            if (prevBtn) prevBtn.style.display = 'none';
+            if (nextBtn) nextBtn.style.display = 'inline-block';
+            if (submitBtn) submitBtn.style.display = 'none';
+        }
+
+        // ======================
+        // FACIAL RECOGNITION FUNCTIONS
+        // ======================
+        function startCamera() {
+            const cameraFeed = document.getElementById('camera-feed');
+            const placeholder = document.querySelector('.camera-placeholder');
+            const startBtn = document.getElementById('start-camera');
+            const captureBtn = document.getElementById('capture-btn');
+            
+            if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                navigator.mediaDevices.getUserMedia({ video: true })
+                    .then(function(stream) {
+                        if (cameraFeed) {
+                            cameraFeed.srcObject = stream;
+                            cameraFeed.style.display = 'block';
+                        }
+                        if (placeholder) placeholder.style.display = 'none';
+                        if (captureBtn) captureBtn.style.display = 'inline-block';
+                        if (startBtn) startBtn.style.display = 'none';
+                    })
+                    .catch(function(error) {
+                        console.error('Camera error:', error);
+                        alert(getTranslation('camera_error'));
+                    });
+            } else {
+                alert(getTranslation('camera_unsupported'));
+            }
+        }
+
+        function captureImage() {
+            const resultsDiv = document.getElementById('analysis-results');
+            const cameraFeed = document.getElementById('camera-feed');
+            const placeholder = document.querySelector('.camera-placeholder');
+            const startBtn = document.getElementById('start-camera');
+            const captureBtn = document.getElementById('capture-btn');
+            
+            if (resultsDiv) {
+                resultsDiv.innerHTML = `
+                    <h3>${getTranslation('facial_results_title')}</h3>
+                    <p><strong>${getTranslation('facial_results_skin')}</strong> ${getTranslation('facial_results_skin_desc')}</p>
+                    <p><strong>${getTranslation('facial_results_concerns')}</strong> ${getTranslation('facial_results_concerns_desc')}</p>
+                    <p><strong>${getTranslation('facial_results_recommendations')}</strong> 
+                        <ul>
+                            <li>${getTranslation('facial_results_sleep')}</li>
+                            <li>${getTranslation('facial_results_water')}</li>
+                            <li>${getTranslation('facial_results_cream')}</li>
+                        </ul>
+                    </p>
+                    <p><em>${getTranslation('facial_results_note')}</em></p>
+                `;
+            }
+            
+            // Stop camera
+            if (cameraFeed && cameraFeed.srcObject) {
+                const stream = cameraFeed.srcObject;
+                stream.getTracks().forEach(track => track.stop());
+                cameraFeed.srcObject = null;
+            }
+            
+            // Reset camera UI
+            if (cameraFeed) cameraFeed.style.display = 'none';
+            if (placeholder) placeholder.style.display = 'block';
+            if (captureBtn) captureBtn.style.display = 'none';
+            if (startBtn) startBtn.style.display = 'inline-block';
+        }
+
+        // ======================
+        // LOAD USER PROFILE
+        // ======================
+        function loadUserProfile() {
+            console.log('Loading user profile...');
+            
+            // Try to load from memory
+            if (window.hervitalProfile) {
+                userProfile = window.hervitalProfile;
+                currentLanguage = userProfile.language || 'en';
+                applyTheme(userProfile.theme || 'light');
+                console.log('Profile loaded from memory:', userProfile);
+            } else {
+                console.log('No saved profile found, using defaults');
+            }
+        }
+
+        // ======================
+        // WINDOW FUNCTIONS (for global access)
+        // ======================
+        window.openProfileModal = openProfileModal;
+        window.closeProfileModal = closeProfileModal;
+        window.changeLanguage = changeLanguage;
+        window.setTheme = setTheme;
+        window.toggleThemeModal = toggleThemeModal;
+        window.logout = logout;
+        window.sendMessage = sendMessage;
+        window.handleKeyPress = handleKeyPress;
+        window.startZoomConsultation = startZoomConsultation;
+        window.endZoomMeeting = endZoomMeeting;
+        window.toggleVideo = toggleVideo;
+        window.toggleMute = toggleMute;
+
+        console.log('All functions loaded and ready');
+    </script>
+</body>
+</html>

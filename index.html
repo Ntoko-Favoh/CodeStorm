@@ -1,0 +1,2092 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HerVital | Women's Health & Wellness</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #4169E1;
+            --primary-pink: #FF69B4;
+            --secondary-color: #ffb8c6;
+            --accent-color: #a78bfa;
+            --light-color: #fff5f7;
+            --dark-color: #4a1d41;
+            --text-color: #333333;
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --glow-shadow: 0 0 30px rgba(255, 105, 180, 0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animations */
+        @keyframes slideTop {
+            0% {
+                opacity: 0;
+                transform: translateY(-100px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideBottom {
+            0% {
+                opacity: 0;
+                transform: translateY(100px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideLeft {
+            0% {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideRight {
+            0% {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(255, 105, 180, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(255, 105, 180, 0.8);
+            }
+        }
+
+        .slide-top {
+            animation: slideTop 1s ease-out;
+        }
+
+        .slide-bottom {
+            animation: slideBottom 1s ease-out;
+        }
+
+        .slide-left {
+            animation: slideLeft 1s ease-out;
+        }
+
+        .slide-right {
+            animation: slideRight 1s ease-out;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-pink), var(--accent-color));
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            color: var(--light-color);
+        }
+
+        .logo-text {
+        font-size: 35px;
+        font-weight: 700;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .logo-text span.her {
+        color: #ff6b8b;
+        }
+        
+        .logo-text span.vital {
+        color: #20b2aa;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid transparent;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        nav ul li a:hover {
+            border-bottom: 2px solid white;
+        }
+
+        .profile-dropdown {
+            position: relative;
+        }
+
+        .profile-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            background-color: transparent;
+        }
+
+        .profile-btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: 10px;
+            box-shadow: var(--card-shadow);
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1001;
+        }
+
+        .dropdown-menu.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-item {
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+            color: var(--text-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .dropdown-item:hover {
+            background-color: var(--light-color);
+        }
+
+        .dropdown-item:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-item i {
+            width: 20px;
+            text-align: center;
+        }
+
+        .language-submenu {
+            position: relative;
+        }
+
+        .language-options {
+            position: absolute;
+            left: 100%;
+            top: 0;
+            background: white;
+            border-radius: 10px;
+            box-shadow: var(--card-shadow);
+            min-width: 150px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateX(-10px);
+            transition: all 0.3s ease;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .language-submenu:hover .language-options {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0);
+        }
+
+        .hero {
+            padding: 5rem 0;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-container {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-content {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            color: var(--dark-color);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: var(--text-color);
+        }
+
+        .hero-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 20px;
+            animation: glow 3s ease-in-out infinite;
+            border: 3px solid transparent;
+            background: linear-gradient(45deg, var(--primary-blue), var(--primary-pink));
+            background-clip: padding-box;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--primary-blue), var(--primary-pink));
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .services-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .services-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+        }
+
+        .services-modal.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-color);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .service-item {
+            background: linear-gradient(135deg, var(--light-color), white);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            border: 2px solid transparent;
+            background-clip: padding-box;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .service-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--card-shadow);
+            border-color: var(--primary-pink);
+        }
+
+        .service-item i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--primary-blue), var(--primary-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .service-item h3 {
+            color: var(--dark-color);
+            margin-bottom: 1rem;
+        }
+
+        .features {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, var(--light-color), white);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-item {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-item i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--primary-blue), var(--primary-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .feature-item h3 {
+            color: var(--dark-color);
+            margin-bottom: 1rem;
+        }
+
+        .feature-item p {
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+        }
+
+        .feature-btn {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--primary-blue), var(--primary-pink));
+            color: white;
+            padding: 0.6rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .feature-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--dark-color);
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--primary-blue), var(--primary-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer {
+            background: linear-gradient(135deg, var(--dark-color), #2d1327);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background: linear-gradient(45deg, var(--primary-blue), var(--primary-pink));
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--primary-pink);
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(45deg, var(--primary-blue), var(--primary-pink));
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px) scale(1.1);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Profile Modal */
+        .profile-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .profile-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .profile-form {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 500px;
+            width: 90%;
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+        }
+
+        .profile-modal.active .profile-form {
+            transform: scale(1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--dark-color);
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #eee;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary-pink);
+        }
+
+        .theme-selector {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .theme-option {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .theme-option.active {
+            border-color: var(--dark-color);
+            transform: scale(1.1);
+        }
+
+        .theme-light {
+            background: linear-gradient(45deg, #fff5f7, #ffffff);
+        }
+
+        .theme-dark {
+            background: linear-gradient(45deg, #2d1327, #4a1d41);
+        }
+
+        .theme-blue {
+            background: linear-gradient(45deg, #4169E1, #87CEEB);
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                position: relative;
+            }
+
+            .header-right {
+                gap: 1rem;
+            }
+
+            nav {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: linear-gradient(135deg, var(--primary-blue), var(--primary-pink));
+                padding: 1rem;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                display: none;
+            }
+
+            nav.active {
+                display: block;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .hero-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Dark theme */
+        body.dark-theme {
+            --light-color: #1a1a1a;
+            --text-color: #ffffff;
+            --dark-color: #ffffff;
+            background-color: #1a1a1a;
+        }
+
+        body.dark-theme .modal-content,
+        body.dark-theme .profile-form,
+        body.dark-theme .dropdown-menu,
+        body.dark-theme .language-options {
+            background: #2d2d2d;
+            color: white;
+        }
+
+        body.dark-theme .service-item {
+            background: linear-gradient(135deg, #2d2d2d, #3d3d3d);
+        }
+
+           /* Chatbot Section */
+        .chatbot-section {
+            background-color: white;
+            padding: 5rem 0;
+        }
+        
+        .chatbot-container {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+        
+        .chatbot-image {
+            flex: 1;
+        }
+        
+        .chatbot-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .chatbot-content {
+            flex: 1;
+        }
+        
+        .chatbot-content h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+        }
+        
+        .chatbot-content p {
+            margin-bottom: 2rem;
+        }
+        
+        /* Chatbot Widget */
+        .chatbot-widget {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 99;
+        }
+        
+        .chatbot-btn {
+            background-color: #ff6b8b;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .chatbot-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        .chatbot-box {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            width: 350px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            display: none;
+        }
+        
+        .chatbot-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .chatbot-header h3 {
+            font-size: 1.2rem;
+        }
+        
+        .close-chatbot {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .chatbot-body {
+            padding: 1rem;
+            height: 300px;
+            overflow-y: auto;
+        }
+        
+        .chat-message {
+            margin-bottom: 1rem;
+            max-width: 80%;
+            padding: 0.8rem;
+            border-radius: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .bot-message {
+            background-color: #f1f1f1;
+            align-self: flex-start;
+        }
+        
+        .user-message {
+            background-color: var(--primary);
+            color: white;
+            margin-left: auto;
+        }
+        
+        .chatbot-input {
+            display: flex;
+            padding: 1rem;
+            border-top: 1px solid #eee;
+        }
+        
+        .chatbot-input input {
+            flex: 1;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            outline: none;
+        }
+        
+        .send-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            margin-left: 0.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+          .app-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #ff6b8b, #a78bfa );
+            color: white;
+        }
+
+        .app-container {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 3rem;
+        }
+
+        .app-content {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .app-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .app-content p {
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .app-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .app-btn {
+            display: flex;
+            align-items: center;
+            background-color: white;
+            color: #ff6b8b;
+            padding: 0.8rem 1.5rem;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .app-btn i {
+            font-size: 1.8rem;
+            margin-right: 10px;
+        }
+
+        .app-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .app-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+
+        .app-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <header class="slide-top">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-heartbeat"></i>
+                     <h1 class="logo-text"><span class="her">Her</span><span class="vital">Vital</span></h1>
+                </div>
+                <div class="header-right">
+                    <button class="mobile-menu-btn" id="mobileMenuBtn">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <nav id="mainNav">
+                        <ul>
+                            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                            <li><a href="services.html"><i class="fas fa-concierge-bell"></i> Services</a></li>
+                            <li><a href="features.html" ><i class="fas fa-star"></i> Features</a></li>
+                            <li><a href="about.html" ><i class="fas fa-info-circle"></i> About</a></li>
+                            <li><a href="findcare.html"><i class="fas fa-search-location"></i> Find Care</a></li>
+                            <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+                        </ul>
+                    </nav>
+                    <div class="profile-dropdown">
+                        <button class="profile-btn" id="profileBtn">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                        <div class="dropdown-menu" id="dropdownMenu">
+                            <div class="dropdown-item" onclick="openProfileModal()">
+                                <i class="fas fa-user"></i>
+                                <span data-translate="profile">Profile</span>
+                            </div>
+                            <div class="dropdown-item language-submenu">
+                                <i class="fas fa-globe"></i>
+                                <span data-translate="language">Language</span>
+                                <div class="language-options">
+                                    <div class="dropdown-item" onclick="changeLanguage('en')"><i class="fas fa-language"></i> English</div>
+                                    <div class="dropdown-item" onclick="changeLanguage('zu')"><i class="fas fa-language"></i> IsiZulu</div>
+                                    <div class="dropdown-item" onclick="changeLanguage('xh')"><i class="fas fa-language"></i> IsiXhosa</div>
+                                    <div class="dropdown-item" onclick="changeLanguage('af')"><i class="fas fa-language"></i> Afrikaans</div>
+                                    <div class="dropdown-item" onclick="changeLanguage('nso')"><i class="fas fa-language"></i> Sepedi</div>
+                                    <div class="dropdown-item" onclick="changeLanguage('tn')"><i class="fas fa-language"></i> Setswana</div>
+                                    <div class="dropdown-item" onclick="changeLanguage('st')"><i class="fas fa-language"></i> Sesotho</div>
+                                    <div class="dropdown-item" onclick="changeLanguage('ts')"><i class="fas fa-language"></i> Xitsonga</div>
+                                    <div class="dropdown-item" onclick="changeLanguage('ss')"><i class="fas fa-language"></i> SiSwati</div>
+                                    <div class="dropdown-item" onclick="changeLanguage('ve')"><i class="fas fa-language"></i> Tshivenda</div>
+                                    <div class="dropdown-item" onclick="changeLanguage('nr')"><i class="fas fa-language"></i> IsiNdebele</div>
+                                </div>
+                            </div>
+                            <div class="dropdown-item" onclick="toggleThemeModal()">
+                                <i class="fas fa-palette"></i>
+                                <span data-translate="themes">Themes</span>
+                            </div>
+                            <div class="dropdown-item" onclick="logout()">
+                                <i class="fas fa-sign-out-alt"></i>
+                                <span data-translate="logout">Logout</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-container">
+                <div class="hero-content slide-left">
+                    <h1>Your Health, Your Life, Your Wellness</h1>
+                    <p data-translate="hero_subtitle">Digital tools and services that improve women's access to essential healthcare, maternal health support, and preventive care.</p>
+                    <button class="btn" id="exploreServicesBtn" data-translate="explore_services">Explore Services</button>
+                </div>
+                <div class="hero-image slide-right">
+                    <img src="images/logo.jpg" alt="Women's Health Technology">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Key Features</h2>
+                <p>Discover how HerVital can support your health journey with these powerful features</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <i class="fas fa-calendar-check"></i>
+                    <h3>Prevention care</h3>
+                    <p>Accurate predictions and insights about your menstrual cycle.</p>
+                    <a href="#" class="feature-btn">Learn More</a>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-baby"></i>
+                    <h3>Mental Health Support</h3>
+                    <p>Weekly updates and resources for expecting mothers.</p>
+                    <a href="#" class="feature-btn">Learn More</a>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-heartbeat"></i>
+                    <h3>Health Monitoring</h3>
+                    <p>Track vital signs and symptoms for better health awareness.</p>
+                    <a href="#" class="feature-btn">Learn More</a>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-comments"></i>
+                    <h3>Community Support</h3>
+                    <p>Connect with other women and healthcare professionals.</p>
+                    <a href="#" class="feature-btn">Learn More</a>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-video"></i>
+                    <h3>Telemedicine</h3>
+                    <p>Virtual consultations with healthcare providers from home.</p>
+                    <a href="#" class="feature-btn">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+     <!-- Chatbot Widget -->
+    <div class="chatbot-widget">
+        <div class="chatbot-btn">💬</div>
+        <div class="chatbot-box">
+            <div class="chatbot-header">
+                <h3>HerVital Health Assistant</h3>
+                <button class="close-chatbot">×</button>
+            </div>
+            <div class="chatbot-body" id="chatbot-body">
+                <div class="chat-message bot-message">
+                    Hello! I'm your HerVital health assistant. How can I help you today? You can ask about symptoms, pregnancy, menstrual health, or any women's health concern.
+                </div>
+            </div>
+            <div class="chatbot-input">
+                <input type="text" placeholder="Type your health question..." id="user-input">
+                <button class="send-btn">➤</button>
+            </div>
+        </div>
+    </div>
+
+     <section class="app-section" id="app">
+        <div class="container">
+            <div class="app-container">
+                <div class="app-content">
+                    <h2>Download Our Mobile App</h2>
+                    <p>Take control of your health journey with our award-winning app. Track your health metrics, schedule appointments, chat with healthcare providers, and access educational resources - all from your smartphone.</p>
+                    <div class="app-buttons">
+                        <a href="#" class="app-btn">
+                            <i class="fab fa-apple"></i>
+                            <span>App Store</span>
+                        </a>
+                        <a href="#" class="app-btn">
+                            <i class="fab fa-google-play"></i>
+                            <span>Google Play</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="app-image">
+                    <img src="https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?ixlib=rb-4.0.3&auto=format&fit=crop&w=634&q=80" alt="Healthy Her Mobile App">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-content slide-bottom">
+                <div class="footer-column">
+                    <h3 data-translate="footer_about">HerVital</h3>
+                    <p data-translate="footer_description">Digital tools and services that improve women's access to essential healthcare, maternal health support, and preventive care.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3 data-translate="footer_links">Quick Links</h3>
+                    <ul>
+                        <li><a href="#home" data-translate="nav_home"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="#services" data-translate="nav_services"><i class="fas fa-concierge-bell"></i> Services</a></li>
+                        <li><a href="#features" data-translate="nav_features"><i class="fas fa-star"></i> Features</a></li>
+                        <li><a href="#about" data-translate="nav_about"><i class="fas fa-info-circle"></i> About</a></li>
+                        <li><a href="#contact" data-translate="nav_contact"><i class="fas fa-envelope"></i> Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3 data-translate="footer_services">Services</h3>
+                    <ul>
+                        <li><a href="#" data-translate="service_maternal"><i class="fas fa-baby-carriage"></i> Maternal Health</a></li>
+                        <li><a href="#" data-translate="service_preventive"><i class="fas fa-shield-alt"></i> Preventive Care</a></li>
+                        <li><a href="#" data-translate="service_telemedicine"><i class="fas fa-video"></i> Telemedicine</a></li>
+                        <li><a href="#" data-translate="service_mental"><i class="fas fa-brain"></i> Mental Health</a></li>
+                        <li><a href="#" data-translate="service_nutrition"><i class="fas fa-utensils"></i> Nutrition Guidance</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3 data-translate="footer_contact">Contact Us</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Health St, Wellness City</li>
+                        <li><i class="fas fa-phone"></i> (123) 456-7890</li>
+                        <li><i class="fas fa-envelope"></i> info@hervital.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 HerVital. <span data-translate="footer_rights">All rights reserved.</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Services Modal -->
+    <div class="services-modal" id="servicesModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 data-translate="services_title">Our Services</h2>
+                <button class="close-btn" onclick="closeServicesModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="services-grid">
+                <div class="service-item" onclick="handleServiceClick('tracking')">
+                    <i class="fas fa-chart-line"></i>
+                    <h3 data-translate="service_tracking">Health Tracking</h3>
+                    <p data-translate="service_tracking_desc">Track your daily health metrics and progress</p>
+                </div>
+                <div class="service-item" onclick="handleServiceClick('reports')">
+                    <i class="fas fa-file-medical"></i>
+                    <h3 data-translate="service_reports">Health Reports</h3>
+                    <p data-translate="service_reports_desc">Generate comprehensive health reports</p>
+                </div>
+                <div class="service-item" onclick="handleServiceClick('settings')">
+                    <i class="fas fa-cog"></i>
+                    <h3 data-translate="service_settings">Settings</h3>
+                    <p data-translate="service_settings_desc">Customize your health preferences</p>
+                </div>
+                <div class="service-item" onclick="handleServiceClick('delete')">
+                    <i class="fas fa-trash-alt"></i>
+                    <h3 data-translate="service_delete">Delete Records</h3>
+                    <p data-translate="service_delete_desc">Manage and delete your health records</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Modal -->
+    <div class="profile-modal" id="profileModal">
+        <div class="profile-form">
+            <div class="modal-header">
+                <h2 data-translate="profile_title">Profile Settings</h2>
+                <button class="close-btn" onclick="closeProfileModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="profileForm">
+                <div class="form-group">
+                    <label for="fullName" data-translate="profile_name">Full Name</label>
+                    <input type="text" id="fullName" name="fullName" placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label for="email" data-translate="profile_email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="phone" data-translate="profile_phone">Phone</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
+                </div>
+                <div class="form-group">
+                    <label for="age" data-translate="profile_age">Age</label>
+                    <input type="number" id="age" name="age" placeholder="Enter your age">
+                </div>
+                <div class="form-group">
+                    <label data-translate="profile_theme">Theme Selection</label>
+                    <div class="theme-selector">
+                        <div class="theme-option theme-light active" onclick="setTheme('light')" title="Light Theme"></div>
+                        <div class="theme-option theme-dark" onclick="setTheme('dark')" title="Dark Theme"></div>
+                        <div class="theme-option theme-blue" onclick="setTheme('blue')" title="Blue Theme"></div>
+                    </div>
+                </div>
+                <button type="submit" class="btn" data-translate="profile_save">Save Profile</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Translations object
+        const translations = {
+            en: {
+                nav_home: "Home",
+                nav_services: "Services",
+                nav_features: "Features",
+                nav_about: "About",
+                nav_findcare: "Find Care",
+                nav_contact: "Contact",
+                hero_title: "Empowering Women's Health Through Technology",
+                hero_subtitle: "Digital tools and services that improve women's access to essential healthcare, maternal health support, and preventive care.",
+                explore_services: "Explore Services",
+                features_title: "Our Features",
+                features_subtitle: "Comprehensive health solutions designed specifically for women",
+                services_title: "Our Services",
+                service_tracking: "Health Tracking",
+                service_tracking_desc: "Track your daily health metrics and progress",
+                service_reports: "Health Reports",
+                service_reports_desc: "Generate comprehensive health reports",
+                service_settings: "Settings",
+                service_settings_desc: "Customize your health preferences",
+                service_delete: "Delete Records",
+                service_delete_desc: "Manage and delete your health records",
+                profile: "Profile",
+                language: "Language",
+                themes: "Themes",
+                logout: "Logout",
+                profile_title: "Profile Settings",
+                profile_name: "Full Name",
+                profile_email: "Email",
+                profile_phone: "Phone",
+                profile_age: "Age",
+                profile_theme: "Theme Selection",
+                profile_save: "Save Profile",
+                footer_about: "HerVital",
+                footer_description: "Digital tools and services that improve women's access to essential healthcare, maternal health support, and preventive care.",
+                footer_links: "Quick Links",
+                footer_services: "Services",
+                footer_contact: "Contact Us",
+                footer_rights: "All rights reserved.",
+                service_maternal: "Maternal Health",
+                service_preventive: "Preventive Care",
+                service_telemedicine: "Telemedicine",
+                service_mental: "Mental Health",
+                service_nutrition: "Nutrition Guidance"
+            },
+            zu: {
+                nav_home: "Ikhaya",
+                nav_services: "Amasevisi",
+                nav_features: "Izici",
+                nav_about: "Mayelana",
+                nav_findcare: "Thola Ukunakekelwa",
+                nav_contact: "Xhumana",
+                hero_title: "Ukuhlomisa Impilo Yabesifazane Ngobuchwepheshe",
+                hero_subtitle: "Amathuluzi edijithali namasevisi athuthukisa ukufinyelela kwabesifazane ekunakekelweni kwezempilo, ukwesekwa kwempilo yabantwana, nokunakekelwa kokuvimbela.",
+                explore_services: "Hlola Amasevisi",
+                features_title: "Izici Zethu",
+                features_subtitle: "Izixazululo zempilo eziphelele ezenzelwe abesifazane ngqo",
+                services_title: "Amasevisi Ethu",
+                service_tracking: "Ukulandelela Impilo",
+                service_tracking_desc: "Landelela amamethrikhi akho ansuku zonke empilo nentuthuko",
+                service_reports: "Imibiko Yempilo",
+                service_reports_desc: "Khiqiza imibiko yempilo ephelele",
+                service_settings: "Izilungiselelo",
+                service_settings_desc: "Lungisa okuthandwayo kwakho kwezempilo",
+                service_delete: "Susa Amarekhodi",
+                service_delete_desc: "Phatha futhi ususe amarekhodi akho ezempilo",
+                profile: "Iphrofayili",
+                language: "Ulimi",
+                themes: "Izindikimba",
+                logout: "Phuma",
+                profile_title: "Izilungiselelo Zephrofayili",
+                profile_name: "Igama Eliphelele",
+                profile_email: "I-imeyili",
+                profile_phone: "Ucingo",
+                profile_age: "Iminyaka",
+                profile_theme: "Ukukhetha Isihloko",
+                profile_save: "Londoloza Iphrofayili",
+                footer_about: "HerVital",
+                footer_description: "Amathuluzi edijithali namasevisi athuthukisa ukufinyelela kwabesifazane ekunakekelweni kwezempilo okuyisisekelo.",
+                footer_links: "Izixhumanisi Ezesheshayo",
+                footer_services: "Amasevisi",
+                footer_contact: "Xhumana Nathi",
+                footer_rights: "Zonke izilungelo zigodliwe.",
+                service_maternal: "Impilo Yabantwana",
+                service_preventive: "Ukunakekelwa Kokuvimbela",
+                service_telemedicine: "I-Telemedicine",
+                service_mental: "Impilo Yengqondo",
+                service_nutrition: "Isiqondiso Sokudla"
+            },
+            xh: {
+                nav_home: "Ekhaya",
+                nav_services: "Inkonzo",
+                nav_features: "Imisebenzi",
+                nav_about: "Malunga",
+                nav_findcare: "Fumana Uncedo",
+                nav_contact: "Qhagamshela",
+                hero_title: "Ukomelela Impilo Yabafazi Ngobuchule",
+                hero_subtitle: "Izixhobo zedijithali neenkonzo eziphucula ukufikelela kwabafazi ekuncedweni kwezempilo, inkxaso yempilo yabantwana, nokuncedwa kokuthintela.",
+                explore_services: "Phanda Iinkonzo",
+                features_title: "Imisebenzi Yethu",
+                features_subtitle: "Izisombululo zempilo eziphelele ezenzelwe abafazi ngqo",
+                services_title: "Iinkonzo Zethu",
+                service_tracking: "Ukulandelela Impilo",
+                service_tracking_desc: "Landelela amanani akho empilo yemihla ngemihla nokuqhubekeka",
+                service_reports: "Ingxelo Yempilo",
+                service_reports_desc: "Yenza iingxelo zempilo ezipheleleyo",
+                service_settings: "Iisetingi",
+                service_settings_desc: "Yenza ngokwezifiso izikhetho zakho zempilo",
+                service_delete: "Cima Iirekhodi",
+                service_delete_desc: "Phatha kwaye ucime iirekhodi zakho zempilo",
+                profile: "Iprofayili",
+                language: "Ulwimi",
+                themes: "Iindikimba",
+                logout: "Phuma",
+                profile_title: "Iisetingi Zeprofayili",
+                profile_name: "Igama Elipheleleyo",
+                profile_email: "I-imeyile",
+                profile_phone: "Ifowuni",
+                profile_age: "Iminyaka",
+                profile_theme: "Ukukhetha Isihloko",
+                profile_save: "Gcina Iprofayili",
+                footer_about: "HerVital",
+                footer_description: "Izixhobo zedijithali neenkonzo eziphucula ukufikelela kwabafazi ekuncedweni kwezempilo okuyintloko.",
+                footer_links: "Iilinki Ezesheshayo",
+                footer_services: "Iinkonzo",
+                footer_contact: "Qhagamshela Nathi",
+                footer_rights: "Zonke iilungelo zigcinwe.",
+                service_maternal: "Impilo Yabantwana",
+                service_preventive: "Uncedo Lokuthintela",
+                service_telemedicine: "I-Telemedicine",
+                service_mental: "Impilo Yengqondo",
+                service_nutrition: "Isikhokelo Sokutya"
+            },
+            af: {
+                nav_home: "Tuis",
+                nav_services: "Dienste",
+                nav_features: "Kenmerke",
+                nav_about: "Oor",
+                nav_findcare: "Vind Sorg",
+                nav_contact: "Kontak",
+                hero_title: "Bemagtiging van Vrouegesondheid deur Tegnologie",
+                hero_subtitle: "Digitale gereedskap en dienste wat vroue se toegang tot noodsaaklike gesondheidsorg, moedergesondheid ondersteuning en voorkomende sorg verbeter.",
+                explore_services: "Verken Dienste",
+                features_title: "Ons Kenmerke",
+                features_subtitle: "Omvattende gesondheidsoplossings wat spesifiek vir vroue ontwerp is",
+                services_title: "Ons Dienste",
+                service_tracking: "Gesondheid Monitering",
+                service_tracking_desc: "Monitor jou daaglikse gesondheidsmetings en vordering",
+                service_reports: "Gesondheidsverslae",
+                service_reports_desc: "Genereer omvattende gesondheidsverslae",
+                service_settings: "Instellings",
+                service_settings_desc: "Pas jou gesondheidsvoorkeure aan",
+                service_delete: "Verwyder Rekords",
+                service_delete_desc: "Bestuur en verwyder jou gesondheidsrekords",
+                profile: "Profiel",
+                language: "Taal",
+                themes: "Temas",
+                logout: "Teken uit",
+                profile_title: "Profiel Instellings",
+                profile_name: "Volle Naam",
+                profile_email: "E-pos",
+                profile_phone: "Telefoon",
+                profile_age: "Ouderdom",
+                profile_theme: "Tema Keuse",
+                profile_save: "Stoor Profiel",
+                footer_about: "HerVital",
+                footer_description: "Digitale gereedskap en dienste wat vroue se toegang tot noodsaaklike gesondheidsorg verbeter.",
+                footer_links: "Vinnige Skakels",
+                footer_services: "Dienste",
+                footer_contact: "Kontak Ons",
+                footer_rights: "Alle regte voorbehou.",
+                service_maternal: "Moedergesondheid",
+                service_preventive: "Voorkomende Sorg",
+                service_telemedicine: "Telemedisyne",
+                service_mental: "Geestesgesondheid",
+                service_nutrition: "Voeding Voorligting"
+            },
+            nso: {
+                nav_home: "Gae",
+                nav_services: "Ditirelo",
+                nav_features: "Dikgono",
+                nav_about: "Ka Ga",
+                nav_findcare: "Fumana Tlhokomelo",
+                nav_contact: "Ikonomi",
+                hero_title: "Go Tlhokomatsa Bophelo bja Basadi ka Thekenoloji",
+                hero_subtitle: "Didirishwa tsa dijithale le ditirelo tseo di tokafatsago phihlelelo ya basadi go tlhokomelo ya bohlokwa ya bophelo, tshekediso ya bophelo bja mme le tlhokomelo ya thibelo.",
+                explore_services: "Nyakisisa Ditirelo",
+                features_title: "Dikgono tsa Rona",
+                features_subtitle: "Ditharollo tsa bophelo tseo di feletsego tseo di dirilwego ka mo go ikemiseditsego basadi",
+                services_title: "Ditirelo tsa Rona",
+                service_tracking: "Go Lebelela Bophelo",
+                service_tracking_desc: "Lebelela dipalopalo tsa gago tsa bophelo tsa letsatsi le letsatsi le tswelopele",
+                service_reports: "Diphuputso tsa Bophelo",
+                service_reports_desc: "Tswetsa diphuputso tsa bophelo tseo di feletsego",
+                service_settings: "Ditshwanelo",
+                service_settings_desc: "Ipeela ditlhopho tsa gago tsa bophelo",
+                service_delete: "Phumola Direkoto",
+                service_delete_desc: "Laola le go phumola direkoto tsa gago tsa bophelo",
+                profile: "Porofaele",
+                language: "Polelo",
+                themes: "Ditihlo",
+                logout: "Tswa",
+                profile_title: "Ditshwanelo tsa Porofaele",
+                profile_name: "Leina la Motho",
+                profile_email: "Imeile",
+                profile_phone: "Mohala",
+                profile_age: "Ngwaga",
+                profile_theme: "Kgetso ya Sehloa",
+                profile_save: "Boloka Porofaele",
+                footer_about: "HerVital",
+                footer_description: "Didirishwa tsa dijithale le ditirelo tseo di tokafatsago phihlelelo ya basadi go tlhokomelo ya bohlokwa ya bophelo.",
+                footer_links: "Dikgokagano tsa Kaofo",
+                footer_services: "Ditirelo",
+                footer_contact: "Ikopanye le Rona",
+                footer_rights: "Ditshwanelo ka moka di bolokilwe.",
+                service_maternal: "Bophelo bja Mme",
+                service_preventive: "Tlhokomelo ya Thibelo",
+                service_telemedicine: "Telemedicine",
+                service_mental: "Bophelo bja Monagano",
+                service_nutrition: "Taelo ya Dijo"
+            },
+            tn: {
+                nav_home: "Gae",
+                nav_services: "Ditirelo",
+                nav_features: "Dikgono",
+                nav_about: "Ka Ga",
+                nav_findcare: "Fumana Tlhokomelo",
+                nav_contact: "Ikonomi",
+                hero_title: "Go Tlhokomatsa Bophelo jwa Basadi ka Thekenoloji",
+                hero_subtitle: "Didirisiwa tsa dijithale le ditirelo tse di tokafatsang phihlelelo ya basadi go tlhokomelo ya bohlokwa ya bophelo, tshegetso ya bophelo jwa mme le tlhokomelo ya thibelo.",
+                explore_services: "Batlisisa Ditirelo",
+                features_title: "Dikgono tsa Rona",
+                features_subtitle: "Ditharollo tsa bophelo tse di feletseng tse di dirilweng ka mo go ikemiseditseng basadi",
+                services_title: "Ditirelo tsa Rona",
+                service_tracking: "Go Lebelela Bophelo",
+                service_tracking_desc: "Lebelela dipalopalo tsa gago tsa bophelo tsa letsatsi le letsatsi le tswelopele",
+                service_reports: "Diphuputso tsa Bophelo",
+                service_reports_desc: "Tswetsa diphuputso tsa bophelo tse di feletseng",
+                service_settings: "Ditshwanelo",
+                service_settings_desc: "Ipeela ditlhopho tsa gago tsa bophelo",
+                service_delete: "Phumola Direkoto",
+                service_delete_desc: "Laola le go phumola direkoto tsa gago tsa bophelo",
+                profile: "Porofaele",
+                language: "Puo",
+                themes: "Ditihlo",
+                logout: "Tswa",
+                profile_title: "Ditshwanelo tsa Porofaele",
+                profile_name: "Leina la Motho",
+                profile_email: "Imeile",
+                profile_phone: "Mohala",
+                profile_age: "Ngwaga",
+                profile_theme: "Kgetso ya Sehloa",
+                profile_save: "Boloka Porofaele",
+                footer_about: "HerVital",
+                footer_description: "Didirisiwa tsa dijithale le ditirelo tse di tokafatsang phihlelelo ya basadi go tlhokomelo ya bohlokwa ya bophelo.",
+                footer_links: "Dikgokagano tsa Kaofo",
+                footer_services: "Ditirelo",
+                footer_contact: "Ikopanye le Rona",
+                footer_rights: "Ditshwanelo ka moka di bolokilwe.",
+                service_maternal: "Bophelo jwa Mme",
+                service_preventive: "Tlhokomelo ya Thibelo",
+                service_telemedicine: "Telemedicine",
+                service_mental: "Bophelo jwa Monagano",
+                service_nutrition: "Taelo ya Dijo"
+            },
+            st: {
+                nav_home: "Lehae",
+                nav_services: "Litšebeletso",
+                nav_features: "Likarolo",
+                nav_about: "Mabapi",
+                nav_findcare: "Fumana Tlhokomelo",
+                nav_contact: "Ikopanye",
+                hero_title: "Ho Matlafatsa Bophelo ba Basali ka Theknoloji",
+                hero_subtitle: "Didiriswa tsa dijithale le litšebeletso tse ntlafatsang phihlello ea basali ho tlhokomelo ea bohlokoa ea bophelo, tšehetso ea bophelo ba mme le tlhokomelo ea thibelo.",
+                explore_services: "Hlahloba Litšebeletso",
+                features_title: "Likarolo tsa Rona",
+                features_subtitle: "Litharollo tsa bophelo tse feletseng tse entsoeng ka sepheo sa basali",
+                services_title: "Litšebeletso tsa Rona",
+                service_tracking: "Ho Latela Bophelo",
+                service_tracking_desc: "Latela lipalo tsa hau tsa bophelo tsa letsatsi le letsatsi le ntshetsopele",
+                service_reports: "Liphuputso tsa Bophelo",
+                service_reports_desc: "Hlahisa liphuputso tsa bophelo tse feletseng",
+                service_settings: "Litlhophiso",
+                service_settings_desc: "Ipehela likhetho tsa hau tsa bophelo",
+                service_delete: "Hlakola Litlaleho",
+                service_delete_desc: "Laola le ho hlakola litlaleho tsa hau tsa bophelo",
+                profile: "Profaele",
+                language: "Puo",
+                themes: "Litema",
+                logout: "Tsoa",
+                profile_title: "Litlhophiso tsa Profaele",
+                profile_name: "Leina ka Botlalo",
+                profile_email: "Imeile",
+                profile_phone: "Mohala",
+                profile_age: "Lilemo",
+                profile_theme: "Khetho ea Temo",
+                profile_save: "Boloka Profaele",
+                footer_about: "HerVital",
+                footer_description: "Didiriswa tsa dijithale le litšebeletso tse ntlafatsang phihlello ea basali ho tlhokomelo ea bohlokoa ea bophelo.",
+                footer_links: "Likhoele tsa Kaofo",
+                footer_services: "Litšebeletso",
+                footer_contact: "Ikopanye le Rona",
+                footer_rights: "Litokelo tsohle li bolokiloe.",
+                service_maternal: "Bophelo ba Mme",
+                service_preventive: "Tlhokomelo ea Thibelo",
+                service_telemedicine: "Telemedicine",
+                service_mental: "Bophelo ba Kelello",
+                service_nutrition: "Tataiso ea Lijo"
+            },
+            ts: {
+                nav_home: "Kaya",
+                nav_services: "Misebenti",
+                nav_features: "Swikili",
+                nav_about: "Hi Ku",
+                nav_findcare: "Kuma Vutshunguri",
+                nav_contact: "Tihlanganisa",
+                hero_title: "Ku Tiyisisa Vutomi bya Vavasati hi Theknoloji",
+                hero_subtitle: "Switirhisiwa swa dijithali na misebenti leyi nga pfuna vavasati ku fikelela eka vutshunguri bya nhloko bya vutomi, nhlangano wa vutomi bya vamakwerhu na vutshunguri bya ku pfuna.",
+                explore_services: "Kambisisa Misebenti",
+                features_title: "Swikili swa Hina",
+                features_subtitle: "Tisombhelo ta vutomi leti nga hetiseki leti endliweke hi ku kongoma eka vavasati",
+                services_title: "Misebenti ya Hina",
+                service_tracking: "Ku Landzelela Vutomi",
+                service_tracking_desc: "Landzelela swipimelo swa wena swa siku na siku swa vutomi na ku humelela",
+                service_reports: "Tibuku ta Vutomi",
+                service_reports_desc: "Humesa tibuku ta vutomi leti nga hetiseki",
+                service_settings: "Maendlelo",
+                service_settings_desc: "Lulamisa swikongomelo swa wena swa vutomi",
+                service_delete: "Sula Matlhari",
+                service_delete_desc: "Lawula na ku sula matlhari ya wena ya vutomi",
+                profile: "Profayili",
+                language: "Ririmi",
+                themes: "Mhaka",
+                logout: "Humela",
+                profile_title: "Maendlelo ya Profayili",
+                profile_name: "Vito ra Xiviri",
+                profile_email: "Imeili",
+                profile_phone: "Foni",
+                profile_age: "Malembe",
+                profile_theme: "Ku Hlawula Mhaka",
+                profile_save: "Hlayisa Profayili",
+                footer_about: "HerVital",
+                footer_description: "Switirhisiwa swa dijithali na misebenti leyi nga pfuna vavasati ku fikelela eka vutshunguri bya nhloko bya vutomi.",
+                footer_links: "Swikheto swa Ku Hatlisa",
+                footer_services: "Misebenti",
+                footer_contact: "Tihlanganisa na Hina",
+                footer_rights: "Switrhula hinkwaswo swi hlayisiwe.",
+                service_maternal: "Vutomi bya Vamakwerhu",
+                service_preventive: "Vutshunguri bya Ku Pfuna",
+                service_telemedicine: "Telemedicine",
+                service_mental: "Vutomi bya Mbilu",
+                service_nutrition: "Vulanguteri bya Swakudya"
+            },
+            ss: {
+                nav_home: "Ekhaya",
+                nav_services: "Tisebenti",
+                nav_features: "Tinhlelo",
+                nav_about: "Mayelana",
+                nav_findcare: "Thola Inhlalakahle",
+                nav_contact: "Xhumana",
+                hero_title: "Kutfutfukisa Inhlalakahle Yebantfwana Ngetekinoloji",
+                hero_subtitle: "Tinsita tekudijithali netisebenti letintfutfukisa kufinyelela kwetebantfwana etinsitweni letibalulekile tenhlalakahle, kusekelwa kwenhlalakahle yebantfwana nekutivikela.",
+                explore_services: "Hlola Tisebenti",
+                features_title: "Tinhlelo Tetfu",
+                features_subtitle: "Tincumo tenhlalakahle letiphelele letakhiwe ngendlela yebantfwana kuphela",
+                services_title: "Tisebenti Tetfu",
+                service_tracking: "Kulandzela Inhlalakahle",
+                service_tracking_desc: "Landzela tinkhomba takho tenhlalakahle telilanga nelilanga nekuchubeka",
+                service_reports: "Timbiko Tenhlalakahle",
+                service_reports_desc: "Khipha timbiko tenhlalakahle letiphelele",
+                service_settings: "Tilungiselelo",
+                service_settings_desc: "Lungisa tintfo lotifunako tenhlalakahle",
+                service_delete: "Susa Emafayili",
+                service_delete_desc: "Phatha futsi ususe emafayili akho enhlalakahle",
+                profile: "Iphrofayili",
+                language: "Lulwimi",
+                themes: "Tindzima",
+                logout: "Phuma",
+                profile_title: "Tilungiselelo Tephrofayili",
+                profile_name: "Libito Leligcwele",
+                profile_email: "I-imeyili",
+                profile_phone: "Ucingo",
+                profile_age: "Iminyaka",
+                profile_theme: "Kukhetsa Indzima",
+                profile_save: "Gcina Iphrofayili",
+                footer_about: "HerVital",
+                footer_description: "Tinsita tekudijithali netisebenti letintfutfukisa kufinyelela kwetebantfwana etinsitweni tenhlalakahle letibalulekile.",
+                footer_links: "Tihlanganiso Tekushesha",
+                footer_services: "Tisebenti",
+                footer_contact: "Xhumana Natsi",
+                footer_rights: "Tonke timali tigodliwe.",
+                service_maternal: "Inhlalakahle Yebantfwana",
+                service_preventive: "Inhlalakahle Yekutivikela",
+                service_telemedicine: "I-Telemedicine",
+                service_mental: "Inhlalakahle Yengcondvo",
+                service_nutrition: "Imiyalelo Yekudla"
+            },
+            ve: {
+                nav_home: "Hayani",
+                nav_services: "Mishumo",
+                nav_features: "Zwiito",
+                nav_about: "Nga",
+                nav_findcare: "Wana Thogomelo",
+                nav_contact: "Vhudzani",
+                hero_title: "U Ita Vhutshilo ha Vhafumakadzi ha Vhukuma nga Theknolodzhi",
+                hero_subtitle: "Zwithu zwa dijithali na mishumo i ita uri vhafumakadzi vha wane thogomelo ya nnyi ya vhutshilo, thuso ya vhutshilo ha vhamme na thogomelo ya u thivhela.",
+                explore_services: "Sedzulusa Mishumo",
+                features_title: "Zwiito zwa Hone",
+                features_subtitle: "Zwiitisi zwa vhutshilo zwo fhelelaho zwo bveledzwa vhafumakadzi fhedzi",
+                services_title: "Mishumo ya Hone",
+                service_tracking: "U Lwa Vhutshilo",
+                service_tracking_desc: "Lwa zwithu zwa vhutshilo ha vhukuma hawe na u bvela phanḓa",
+                service_reports: "Mihumbulo ya Vhutshilo",
+                service_reports_desc: "Bveledza mihumbulo ya vhutshilo yo fhelelaho",
+                service_settings: "Zwiitisi",
+                service_settings_desc: "Ita uri zwithu zwa vhutshilo ha vhukuma zwi tevhedze zwawe",
+                service_delete: "Sula Mafhungo",
+                service_delete_desc: "Lawa na u sula mafhungo a vhutshilo ha vhukuma hawe",
+                profile: "Profaulu",
+                language: "Luambo",
+                themes: "Themba",
+                logout: "Bva",
+                profile_title: "Zwiitisi zwa Profailu",
+                profile_name: "Dzina ḽo Fhelelaho",
+                profile_email: "Imeili",
+                profile_phone: "Foni",
+                profile_age: "Miṅwaha",
+                profile_theme: "U Nanga Themba",
+                profile_save: "Vhulunga Profailu",
+                footer_about: "HerVital",
+                footer_description: "Zwithu zwa dijithali na mishumo i ita uri vhafumakadzi vha wane thogomelo ya nnyi ya vhutshilo.",
+                footer_links: "Zwiungo zwa U Fhira",
+                footer_services: "Mishumo",
+                footer_contact: "Vhudzani na Hone",
+                footer_rights: "Zwithu zwoṱhe zwa vhukuma zwo bvelwa.",
+                service_maternal: "Vhutshilo ha Vhamme",
+                service_preventive: "Thogomelo ya U Thivhela",
+                service_telemedicine: "Telemedicine",
+                service_mental: "Vhutshilo ha Mpfuwa",
+                service_nutrition: "Nḓivhadzo ya Zwiḽiwa"
+            },
+            nr: {
+                nav_home: "Ekhaya",
+                nav_services: "Iinkonzo",
+                nav_features: "Iimpawu",
+                nav_about: "Nge",
+                nav_findcare: "Fumana Uncedo",
+                nav_contact: "Qhagamshela",
+                hero_title: "Ukomelela Impilo Yabafazi Ngobuchwepheshe",
+                hero_subtitle: "Izixhobo zedijithali neenkonzo eziphucula ukufikelela kwabafazi ekuncedweni kwezempilo, inkxaso yempilo yabantwana, nokuncedwa kokuthintela.",
+                explore_services: "Phanda Iinkonzo",
+                features_title: "Iimpawu Zethu",
+                features_subtitle: "Izisombululo zempilo eziphelele ezenzelwe abafazi ngqo",
+                services_title: "Iinkonzo Zethu",
+                service_tracking: "Ukulandelela Impilo",
+                service_tracking_desc: "Landelela amanani akho empilo yemihla ngemihla nokuqhubekeka",
+                service_reports: "Ingxelo Yempilo",
+                service_reports_desc: "Yenza iingxelo zempilo ezipheleleyo",
+                service_settings: "Iisetingi",
+                service_settings_desc: "Yenza ngokwezifiso izikhetho zakho zempilo",
+                service_delete: "Cima Iirekhodi",
+                service_delete_desc: "Phatha kwaye ucime iirekhodi zakho zempilo",
+                profile: "Iprofayili",
+                language: "Ulwimi",
+                themes: "Iindikimba",
+                logout: "Phuma",
+                profile_title: "Iisetingi Zeprofayili",
+                profile_name: "Igama Elipheleleyo",
+                profile_email: "I-imeyile",
+                profile_phone: "Ifowuni",
+                profile_age: "Iminyaka",
+                profile_theme: "Ukukhetha Isihloko",
+                profile_save: "Gcina Iprofayili",
+                footer_about: "HerVital",
+                footer_description: "Izixhobo zedijithali neenkonzo eziphucula ukufikelela kwabafazi ekuncedweni kwezempilo okuyintloko.",
+                footer_links: "Iilinki Ezesheshayo",
+                footer_services: "Iinkonzo",
+                footer_contact: "Qhagamshela Nathi",
+                footer_rights: "Zonke iilungelo zigcinwe.",
+                service_maternal: "Impilo Yabantwana",
+                service_preventive: "Uncedo Lokuthintela",
+                service_telemedicine: "I-Telemedicine",
+                service_mental: "Impilo Yengqondo",
+                service_nutrition: "Isikhokelo Sokutya"
+            }
+        };
+
+        let currentLanguage = 'en';
+        let userProfile = {
+            fullName: '',
+            email: '',
+            phone: '',
+            age: '',
+            theme: 'light'
+        };
+
+        // DOM Elements
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mainNav = document.getElementById('mainNav');
+        const profileBtn = document.getElementById('profileBtn');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        const exploreServicesBtn = document.getElementById('exploreServicesBtn');
+        const servicesModal = document.getElementById('servicesModal');
+        const profileModal = document.getElementById('profileModal');
+        const profileForm = document.getElementById('profileForm');
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            loadUserProfile();
+            updateTranslations();
+            initializeAnimations();
+        });
+
+        // Mobile Menu Toggle
+        mobileMenuBtn?.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+        });
+
+        // Profile Dropdown Toggle
+        profileBtn?.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dropdownMenu.classList.toggle('active');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.profile-dropdown')) {
+                dropdownMenu.classList.remove('active');
+            }
+        });
+
+        // Services Modal Functions
+        exploreServicesBtn?.addEventListener('click', () => {
+            servicesModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        function closeServicesModal() {
+            servicesModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function handleServiceClick(serviceType) {
+            let message = '';
+            switch(serviceType) {
+                case 'tracking':
+                    message = 'Health Tracking feature activated! Your daily metrics will now be monitored.';
+                    break;
+                case 'reports':
+                    message = 'Generating your comprehensive health report...';
+                    setTimeout(() => {
+                        alert('Health report generated successfully! Check your dashboard for details.');
+                    }, 2000);
+                    break;
+                case 'settings':
+                    message = 'Opening health settings panel...';
+                    setTimeout(() => {
+                        openProfileModal();
+                    }, 1000);
+                    break;
+                case 'delete':
+                    if (confirm('Are you sure you want to delete your health records? This action cannot be undone.')) {
+                        message = 'Selected health records have been deleted successfully.';
+                    } else {
+                        return;
+                    }
+                    break;
+            }
+            alert(message);
+            closeServicesModal();
+        }
+
+        // Profile Modal Functions
+        function openProfileModal() {
+            profileModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            populateProfileForm();
+        }
+
+        function closeProfileModal() {
+            profileModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function populateProfileForm() {
+            document.getElementById('fullName').value = userProfile.fullName;
+            document.getElementById('email').value = userProfile.email;
+            document.getElementById('phone').value = userProfile.phone;
+            document.getElementById('age').value = userProfile.age;
+            
+            // Update theme selection
+            document.querySelectorAll('.theme-option').forEach(option => {
+                option.classList.remove('active');
+            });
+            document.querySelector(`.theme-${userProfile.theme}`).classList.add('active');
+        }
+
+        // Profile Form Submission
+        profileForm?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            userProfile.fullName = document.getElementById('fullName').value;
+            userProfile.email = document.getElementById('email').value;
+            userProfile.phone = document.getElementById('phone').value;
+            userProfile.age = document.getElementById('age').value;
+            
+            saveUserProfile();
+            alert('Profile saved successfully!');
+            closeProfileModal();
+        });
+
+        // Logout function
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                alert('You have been logged out successfully.');
+                // In a real app, you would redirect to login page
+                // window.location.href = '/login';
+            }
+            dropdownMenu.classList.remove('active');
+        }
+
+        // Language Functions
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+            updateTranslations();
+            dropdownMenu.classList.remove('active');
+            
+            // Save language preference
+            userProfile.language = lang;
+            saveUserProfile();
+        }
+
+        function updateTranslations() {
+            const elements = document.querySelectorAll('[data-translate]');
+            elements.forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[currentLanguage] && translations[currentLanguage][key]) {
+                    element.textContent = translations[currentLanguage][key];
+                }
+            });
+        }
+
+        // Theme Functions
+        function setTheme(theme) {
+            userProfile.theme = theme;
+            applyTheme(theme);
+            
+            // Update theme selector
+            document.querySelectorAll('.theme-option').forEach(option => {
+                option.classList.remove('active');
+            });
+            document.querySelector(`.theme-${theme}`).classList.add('active');
+            
+            saveUserProfile();
+        }
+
+        function applyTheme(theme) {
+            document.body.classList.remove('dark-theme', 'blue-theme');
+            
+            if (theme === 'dark') {
+                document.body.classList.add('dark-theme');
+            } else if (theme === 'blue') {
+                document.body.classList.add('blue-theme');
+                document.documentElement.style.setProperty('--primary-pink', '#87CEEB');
+                document.documentElement.style.setProperty('--primary-blue', '#4169E1');
+            } else {
+                // Light theme (default)
+                document.documentElement.style.setProperty('--primary-pink', '#FF69B4');
+                document.documentElement.style.setProperty('--primary-blue', '#4169E1');
+            }
+        }
+
+        function toggleThemeModal() {
+            openProfileModal();
+            // Scroll to theme section
+            setTimeout(() => {
+                document.querySelector('.theme-selector').scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'center' 
+                });
+            }, 300);
+        }
+
+        // Local Storage Functions
+        function saveUserProfile() {
+            const profileData = {
+                ...userProfile,
+                language: currentLanguage
+            };
+            // Simulate saving to localStorage (not available in artifacts)
+            console.log('Profile saved:', profileData);
+        }
+
+        function loadUserProfile() {
+            // Simulate loading from localStorage (not available in artifacts)
+            // In a real app, this would load from localStorage
+            const savedProfile = {
+                fullName: '',
+                email: '',
+                phone: '',
+                age: '',
+                theme: 'light',
+                language: 'en'
+            };
+            
+            userProfile = { ...userProfile, ...savedProfile };
+            currentLanguage = savedProfile.language || 'en';
+            applyTheme(userProfile.theme);
+        }
+
+        // Animation Functions
+        function initializeAnimations() {
+            // Intersection Observer for scroll animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationDelay = '0.1s';
+                        entry.target.style.animationFillMode = 'both';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe elements for animation
+            document.querySelectorAll('.slide-bottom, .slide-left, .slide-right, .slide-top').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // Smooth Scrolling for Navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                if (this.getAttribute('href') === '#') return;
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (mainNav.classList.contains('active')) {
+                        mainNav.classList.remove('active');
+                    }
+                    
+                    // Close dropdown if open
+                    dropdownMenu.classList.remove('active');
+                }
+            });
+        });
+
+        // Close modals with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                if (servicesModal.classList.contains('active')) {
+                    closeServicesModal();
+                }
+                if (profileModal.classList.contains('active')) {
+                    closeProfileModal();
+                }
+                dropdownMenu.classList.remove('active');
+            }
+        });
+
+        // Close modals when clicking outside
+        servicesModal?.addEventListener('click', (e) => {
+            if (e.target === servicesModal) {
+                closeServicesModal();
+            }
+        });
+
+        profileModal?.addEventListener('click', (e) => {
+            if (e.target === profileModal) {
+                closeProfileModal();
+            }
+        });
+
+        // Add loading states and feedback
+        function showLoading(element) {
+            const originalText = element.textContent;
+            element.textContent = 'Loading...';
+            element.disabled = true;
+            
+            setTimeout(() => {
+                element.textContent = originalText;
+                element.disabled = false;
+            }, 2000);
+        }
+
+        // Enhanced service interactions
+        function enhanceServiceItems() {
+            document.querySelectorAll('.service-item').forEach(item => {
+                item.addEventListener('mouseenter', () => {
+                    item.style.transform = 'translateY(-10px) scale(1.02)';
+                });
+                
+                item.addEventListener('mouseleave', () => {
+                    item.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+        }
+
+        // Call enhancement function
+        enhanceServiceItems();
+    </script>
+</body>
+</html>

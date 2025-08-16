@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - HerVital Health</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #f5f1eb 0%, #e8ddd4 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Color Variables */
+        :root {
+            --primary-color: #4a1d41;
+            --secondary-color: #d43d8b;
+            --accent-color: #20b2aa;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+            --text-color: #495057;
+            --white: #ffffff;
+            --pink-color:#ff6b8b;
+            --card-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Keyframe Animations */
+        @keyframes slideTop {
+            0% {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideBottom {
+            0% {
+                transform: translateY(100px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideLeft {
+            0% {
+                transform: translateX(-100px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideRight {
+            0% {
+                transform: translateX(100px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-10px) rotate(2deg);
+            }
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(255, 105, 180, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(255, 105, 180, 0.8);
+            }
+        }
+
+        .slide-top {
+            animation: slideTop 1s ease-out;
+        }
+
+        .slide-bottom {
+            animation: slideBottom 1s ease-out;
+        }
+
+        .slide-left {
+            animation: slideLeft 1s ease-out;
+        }
+
+        .slide-right {
+            animation: slideRight 1s ease-out;
+        }
+
+        /* Header/Navbar Styles */
+        header {
+            background: linear-gradient(135deg, var(--pink-color), #a78bfa);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header p {
+            background-color: #f8f9fa;
+            color: #000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            color: var(--light-color);
+        }
+
+        .logo-text {
+            font-size: 22px;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .logo-text span.her {
+            color: #ff6b8b;
+        }
+        
+        .logo-text span.vital {
+            color: #20b2aa;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid transparent;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        nav ul li a:hover {
+            border-bottom: 2px solid white;
+        }
+
+        .profile-dropdown {
+            position: relative;
+        }
+
+        .profile-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            background-color: transparent;
+        }
+
+        .profile-btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: 10px;
+            box-shadow: var(--card-shadow);
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1001;
+        }
+
+        .dropdown-menu.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-item {
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+            color: var(--text-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .dropdown-item:hover {
+            background-color: var(--light-color);
+        }
+
+        .dropdown-item:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-item i {
+            width: 20px;
+            text-align: center;
+        }
+
+        .language-submenu {
+            position: relative;
+        }
+
+        .language-options {
+            position: absolute;
+            left: 100%;
+            top: 0;
+            background: white;
+            border-radius: 10px;
+            box-shadow: var(--card-shadow);
+            min-width: 150px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateX(-10px);
+            transition: all 0.3s ease;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .language-submenu:hover .language-options {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0);
+        }
+
+        .header h1 {
+            background-color:#f8f9fa ;
+        }
+
+
+
+        /* Main Content Styles */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: slideTop 1s ease-out 0.3s both;
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header p {
+            font-size: 1.3rem;
+            color: var(--text-color);
+            font-style: italic;
+        }
+
+        /* Contact Wrapper */
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: slideLeft 1s ease-out 0.6s both;
+        }
+
+        .contact-form h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+            animation: slideBottom 0.8s ease-out 0.9s both;
+        }
+
+        .form-group:nth-child(even) {
+            animation: slideTop 0.8s ease-out 1s both;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        .logo h1{
+            font-size: 35px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--accent-color);
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 15px rgba(74, 29, 65, 0.3);
+            transform: scale(1.02);
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
+            color: white;
+            padding: 1.2rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(74, 29, 65, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(-1px);
+        }
+
+        /* Contact Info */
+        .contact-info {
+            animation: slideRight 1s ease-out 0.8s both;
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 2.5rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .info-card h3 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .info-card h3::before {
+            content: "🌸";
+            margin-right: 0.5rem;
+            font-size: 1.5rem;
+        }
+
+        .info-item {
+            margin-bottom: 1rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(74, 29, 65, 0.2);
+        }
+
+        .info-item:last-child {
+            border-bottom: none;
+        }
+
+        .info-item strong {
+            color: var(--text-color);
+            display: inline-block;
+            min-width: 100px;
+        }
+
+        .info-item span {
+            color: var(--primary-color);
+        }
+
+        /* Map placeholder */
+        .map-container {
+            background: rgba(255, 255, 255, 0.8);
+            height: 300px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--text-color);
+            border: 2px dashed var(--accent-color);
+            animation: fadeIn 1s ease-out 1.5s both;
+        }
+
+        /* Chatbot Widget */
+        .chatbot-widget {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 99;
+        }
+        
+        .chatbot-btn {
+            background-color: var(--primary-color);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .chatbot-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        .chatbot-box {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            width: 350px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            display: none;
+        }
+        
+        .chatbot-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .chatbot-header h3 {
+            font-size: 1.2rem;
+        }
+        
+        .close-chatbot {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .chatbot-body {
+            padding: 1rem;
+            height: 300px;
+            overflow-y: auto;
+        }
+        
+        .chat-message {
+            margin-bottom: 1rem;
+            max-width: 80%;
+            padding: 0.8rem;
+            border-radius: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .bot-message {
+            background-color: #f1f1f1;
+            align-self: flex-start;
+        }
+        
+        .user-message {
+            background-color: var(--primary-color);
+            color: white;
+            margin-left: auto;
+        }
+        
+        .chatbot-input {
+            display: flex;
+            padding: 1rem;
+            border-top: 1px solid #eee;
+        }
+        
+        .chatbot-input input {
+            flex: 1;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            outline: none;
+        }
+        
+        .send-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            margin-left: 0.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Footer Styles */
+        footer {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-logo {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-logo .logo-text {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-column {
+            min-width: 150px;
+        }
+
+        .footer-column h3 {
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--accent-color);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-column ul li a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--white);
+            padding-left: 5px;
+        }
+
+        .footer-column ul li a i {
+            width: 20px;
+            text-align: center;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .header h1 {
+                font-size: 2.5rem;
+            }
+
+            .header p {
+                font-size: 1.1rem;
+            }
+
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .contact-form {
+                padding: 2rem;
+            }
+
+            .contact-form h2 {
+                font-size: 2rem;
+            }
+
+            .footer-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-links {
+                justify-content: center;
+                text-align: center;
+            }
+
+            .footer-column h3::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .contact-form {
+                padding: 1.5rem;
+            }
+
+            .contact-form h2 {
+                font-size: 1.8rem;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="slide-top">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-heartbeat"></i>
+                    <h1 class="logo-text"><span class="her">Her</span><span class="vital">Vital</span></h1>
+                </div>
+                
+                    <nav id="mainNav">
+                        <ul>
+                            <li><a href="#home"><i class="fas fa-home"></i> <span data-translate="nav_home">Home</span></a></li>
+                            <li><a href="#services"><i class="fas fa-concierge-bell"></i> <span data-translate="nav_services">Services</span></a></li>
+                            <li><a href="#features"><i class="fas fa-star"></i> <span data-translate="nav_features">Features</span></a></li>
+                            <li><a href="#about"><i class="fas fa-info-circle"></i> <span data-translate="nav_about">About</span></a></li>
+                            <li><a href="#findcare"><i class="fas fa-search-location"></i> <span data-translate="nav_findcare">Find Care</span></a></li>
+                            <li><a href="#contact"><i class="fas fa-envelope"></i> <span data-translate="nav_contact">Contact</span></a></li>
+                        </ul>
+                    </nav>
+                    <div class="profile-dropdown">
+                        <button class="profile-btn" id="profileBtn">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                        <div class="dropdown-menu" id="dropdownMenu">
+                            <div class="dropdown-item" onclick="openProfileModal()">
+                                <i class="fas fa-user"></i>
+                                <span data-translate="profile">Profile</span>
+                            </div>
+                            <div class="dropdown-item language-submenu">
+                                <i class="fas fa-globe"></i>
+                                <span data-translate="language">Language</span>
+                                <div class="language-options">
+                                    <div class="dropdown-item" onclick="changeLanguage('en')"><i class="fas fa-language"></i> English</div>
+                                    <div class="dropdown-item" onclick="changeLanguage('zu')"><i class="fas fa-language"></i> IsiZulu</div>
+                                    <div class="dropdown-item" onclick="changeLanguage('xh')"><i class="fas fa-language"></i> IsiXhosa</div>
+                                    <div class="dropdown-item" onclick="changeLanguage('af')"><i class="fas fa-language"></i> Afrikaans</div>
+                                    <div class="dropdown-item" onclick="changeLanguage('nso')"><i class="fas fa-language"></i> Sepedi</div>
+                                    <div class="dropdown-item" onclick="changeLanguage('tn')"><i class="fas fa-language"></i> Setswana</div>
+                                    <div class="dropdown-item" onclick="changeLanguage('st')"><i class="fas fa-language"></i> Sesotho</div>
+                                    <div class="dropdown-item" onclick="changeLanguage('ts')"><i class="fas fa-language"></i> Xitsonga</div>
+                                    <div class="dropdown-item" onclick="changeLanguage('ss')"><i class="fas fa-language"></i> SiSwati</div>
+                                    <div class="dropdown-item" onclick="changeLanguage('ve')"><i class="fas fa-language"></i> Tshivenda</div>
+                                    <div class="dropdown-item" onclick="changeLanguage('nr')"><i class="fas fa-language"></i> IsiNdebele</div>
+                                </div>
+                            </div>
+                            <div class="dropdown-item" onclick="toggleThemeModal()">
+                                <i class="fas fa-palette"></i>
+                                <span data-translate="themes">Themes</span>
+                            </div>
+                            <div class="dropdown-item" onclick="logout()">
+                                <i class="fas fa-sign-out-alt"></i>
+                                <span data-translate="logout">Logout</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+  
+    <div class="container">
+        <!-- Header -->
+        <header class="headers">
+            <h1 data-translate="contact_title">Get In Touch</h1>
+            <p data-translate="contact_subtitle">We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
+        </header>
+
+        <!-- Main Content -->
+        <div class="contact-wrapper">
+            <!-- Contact Form -->
+            <div class="contact-form">
+                <h2 data-translate="send_message">Send Message</h2>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name" data-translate="full_name">Full Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email" data-translate="email_address">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone" data-translate="phone_number">Phone Number</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject" data-translate="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message" data-translate="message">Message</label>
+                        <textarea id="message" name="message" placeholder="Tell us about your health concern or inquiry..." required data-translate-placeholder="message_placeholder"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn" data-translate="send_message_btn">Send Message</button>
+                </form>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="contact-info">
+                <div class="info-card">
+                    <h3 data-translate="contact_info">Contact Information</h3>
+                    <div class="info-item">
+                        <strong data-translate="address">Address:</strong>
+                        <span>123 Health Street, Durban</span>
+                    </div>
+                    <div class="info-item">
+                        <strong data-translate="phone">Phone:</strong>
+                        <span>+27 21 123 4567</span>
+                    </div>
+                    <div class="info-item">
+                        <strong data-translate="email">Email:</strong>
+                        <span>info@hervitalhealth.co.za</span>
+                    </div>
+                    <div class="info-item">
+                        <strong data-translate="hours">Hours:</strong>
+                        <span data-translate="hours_detail">Mon-Fri: 8AM-6PM, Sat: 9AM-2PM</span>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <h3 data-translate="follow_us">Follow Us</h3>
+                    <div class="info-item">
+                        <strong>Instagram:</strong>
+                        <span>@hervitalhealth</span>
+                    </div>
+                    <div class="info-item">
+                        <strong>Facebook:</strong>
+                        <span>HerVital Health</span>
+                    </div>
+                    <div class="info-item">
+                        <strong>Twitter:</strong>
+                        <span>@hervitalhealth</span>
+                    </div>
+                </div>
+
+                <div class="map-container">
+                    <p data-translate="map_placeholder">Health Center Location Map</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chatbot Widget -->
+    <div class="chatbot-widget">
+        <div class="chatbot-btn" id="chatbotBtn">💬</div>
+        <div class="chatbot-box" id="chatbotBox">
+            <div class="chatbot-header">
+                <h3 data-translate="chatbot_title">HerVital Health Assistant</h3>
+                <button class="close-chatbot" id="closeChatbot">×</button>
+            </div>
+            <div class="chatbot-body" id="chatbot-body">
+                <div class="chat-message bot-message" data-translate="chatbot_welcome">
+                    Hello! I'm your HerVital health assistant. How can I help you today? You can ask about symptoms, pregnancy, menstrual health, or any women's health concern.
+                </div>
+            </div>
+            <div class="chatbot-input">
+                <input type="text" placeholder="Type your health question..." id="user-input" data-translate-placeholder="chatbot_placeholder">
+                <button class="send-btn" id="sendBtn">➤</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-logo">
+                    <div class="logo-text"><span class="her">Her</span><span class="vital">Vital</span></div>
+                    <p data-translate="footer_desc">Digital tools and services that improve women's access to essential healthcare, maternal health support, and preventive care.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h3 data-translate="quick_links">Quick Links</h3>
+                        <ul>
+                            <li><a href="#home"><i class="fas fa-home"></i> <span data-translate="nav_home">Home</span></a></li>
+                            <li><a href="#services"><i class="fas fa-concierge-bell"></i> <span data-translate="nav_services">Services</span></a></li>
+                            <li><a href="#features"><i class="fas fa-star"></i> <span data-translate="nav_features">Features</span></a></li>
+                            <li><a href="#about"><i class="fas fa-info-circle"></i> <span data-translate="nav_about">About</span></a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3 data-translate="services">Services</h3>
+                        <ul>
+                            <li><a href="#"><i class="fas fa-heartbeat"></i> <span data-translate="health_tracking">Health Tracking</span></a></li>
+                            <li><a href="#"><i class="fas fa-baby-carriage"></i> <span data-translate="maternal_health">Maternal Health</span></a></li>
+                            <li><a href="#"><i class="fas fa-shield-alt"></i> <span data-translate="preventive_care">Preventive Care</span></a></li>
+                            <li><a href="#"><i class="fas fa-video"></i> <span data-translate="telemedicine">Telemedicine</span></a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3 data-translate="contact_us">Contact Us</h3>
+                        <ul>
+                            <li><i class="fas fa-map-marker-alt"></i> <span>123 Health St, Cape Town</span></li>
+                            <li><i class="fas fa-phone"></i> <span>(021) 456-7890</span></li>
+                            <li><i class="fas fa-envelope"></i> <span>info@hervital.com</span></li>
+                            <li><i class="fas fa-clock"></i> <span data-translate="hours_detail">Mon-Fri: 8AM-6PM</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 HerVital. <span data-translate="all_rights">All rights reserved.</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Language translations
+        const translations = {
+            en: {
+                nav_home: "Home",
+                nav_services: "Services",
+                nav_features: "Features",
+                nav_about: "About",
+                nav_findcare: "Find Care",
+                nav_contact: "Contact",
+                profile: "Profile",
+                language: "Language",
+                themes: "Themes",
+                logout: "Logout",
+                contact_title: "Get In Touch",
+                contact_subtitle: "We'd love to hear from you. Send us a message and we'll respond as soon as possible.",
+                send_message: "Send Message",
+                full_name: "Full Name",
+                email_address: "Email Address",
+                phone_number: "Phone Number",
+                subject: "Subject",
+                message: "Message",
+                message_placeholder: "Tell us about your health concern or inquiry...",
+                send_message_btn: "Send Message",
+                contact_info: "Contact Information",
+                address: "Address:",
+                phone: "Phone:",
+                email: "Email:",
+                hours: "Hours:",
+                hours_detail: "Mon-Fri: 8AM-6PM, Sat: 9AM-2PM",
+                follow_us: "Follow Us",
+                map_placeholder: "Health Center Location Map",
+                chatbot_title: "HerVital Health Assistant",
+                chatbot_welcome: "Hello! I'm your HerVital health assistant. How can I help you today? You can ask about symptoms, pregnancy, menstrual health, or any women's health concern.",
+                chatbot_placeholder: "Type your health question...",
+                footer_desc: "Digital tools and services that improve women's access to essential healthcare, maternal health support, and preventive care.",
+                quick_links: "Quick Links",
+                services: "Services",
+                health_tracking: "Health Tracking",
+                maternal_health: "Maternal Health",
+                preventive_care: "Preventive Care",
+                telemedicine: "Telemedicine",
+                contact_us: "Contact Us",
+                all_rights: "All rights reserved."
+            },
+            zu: {
+                nav_home: "Ikhaya",
+                nav_services: "Izinsiza",
+                nav_features: "Izici",
+                nav_about: "Mayelana",
+                nav_findcare: "Thola Unakekelwano",
+                nav_contact: "Xhumana",
+                profile: "Iphrofayili",
+                language: "Ulimi",
+                themes: "Izindikimba",
+                logout: "Phuma",
+                contact_title: "Xhumana Nathi",
+                contact_subtitle: "Singathanda ukuzwa kuwe. Thumela umyalezo futhi sizophendula ngokushesha okukhulu.",
+                send_message: "Thumela Umyalezo",
+                full_name: "Igama Eliphelele",
+                email_address: "Ikheli Le-imeyili",
+                phone_number: "Inombolo Yocingo",
+                subject: "Isihloko",
+                message: "Umyalezo",
+                message_placeholder: "Sitshele ngenkinga yakho yezempilo noma inqubo...",
+                send_message_btn: "Thumela Umyalezo",
+                contact_info: "Ulwazi Lokuxhumana",
+                address: "Ikheli:",
+                phone: "Ucingo:",
+                email: "I-imeyili:",
+                hours: "Amahora:",
+                hours_detail: "Msombuluko-gesonto: 8AM-6PM, Mgqibelo: 9AM-2PM",
+                follow_us: "Silandele",
+                map_placeholder: "Indawo Yesikhungo Sezempilo",
+                chatbot_title: "Umsebenzi Wezempilo we-HerVital",
+                chatbot_welcome: "Sawubona! Ngingumsebenzi wakho wezempilo we-HerVital. Ngingakusiza kanjani namuhla? Ungabuza mayelana nezimpawu, ukukhulelwa, impilo yezinyanga, noma noma yini ephathelene nempilo yabesifazane.",
+                chatbot_placeholder: "Thayipha umbuzo wakho wezempilo...",
+                footer_desc: "Amathuluzi edijithali nezinsizakalo ezithuthukisa ukufinyelela kwabesifazane ekunakekelweni okubalulekile kwezempilo, ukwesekwa kwezempilo yomama, nokunakekelwa kokuvimbela.",
+                quick_links: "Izixhumanisi Eziphuthumayo",
+                services: "Izinsiza",
+                health_tracking: "Ukulandelela Impilo",
+                maternal_health: "Impilo Yomama",
+                preventive_care: "Ukunakekelwa Kokuvimbela",
+                telemedicine: "I-Telemedicine",
+                contact_us: "Xhumana Nathi",
+                all_rights: "Wonke amalungelo agodliwe."
+            },
+            xh: {
+                nav_home: "Ekhaya",
+                nav_services: "Iinkonzo",
+                nav_features: "Iimpawu",
+                nav_about: "Malunga",
+                nav_findcare: "Fumana Uncedo",
+                nav_contact: "Qhagamshela",
+                profile: "Iprofayile",
+                language: "Ulwimi",
+                themes: "Iindikimba",
+                logout: "Phuma",
+                contact_title: "Qhagamshela Nathi",
+                contact_subtitle: "Singathanda ukuva kuwe. Thumela umyalezo kwaye siza kuphendula ngokukhawuleza.",
+                send_message: "Thumela Umyalezo",
+                full_name: "Igama Elipheleleyo",
+                email_address: "Idilesi ye-imeyile",
+                phone_number: "Inombolo Yomnxeba",
+                subject: "Umxholo",
+                message: "Umyalezo",
+                message_placeholder: "Sixelele ngengxaki yakho yezempilo okanye uphando...",
+                send_message_btn: "Thumela Umyalezo",
+                contact_info: "Inkcazelo Yonxibelelwano",
+                address: "Idilesi:",
+                phone: "Umnxeba:",
+                email: "I-imeyile:",
+                hours: "Iiyure:",
+                hours_detail: "Mvulo-veki: 8AM-6PM, Mgqibelo: 9AM-2PM",
+                follow_us: "Silandele",
+                map_placeholder: "Indawo yeZiko leZempilo",
+                chatbot_title: "Incedisi yeZempilo ye-HerVital",
+                chatbot_welcome: "Molo! Ndingumncedisi wakho wezempilo we-HerVital. Ndingakunceda njani namhlanje? Ungabuza malunga nezimpawu, ukukhulelwa, impilo yenyanga, okanye nayiphi ingxaki yezempilo yabafazi.",
+                chatbot_placeholder: "Chwetheza umbuzo wakho wezempilo...",
+                footer_desc: "Izixhobo zedijithali neenkonzo eziphucula ukufikelela kwabafazi kwinkonzo ebalulekile yezempilo, inkxaso yezempilo yomama, nokunakekelwa kokuthintela.",
+                quick_links: "Iilinki Eziphambili",
+                services: "Iinkonzo",
+                health_tracking: "Ukulandelela Impilo",
+                maternal_health: "Impilo Yomama",
+                preventive_care: "Ukunakekelwa Kokuthintela",
+                telemedicine: "I-Telemedicine",
+                contact_us: "Qhagamshela Nathi",
+                all_rights: "Onke amalungelo agciniwe."
+            },
+            af: {
+                nav_home: "Tuis",
+                nav_services: "Dienste",
+                nav_features: "Kenmerke",
+                nav_about: "Oor Ons",
+                nav_findcare: "Vind Sorg",
+                nav_contact: "Kontak",
+                profile: "Profiel",
+                language: "Taal",
+                themes: "Temas",
+                logout: "Teken Uit",
+                contact_title: "Kontak Ons",
+                contact_subtitle: "Ons wil graag van u hoor. Stuur ons 'n boodskap en ons sal so gou moontlik reageer.",
+                send_message: "Stuur Boodskap",
+                full_name: "Volle Naam",
+                email_address: "E-pos Adres",
+                phone_number: "Telefoon Nommer",
+                subject: "Onderwerp",
+                message: "Boodskap",
+                message_placeholder: "Vertel ons van u gesondheidsbesorgdheid of navraag...",
+                send_message_btn: "Stuur Boodskap",
+                contact_info: "Kontak Inligting",
+                address: "Adres:",
+                phone: "Telefoon:",
+                email: "E-pos:",
+                hours: "Ure:",
+                hours_detail: "Ma-Vr: 8AM-6PM, Sa: 9AM-2PM",
+                follow_us: "Volg Ons",
+                map_placeholder: "Gesondheidsentrum Ligging",
+                chatbot_title: "HerVital Gesondheidsassistent",
+                chatbot_welcome: "Hallo! Ek is jou HerVital gesondheidsassistent. Hoe kan ek jou vandag help? Jy kan vra oor simptome, swangerskap, menstruasiegesondheid, of enige vrouegesondheidskwessie.",
+                chatbot_placeholder: "Tik jou gesondheidsvraag...",
+                footer_desc: "Digitale gereedskap en dienste wat vroue se toegang tot noodsaaklike gesondheidsorg, moedergesondheid ondersteuning en voorkomende sorg verbeter.",
+                quick_links: "Vinnige Skakels",
+                services: "Dienste",
+                health_tracking: "Gesondheid Monitering",
+                maternal_health: "Moedergesondheid",
+                preventive_care: "Voorkomende Sorg",
+                telemedicine: "Telemedisyne",
+                contact_us: "Kontak Ons",
+                all_rights: "Alle regte voorbehou."
+            }
+        };
+
+        // Current language
+        let currentLanguage = 'en';
+
+        // Function to change language
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+            updateTranslations();
+        }
+
+        // Function to update all translations on the page
+        function updateTranslations() {
+            const langData = translations[currentLanguage] || translations['en'];
+            
+            // Update all elements with data-translate attribute
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (langData[key]) {
+                    element.textContent = langData[key];
+                }
+            });
+            
+            // Update all placeholder translations
+            document.querySelectorAll('[data-translate-placeholder]').forEach(element => {
+                const key = element.getAttribute('data-translate-placeholder');
+                if (langData[key]) {
+                    element.setAttribute('placeholder', langData[key]);
+                }
+            });
+        }
+
+        // DOM Elements
+        const profileBtn = document.getElementById('profileBtn');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        const chatbotBtn = document.getElementById('chatbotBtn');
+        const chatbotBox = document.getElementById('chatbotBox');
+        const closeChatbot = document.getElementById('closeChatbot');
+        const sendBtn = document.getElementById('sendBtn');
+        const userInput = document.getElementById('user-input');
+        const chatBody = document.getElementById('chatbot-body');
+        const contactForm = document.getElementById('contactForm');
+
+        // Toggle dropdown menu
+        profileBtn.addEventListener('click', () => {
+            dropdownMenu.classList.toggle('active');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!profileBtn.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                dropdownMenu.classList.remove('active');
+            }
+        });
+
+        // Toggle chatbot
+        chatbotBtn.addEventListener('click', () => {
+            chatbotBox.style.display = chatbotBox.style.display === 'block' ? 'none' : 'block';
+        });
+
+        closeChatbot.addEventListener('click', () => {
+            chatbotBox.style.display = 'none';
+        });
+
+        // Chatbot functionality
+        sendBtn.addEventListener('click', sendMessage);
+        userInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        function sendMessage() {
+            const message = userInput.value.trim();
+            if (message) {
+                // Add user message
+                const userMsg = document.createElement('div');
+                userMsg.className = 'chat-message user-message';
+                userMsg.textContent = message;
+                chatBody.appendChild(userMsg);
+                
+                // Clear input
+                userInput.value = '';
+                
+                // Scroll to bottom
+                chatBody.scrollTop = chatBody.scrollHeight;
+                
+                // Simulate bot response
+                setTimeout(() => {
+                    const botMsg = document.createElement('div');
+                    botMsg.className = 'chat-message bot-message';
+                    
+                    // Simple responses based on keywords
+                    if (message.toLowerCase().includes('pregnancy') || message.toLowerCase().includes('pregnant')) {
+                        botMsg.textContent = currentLanguage === 'en' ? 
+                            "For pregnancy-related concerns, I recommend consulting with your healthcare provider. Would you like help finding a nearby clinic?" :
+                            currentLanguage === 'zu' ?
+                            "Mayelana nokukhathazeka okuhlobene nokukhulelwa, ngincoma ukuthi uxhumane nomhlinzeki wakho wezempilo. Ungathanda usizo lokuthola isikhungo esiseduze?" :
+                            currentLanguage === 'xh' ?
+                            "Ngokubhekiselele kwiingxaki ezimalunga nokukhulelwa, ndicebisa ukuba uqhagamshele nomxhasi wakho wezempilo. Ungathanda uncedo lokufumana ikliniki ekufutshane?" :
+                            "Vir swangerskapverwante bekommernisse, beveel ek aan dat u met u gesondheidsorgverskaffer konsulteer. Wil u hulp hê om 'n nabygeleë kliniek te vind?";
+                    } else if (message.toLowerCase().includes('period') || message.toLowerCase().includes('menstrual')) {
+                        botMsg.textContent = currentLanguage === 'en' ? 
+                            "Menstrual health is important. Are you experiencing any unusual symptoms with your cycle?" :
+                            currentLanguage === 'zu' ?
+                            "Impilo yenyanga ibalulekile. Ngabe uhlangabezana nezimpawu ezingajwayelekile ngesikhathi sakho?" :
+                            currentLanguage === 'xh' ?
+                            "Impilo yenyanga ibalulekile. Ingaba ujongana naziphi iimpawu ezingaqhelekanga kwisikhathi sakho?" :
+                            "Menstruasiegesondheid is belangrik. Ervaar u enige ongewone simptome met u siklus?";
+                    } else if (message.toLowerCase().includes('symptom') || message.toLowerCase().includes('pain')) {
+                        botMsg.textContent = currentLanguage === 'en' ? 
+                            "I'm not a doctor, but I can help direct you to appropriate care. Can you describe your symptoms in more detail?" :
+                            currentLanguage === 'zu' ?
+                            "Angidokotela, kodwa ngingakusiza ukuthi udlulele ekunakekelweni okufanele. Ungachaza izimpawu zakho ngokuningiliziwe?" :
+                            currentLanguage === 'xh' ?
+                            "Andingugqirha, kodwa ndinokukunceda ukuba uye ekunakekelweni okufanelekileyo. Ungachaza iimpawu zakho ngokugcwele?" :
+                            "Ek is nie 'n dokter nie, maar ek kan help om u na toepaslike sorg te lei. Kan u u simptome in meer besonderhede beskryf?";
+                    } else {
+                        botMsg.textContent = currentLanguage === 'en' ? 
+                            "Thank you for your message. For more specific health advice, I recommend contacting your healthcare provider directly." :
+                            currentLanguage === 'zu' ?
+                            "Ngiyabonga ngomyalezo wakho. Ukuze uthole izeluleko ezinembile ngezempilo, ngincoma ukuthi uxhumane nomhlinzeki wakho wezempilo ngqo." :
+                            currentLanguage === 'xh' ?
+                            "Enkosi ngomyalezo wakho. Ukufumana iseluleko esithe ngqo ngezempilo, ndicebisa ukuba uqhagamshele ngqo nomxhasi wakho wezempilo." :
+                            "Dankie vir u boodskap. Vir meer spesifieke gesondheidsadvies, beveel ek aan dat u u gesondheidsorgverskaffer direk kontak.";
+                    }
+                    
+                    chatBody.appendChild(botMsg);
+                    chatBody.scrollTop = chatBody.scrollHeight;
+                }, 1000);
+            }
+        }
+
+        // Form submission
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Simple validation
+            if (!data.name || !data.email || !data.subject || !data.message) {
+                alert(currentLanguage === 'en' ? 'Please fill in all required fields.' : 
+                      currentLanguage === 'zu' ? 'Sicela ugcwalise zonke izinkambu ezidingekayo.' :
+                      currentLanguage === 'xh' ? 'Nceda uzalise zonke iindawo ezifunekayo.' :
+                      'Vul asseblief alle verpligte velde in.');
+                return;
+            }
+            
+            // Simulate form submission
+            const submitBtn = this.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            
+            submitBtn.textContent = currentLanguage === 'en' ? 'Sending...' : 
+                                   currentLanguage === 'zu' ? 'Ithunyelwa...' :
+                                   currentLanguage === 'xh' ? 'Ithunyelwa...' :
+                                   'Word gestuur...';
+            submitBtn.disabled = true;
+            
+            setTimeout(() => {
+                alert(currentLanguage === 'en' ? 'Thank you for your message! We\'ll get back to you soon.' :
+                      currentLanguage === 'zu' ? 'Siyabonga ngomyalezo wakho! Sizokuphendula maduzane.' :
+                      currentLanguage === 'xh' ? 'Enkosi ngomyalezo wakho! Siza kubuya kuwe kamsinya.' :
+                      'Dankie vir u boodskap! Ons sal binnekort by u terugvoer.');
+                this.reset();
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }, 2000);
+        });
+
+        // Initialize translations
+        updateTranslations();
+
+        // Add hover effects to info cards
+        document.querySelectorAll('.info-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>

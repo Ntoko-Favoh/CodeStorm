@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <title>HerVital - Women's Health Companion</title>
+</head>
+<style>
+    /* Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: #fff5f7;
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+    
+    /* Container Styles */
+    .container {
+      position: relative;
+      width: 800px;
+      height: 550px;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      display: flex;
+    }
+    
+    /* Left Panel Styles */
+    .left-panel {
+      width: 40%;
+      height: 100%;
+      padding: 25px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      color: #fff;
+      background: linear-gradient(rgba(255, 107, 139, 0.7), rgba(106, 90, 205, 0.7)), 
+                  url('logo.jpg') center/cover no-repeat;
+      position: relative;
+    }
+    
+    .left-panel::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(255, 107, 139, 0.8), rgba(106, 90, 205, 0.8));
+    }
+    
+    .logo-section {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .logo-text {
+      font-size: 22px;
+      font-weight: 700;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+    
+    .logo-text span.her {
+      color: #ff6b8b;
+    }
+    
+    .logo-text span.vital {
+      color: #20b2aa;
+    }
+    
+    .text-content {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .slogan {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #fff;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    }
+    
+    .description {
+      font-size: 12px;
+      line-height: 1.4;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 15px;
+    }
+    
+    .features-list {
+      margin-top: 20px;
+      font-size: 12px;
+    }
+    
+    .feature-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      color: rgba(255, 255, 255, 0.9);
+    }
+    
+    .feature-icon {
+      color: #fff;
+      margin-right: 8px;
+      font-size: 16px;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    }
+    
+    /* Right Panel Styles */
+    .right-panel {
+      width: 60%;
+      height: 100%;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      background: rgba(255, 255, 255, 0.95);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .design-card {
+      width: 350px;
+      background: linear-gradient(135deg, #ffffff 0%, #fff0f5 100%);
+      border-radius: 20px;
+      box-shadow: 0 15px 30px rgba(233, 150, 180, 0.2);
+      padding: 40px;
+      text-align: center;
+      border: 1px solid #ffd6e7;
+      position: relative;
+      overflow: hidden;
+      }
+
+      .design-card::before {
+            content: "";
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            background-color: #ff85a2;
+            opacity: 0.1;
+            border-radius: 50%;
+        }
+
+         .design-card::after {
+            content: "";
+            position: absolute;
+            bottom: -80px;
+            left: -80px;
+            width: 250px;
+            height: 250px;
+            background-color: #ffb6c1;
+            opacity: 0.1;
+            border-radius: 50%;
+        }
+        
+  
+    
+    /* Floral Decorations */
+    .floral-decoration {
+      position: absolute;
+      opacity: 0.3;
+      z-index: 0;
+      font-size: 70px;
+    }
+    
+    .floral-1 {
+      top: 20px;
+      right: 20px;
+      transform: rotate(15deg);
+      color: #ff85a2;
+    }
+    
+    .floral-2 {
+      bottom: 20px;
+      left: 20px;
+      transform: rotate(-15deg);
+      color: #ffb6c1;
+    }
+    
+    .language-select {
+      align-self: flex-end;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .lang-dropdown {
+      padding: 6px 10px;
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(255, 107, 139, 0.3);
+      border-radius: 5px;
+      color: #ff6b8b;
+      font-size: 12px;
+      outline: none;
+      cursor: pointer;
+      font-weight: 500;
+    }
+    
+    .lang-dropdown option {
+      background: #fff;
+      color: #ff6b8b;
+    }
+    
+    /* Tab Styles */
+    .tabs {
+      display: flex;
+      margin-bottom: 15px;
+      border-bottom: 1px solid rgba(255, 107, 139, 0.2);
+      position: relative;
+      z-index: 1;
+    }
+    
+    .tab {
+      padding: 6px 12px;
+      color: #666;
+      background: none;
+      border: none;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      position: relative;
+      opacity: 0.7;
+      transition: all 0.3s ease;
+    }
+    
+    .tab.active {
+      opacity: 1;
+      color: #ff6b8b;
+    }
+    
+    .tab.active::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 20%;
+      width: 60%;
+      height: 2px;
+      background: linear-gradient(45deg, #ff6b8b, #6a5acd);
+      border-radius: 2px;
+    }
+    
+    /* Form Container Styles */
+    .form-container {
+      position: relative;
+      flex: 1;
+      overflow: hidden;
+      z-index: 1;
+    }
+    
+    .form {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.5s ease;
+    }
+    
+    .login-form {
+      transform: translateX(0);
+    }
+    
+    .signup-form {
+      transform: translateX(100%);
+    }
+    
+    .wrapper.active .login-form {
+      transform: translateX(-100%);
+    }
+    
+    .wrapper.active .signup-form {
+      transform: translateX(0);
+    }
+    
+    /* Input Field Styles */
+    .input-group {
+      position: relative;
+      margin-bottom: 12px;
+    }
+    
+    .input-field {
+      width: 100%;
+      padding: 8px 0 8px 25px;
+      background: rgba(255, 255, 255, 0.9);
+      border: none;
+      border-bottom: 2px solid rgba(255, 107, 139, 0.3);
+      color: #333;
+      font-size: 13px;
+      outline: none;
+      transition: all 0.3s ease;
+      border-radius: 4px;
+    }
+    
+    .input-label {
+      position: absolute;
+      top: 8px;
+      left: 25px;
+      color: #666;
+      font-size: 12px;
+      pointer-events: none;
+      transition: all 0.3s ease;
+    }
+    
+    .input-field:focus + .input-label,
+    .input-field:not(:placeholder-shown) + .input-label {
+      top: -12px;
+      font-size: 10px;
+      color: #ff6b8b;
+    }
+    
+    .input-field:focus {
+      border-bottom-color: #ff6b8b;
+      background: #fff;
+    }
+    
+    .input-icon {
+      position: absolute;
+      left: 0;
+      top: 8px;
+      color: #ff6b8b;
+      font-size: 16px;
+    }
+    
+    .password-wrapper {
+      position: relative;
+    }
+    
+    .eye-icon {
+      position: absolute;
+      right: 0;
+      top: 8px;
+      color: #ff6b8b;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    
+    /* Button Styles */
+    .submit-btn {
+      padding: 8px;
+      background: linear-gradient(45deg, #ff6b8b, #6a5acd);
+      border: none;
+      border-radius: 6px;
+      color: white;
+      font-weight: 600;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 8px;
+    }
+    
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 107, 139, 0.3);
+    }
+    
+    .social-login-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px;
+      border-radius: 6px;
+      border: none;
+      font-weight: 500;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-bottom: 8px;
+      width: 100%;
+      background: #fff;
+      color: #333;
+      border: 1px solid rgba(255, 107, 139, 0.3);
+    }
+    
+    .social-login-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 107, 139, 0.1);
+      border-color: #ff6b8b;
+    }
+    
+    .social-login-icon {
+      margin-right: 8px;
+      font-size: 16px;
+      color: #ff6b8b;
+    }
+    
+    /* Divider Styles */
+    .divider {
+      display: flex;
+      align-items: center;
+      margin: 12px 0;
+      color: #666;
+      font-size: 11px;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .divider::before,
+    .divider::after {
+      content: "";
+      flex: 1;
+      border-bottom: 1px solid rgba(255, 107, 139, 0.2);
+    }
+    
+    .divider::before {
+      margin-right: 8px;
+    }
+    
+    .divider::after {
+      margin-left: 8px;
+    }
+    
+    /* Link Styles */
+    .switch-form {
+      text-align: center;
+      color: #666;
+      font-size: 11px;
+      margin-top: 8px;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .switch-form a {
+      color: #ff6b8b;
+      text-decoration: none;
+      font-weight: 500;
+      margin-left: 4px;
+      transition: color 0.3s ease;
+    }
+    
+    .switch-form a:hover {
+      color: #6a5acd;
+    }
+    
+    .forgot-link {
+      color: #666;
+      font-size: 11px;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    
+    .forgot-link:hover {
+      color: #ff6b8b;
+    }
+
+    /* Radio Button Styles */
+    .radio-group {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .radio-option {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+    }
+    
+    .radio-option input {
+      cursor: pointer;
+    }
+    
+    .radio-label {
+      color: #666;
+      font-size: 11px;
+    }
+    
+    /* Scrollbar Styles for Signup Form */
+    .signup-form {
+      overflow-y: auto;
+      padding-bottom: 10px;
+    }
+    
+    .signup-form::-webkit-scrollbar {
+      width: 4px;
+    }
+    
+    .signup-form::-webkit-scrollbar-track {
+      background: rgba(255, 107, 139, 0.05);
+    }
+    
+    .signup-form::-webkit-scrollbar-thumb {
+      background: rgba(255, 107, 139, 0.2);
+      border-radius: 2px;
+    }
+    
+    /* Health Info Styles */
+    .health-info {
+      font-size: 10px;
+      color: #666;
+      margin-top: 5px;
+      line-height: 1.4;
+      position: relative;
+      z-index: 1;
+    }
+    
+    /* Checkbox Styles */
+    input[type="checkbox"] {
+      accent-color: #ff6b8b;
+    }
+    
+    input[type="radio"] {
+      accent-color: #ff6b8b;
+    }
+    
+    /* Date Input Styles */
+    input[type="date"]::-webkit-calendar-picker-indicator {
+      filter: invert(0.5) sepia(1) saturate(5) hue-rotate(300deg);
+      cursor: pointer;
+    }
+</style>
+<body>
+    <div class="container">
+        <div class="left-panel">
+          <div class="logo-section">
+            <h1 class="logo-text"><span class="her">Her</span><span class="vital">Vital</span></h1>
+          </div>
+          
+          <div class="text-content">
+            <p class="slogan">Your Women's Health Companion</p>
+            <p class="description">Track your health, get personalized insights, and connect with healthcare providers.</p>
+            
+            <div class="features-list">
+              <div class="feature-item">
+                <ion-icon name="heart-outline" class="feature-icon"></ion-icon>
+                <span>Personalized health tracking</span>
+              </div>
+              <div class="feature-item">
+                <ion-icon name="calendar-outline" class="feature-icon"></ion-icon>
+                <span>Appointment reminders</span>
+              </div>
+              <div class="feature-item">
+                <ion-icon name="shield-checkmark-outline" class="feature-icon"></ion-icon>
+                <span>Secure & private</span>
+              </div>
+              <div class="feature-item">
+                <ion-icon name="chatbubbles-outline" class="feature-icon"></ion-icon>
+                <span>24/7 health assistant</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="right-panel">
+          <!-- Floral Decorations -->
+          <div class="floral-decoration floral-1">✿</div>
+          <div class="floral-decoration floral-2">✿</div>
+          
+          <div class="language-select">
+            <select class="lang-dropdown" id="language-selector">
+              <option value="en">English</option>
+              <option value="zu">isiZulu</option>
+              <option value="xh">isiXhosa</option>
+              <option value="af">Afrikaans</option>
+              <option value="nso">Sepedi</option>
+              <option value="tn">Setswana</option>
+              <option value="st">Sesotho</option>
+              <option value="ts">Xitsonga</option>
+              <option value="ss">siSwati</option>
+              <option value="ve">Tshivenda</option>
+              <option value="nr">isiNdebele</option>
+            </select>
+          </div>
+          
+          <div class="tabs">
+            <button class="tab active" id="login-tab">Login</button>
+            <button class="tab" id="signup-tab">Sign Up</button>
+          </div>
+          
+          <div class="form-container wrapper">
+            <div class="form login-form">
+              <button class="social-login-btn" id="login-google">
+                <ion-icon name="logo-google" class="social-login-icon"></ion-icon>
+                Continue with Google
+              </button>
+              
+              <div class="divider">or</div>
+              
+              <div class="input-group">
+                <input type="text" class="input-field" id="login-email" placeholder=" " required>
+                <ion-icon name="mail-outline" class="input-icon"></ion-icon>
+                <label class="input-label">Email Address</label>
+              </div>
+              
+              <div class="input-group password-wrapper">
+                <input type="password" class="input-field" id="login-password" placeholder=" " required>
+                <ion-icon name="lock-closed-outline" class="input-icon"></ion-icon>
+                <label class="input-label">Password</label>
+                <ion-icon name="eye-outline" class="eye-icon" id="login-eye"></ion-icon>
+              </div>
+              
+              <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+                <div style="display: flex; align-items: center;">
+                  <input type="checkbox" id="remember-me" style="margin-right: 5px;">
+                  <label for="remember-me" style="font-size: 11px; color: #666;">Remember me</label>
+                </div>
+                <a href="#" class="forgot-link">Forgot password?</a>
+              </div>
+              
+              <button class="submit-btn" id="login-submit">Login</button>
+              
+              <p class="switch-form">
+                Don't have an account?<a href="#" id="switch-to-signup">Sign Up</a>
+              </p>
+            </div>
+            
+            <div class="form signup-form">
+              <button class="social-login-btn" id="signup-google">
+                <ion-icon name="logo-google" class="social-login-icon"></ion-icon>
+                Sign up with Google
+              </button>
+              
+              <div class="divider">or</div>
+              
+              <div class="input-group">
+                <input type="text" class="input-field" id="signup-name" placeholder=" " required>
+                <ion-icon name="person-outline" class="input-icon"></ion-icon>
+                <label class="input-label">Full Name</label>
+              </div>
+              
+              <div class="input-group">
+                <input type="text" class="input-field" id="signup-email" placeholder=" " required>
+                <ion-icon name="mail-outline" class="input-icon"></ion-icon>
+                <label class="input-label">Email Address</label>
+              </div>
+              
+              <div class="input-group password-wrapper">
+                <input type="password" class="input-field" id="signup-password" placeholder=" " required>
+                <ion-icon name="lock-closed-outline" class="input-icon"></ion-icon>
+                <label class="input-label">Password</label>
+                <ion-icon name="eye-outline" class="eye-icon" id="signup-eye"></ion-icon>
+              </div>
+              
+              <p class="health-info">Password must be at least 8 characters with one number and one special character.</p>
+              
+              <div class="input-group">
+                <input type="date" class="input-field" id="signup-dob" placeholder=" " required>
+                <ion-icon name="calendar-outline" class="input-icon"></ion-icon>
+                <label class="input-label">Date of Birth</label>
+              </div>
+              
+              <div class="radio-group">
+                <label class="radio-option">
+                  <input type="radio" name="account-type" value="user" checked>
+                  <span class="radio-label">General User</span>
+                </label>
+                <label class="radio-option">
+                  <input type="radio" name="account-type" value="pregnant">
+                  <span class="radio-label">Expecting Mother</span>
+                </label>
+                <label class="radio-option">
+                  <input type="radio" name="account-type" value="provider">
+                  <span class="radio-label">Healthcare Provider</span>
+                </label>
+              </div>
+              
+              <div style="margin-bottom: 12px;">
+                <input type="checkbox" id="terms" required style="margin-right: 5px;">
+                <label for="terms" style="font-size: 11px; color: #666;">
+                  I agree to the <a href="#" style="color: #ff6b8b;">Terms of Service</a> and <a href="#" style="color: #ff6b8b;">Privacy Policy</a>
+                </label>
+              </div>
+              
+              <button class="submit-btn" id="signup-submit">Create Account</button>
+              
+              <p class="switch-form">
+                Already have an account?<a href="#" id="switch-to-login">Login</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        // Language translations
+        const translations = {
+          en: {
+            slogan: "Your Women's Health Companion",
+            description: "Track your health, get personalized insights, and connect with healthcare providers.",
+            features: [
+              "Personalized health tracking",
+              "Appointment reminders",
+              "Secure & private",
+              "24/7 health assistant"
+            ],
+            loginTab: "Login",
+            signupTab: "Sign Up",
+            googleLogin: "Continue with Google",
+            googleSignup: "Sign up with Google",
+            or: "or",
+            email: "Email Address",
+            password: "Password",
+            remember: "Remember me",
+            forgot: "Forgot password?",
+            login: "Login",
+            noAccount: "Don't have an account?",
+            signupLink: "Sign Up",
+            name: "Full Name",
+            dob: "Date of Birth",
+            passwordHint: "Password must be at least 8 characters with one number and one special character.",
+            accountTypes: ["General User", "Expecting Mother", "Healthcare Provider"],
+            terms: "I agree to the Terms of Service and Privacy Policy",
+            createAccount: "Create Account",
+            haveAccount: "Already have an account?",
+            loginLink: "Login"
+          },
+          zu: {
+            slogan: "Umhlangani Wakho Wezempilo Wabesifazane",
+            description: "Qaphela impilo yakho, thola imininingwane eyenziwe ngokwezifiso, uxhumane nabahlinzeki bezempilo.",
+            features: [
+              "Ukulandelela impilo ngokwezifiso",
+              "Izikhumbuzi zesikhathi sokuhleleka",
+              "Kuphephile futhi kuyimfihlo",
+              "Umsebenzi wezempilo yonke imihla"
+            ],
+            loginTab: "Ngena ngemvume",
+            signupTab: "Bhalisa",
+            googleLogin: "Qhubeka nge-Google",
+            googleSignup: "Bhalisa nge-Google",
+            or: "noma",
+            email: "Ikheli le-imeyili",
+            password: "Iphasiwedi",
+            remember: "Ngikhumbule",
+            forgot: "Ukhohliwe iphasiwedi?",
+            login: "Ngena ngemvume",
+            noAccount: "Awunayo i-akhawunti?",
+            signupLink: "Bhalisa",
+            name: "Igama eliphelele",
+            dob: "Usuku lokuzalwa",
+            passwordHint: "Iphasiwedi kufanele ibe okungenani izinhlamvu eziyi-8 enenombolo eyodwa kanye nohlamvu olukhethekile olulodwa.",
+            accountTypes: ["Umsebenzisi Ojwayelekile", "Umama Olindele Ukubeletha", "Umhlinzeki Wezempilo"],
+            terms: "Ngiyavuma imigomo yesevisi kanye nenqubomgomo yobumfihlo",
+            createAccount: "Dala i-akhawunti",
+            haveAccount: "Sekuyinakho i-akhawunti?",
+            loginLink: "Ngena ngemvume"
+          },
+          xh: {
+            slogan: "Umkhaphi Wakho Wezempilo Wabasetyhini",
+            description: "Jonga impilo yakho, fumana iinkcukacha ezilungiselelwe ngokwakho, uqhagamshelane naboneleli bezempilo.",
+            features: [
+              "Ukuqwalaselwa kwempilo ngokwezifiso",
+              "Izikhumbuzi zexesha lokubeka udibano",
+              "Kukhuselekile yaye kuyimfihlo",
+              "Umncedi wezempilo yonke imihla"
+            ],
+            loginTab: "Ngena",
+            signupTab: "Bhalisa",
+            googleLogin: "Qhubeka nge-Google",
+            googleSignup: "Bhalisa nge-Google",
+            or: "okanye",
+            email: "Idilesi ye-imeyile",
+            password: "Igama lokugqitha",
+            remember: "Ndikhumbule",
+            forgot: "Ulibele igama lokugqitha?",
+            login: "Ngena",
+            noAccount: "Awunayo i-akhawunti?",
+            signupLink: "Bhalisa",
+            name: "Igama elipheleleyo",
+            dob: "Umhla wokuzalwa",
+            passwordHint: "Igama lokugqitha kufuneka libe nee-8 okanye ngaphezulu ezinamanani omnye kunye nohlamvu olukhethekile olunye.",
+            accountTypes: ["Umsebenzisi ojwayelekileyo", "Umama olindele ukubeletha", "Uboneleli bezempilo"],
+            terms: "Ndiyavuma imigqaliselo yenkonzo kunye nenkqubo yobumfihlo",
+            createAccount: "Yenza i-akhawunti",
+            haveAccount: "Sele unayo i-akhawunti?",
+            loginLink: "Ngena"
+          },
+          af: {
+            slogan: "Jou Vroulike Gesondheidsmaat",
+            description: "Monitor jou gesondheid, kry persoonlike insigte, en skakel met gesondheidsverskaffers.",
+            features: [
+              "Persoonlike gesondheidsmonitering",
+              "Afspraakherinnerings",
+              "Veilig en privaat",
+              "24/7 gesondheidsassistent"
+            ],
+            loginTab: "Teken aan",
+            signupTab: "Registreer",
+            googleLogin: "Gaan voort met Google",
+            googleSignup: "Registreer met Google",
+            or: "of",
+            email: "E-posadres",
+            password: "Wagwoord",
+            remember: "Onthou my",
+            forgot: "Wagwoord vergeet?",
+            login: "Teken aan",
+            noAccount: "Het jy nie 'n rekening nie?",
+            signupLink: "Registreer",
+            name: "Volle naam",
+            dob: "Geboortedatum",
+            passwordHint: "Wagwoord moet ten minste 8 karakters wees met een nommer en een spesiale karakter.",
+            accountTypes: ["Algemene gebruiker", "Verwagte moeder", "Gesondheidsverskaffer"],
+            terms: "Ek stem in tot die Diensbepalings en Privaatheidsbeleid",
+            createAccount: "Skep rekening",
+            haveAccount: "Het jy reeds 'n rekening?",
+            loginLink: "Teken aan"
+          },
+          nso: {
+            slogan: "Mohlankedi wa Gago wa Tšhabelo ya Basadi",
+            description: "Lebelela tšhabelo ya gago, hwetša dintlha tšeo di loketšwego, bušana le bahlodi ba tšhabelo.",
+            features: [
+              "Go lekola tšhabelo ka mo go ikgethilego",
+              "Dikgopotsa tša mehleng ya go bea kopano",
+              "Go bolokegile gomme ke sa sephiri",
+              "Mohlankedi wa tšhabelo letsatsi le letsatsi"
+            ],
+            loginTab: "Tsena",
+            signupTab: "Ngodisa",
+            googleLogin: "Tšwela pele ka Google",
+            googleSignup: "Ngodisa ka Google",
+            or: "goba",
+            email: "Atrese ya imeile",
+            password: "Leina la phasewete",
+            remember: "Nkgetše",
+            forgot: "O lebetšwe phasewete?",
+            login: "Tsena",
+            noAccount: "Ga o na akhaonto?",
+            signupLink: "Ngodisa",
+            name: "Leina la mokgwa o feletšego",
+            dob: "Letšatši la belegwa",
+            passwordHint: "Phasewete e swanetše go ba le ditlhaka tše lesome le metso e le tee le serota se se itšego se le sengwe.",
+            accountTypes: ["Mošomiši wa tlwaelo", "Mmago yo a lebeletšego go belegwa", "Mohlodi wa tšhabelo"],
+            terms: "Ke dumelelana le Maemo a Tirelo le Leano la Boikgopolelo",
+            createAccount: "Hlama akhaonto",
+            haveAccount: "O šetše o na le akhaonto?",
+            loginLink: "Tsena"
+          },
+          tn: {
+            slogan: "Motshegetsi wa Gago wa Boitekanelo ba Basadi",
+            description: "Lebelela boitekanelo jwa gago, bona dintlha tse di ikanyegang, ikopanye le baabedi ba boitekanelo.",
+            features: [
+              "Go sekaseka boitekanelo ka mo go ikgethilego",
+              "Dikgopotsa tsa nako ya go rulaganya kopano",
+              "Go bolokegile mme ke sa sephiri",
+              "Motshegetsi wa boitekanelo letsatsi le letsatsi"
+            ],
+            loginTab: "Tsena",
+            signupTab: "Ikwadise",
+            googleLogin: "Tswela pele ka Google",
+            googleSignup: "Ikwadise ka Google",
+            or: "kgotsa",
+            email: "Aterese ya imeile",
+            password: "Leina la phasewete",
+            remember: "Nkgetse",
+            forgot: "O lebile phasewete?",
+            login: "Tsena",
+            noAccount: "Ga o na akhaonto?",
+            signupLink: "Ikwadise",
+            name: "Leina le feletseng",
+            dob: "Letsatsi la tswalo",
+            passwordHint: "Phasewete e tshwanetse go nna le ditlhaka tse di masome a mararo le nomoro e le nngwe le serota se se kgethegileng se le sengwe.",
+            accountTypes: ["Modirisi wa tlwaelo", "Mma yo o lebeletseng go tshola", "Moabedi wa boitekanelo"],
+            terms: "Ke dumalana le Maemo a Tirelo le Molao wa Boikgethelo",
+            createAccount: "Hlama akhaonto",
+            haveAccount: "O setse o na le akhaonto?",
+            loginLink: "Tsena"
+          },
+          st: {
+            slogan: "Mohlokomedi wa Hao wa Bophelo ba Basadi",
+            description: "Lebela bophelo ba hao, fumana lintlha tse ikhethileng, hokahanya le bahlophisi ba bophelo.",
+            features: [
+              "Ho hlahloba bophelo ka mokhoa o ikhethileng",
+              "Dikgopotso tsa nako ya ho etsa kopano",
+              "E bolokehile ebile ke sa sephiri",
+              "Mohlokomedi wa bophelo letsatsi le letsatsi"
+            ],
+            loginTab: "Kena",
+            signupTab: "Ngodisa",
+            googleLogin: "Tswela pele ka Google",
+            googleSignup: "Ngodisa ka Google",
+            or: "kapa",
+            email: "Atrese ya imeile",
+            password: "Leina la phasewete",
+            remember: "Nkhopotse",
+            forgot: "O lebile phasewete?",
+            login: "Kena",
+            noAccount: "Ha u na akhaonto?",
+            signupLink: "Ngodisa",
+            name: "Leina le feletseng",
+            dob: "Letsatsi la tswalo",
+            passwordHint: "Phasewete e lokela ho ba le litlhaku tse robeli ka palo e le 'ngoe le serota se ikhethileng se le seng.",
+            accountTypes: ["Mosebelisi wa tlwaelo", "Mma ea lebetseng ho tsoala", "Mohlophisi wa bophelo"],
+            terms: "Ke lumellana le Lipehelo tsa Tshebeletso le Leano la Boikgethelo",
+            createAccount: "Theha akhaonto",
+            haveAccount: "O se o na le akhaonto?",
+            loginLink: "Kena"
+          },
+          ts: {
+            slogan: "Mufambisi wa Wena wa Vutshila bya Vavasati",
+            description: "Languta vutshila bya wena, kuma ndlela leyi endliweke hi wena, hlanganisa na vahleri va vutshila.",
+            features: [
+              "Ku langutela vutshila hi ndlela ya wena",
+              "Swikombiso swa nkarhi wa ku endla mpfumelelo",
+              "Ku hlayiseka naswona i xihundla xa wena",
+              "Mufambisi wa vutshila siku ni siku"
+            ],
+            loginTab: "Nghena",
+            signupTab: "Tsarisa",
+            googleLogin: "Ya emahlweni hi Google",
+            googleSignup: "Tsarisa hi Google",
+            or: "kumbe",
+            email: "Atirise ya imeyili",
+            password: "Vito ra phasewete",
+            remember: "Ndzi tsundzuke",
+            forgot: "U rivalile phasewete?",
+            login: "Nghena",
+            noAccount: "A wu na akhawunti?",
+            signupLink: "Tsarisa",
+            name: "Vito hinkwaro",
+            dob: "Siku ra ku velekiwa",
+            passwordHint: "Phasewete fanele yi va ni tinhlamu ta nhungu ni nomoro yin'we ni xihlamu xin'we xa xiyimo.",
+            accountTypes: ["Muxavisisi wa ntolovelo", "Mana loyi a leriseke ku veleka", "Muhluri wa vutshila"],
+            terms: "Ndzi pfumelelana ni Swiyimo swa Mfanelo ni Xiyimo xa Vutivi bya Wena",
+            createAccount: "Endla akhawunti",
+            haveAccount: "U se u na akhawunti?",
+            loginLink: "Nghena"
+          },
+          ss: {
+            slogan: "Mseceni Wakho Wezempilo Yabesifazane",
+            description: "Bheka impilo yakho, thola izinto ezikhethekile, uxhumane nabahlinzeki bezempilo.",
+            features: [
+              "Ukubheka impilo ngokwezifiso",
+              "Izikhumbuzi zesikhathi sokuhleleka",
+              "Kuphephile futhi kuyimfihlo",
+              "Umseceni wezempilo nsuku zonke"
+            ],
+            loginTab: "Ngena",
+            signupTab: "Bhalisa",
+            googleLogin: "Qhubeka nge-Google",
+            googleSignup: "Bhalisa nge-Google",
+            or: "noma",
+            email: "Ikheli le-imeyili",
+            password: "Iphasiwedi",
+            remember: "Ngikhumbule",
+            forgot: "Ukhohliwe iphasiwedi?",
+            login: "Ngena",
+            noAccount: "Awunayo i-akhawunti?",
+            signupLink: "Bhalisa",
+            name: "Igama eliphelele",
+            dob: "Usuku lokuzalwa",
+            passwordHint: "Iphasiwedi kufanele ibe okungenani izinhlamvu eziyisishiyagalombili enenombolo eyodwa kanye nohlamvu olukhethekile olulodwa.",
+            accountTypes: ["Umsebenzisi ojwayelekile", "Umama olindele ukubeletha", "Umhlinzeki wezempilo"],
+            terms: "Ngiyavuma imigomo yesevisi kanye nenqubomgomo yobumfihlo",
+            createAccount: "Dala i-akhawunti",
+            haveAccount: "Usuvele unayo i-akhawunti?",
+            loginLink: "Ngena"
+          },
+          ve: {
+            slogan: "Muthu wa Wena wa Vhutshilo ha Vhafumakadzi",
+            description: "Sedzulusa vhutshilo ha wena, wana zwiṱaluli zwa hone, vhudzane na vhaṋe vha vhutshilo.",
+            features: [
+              "U sedzulusa vhutshilo ha wena nga nḓila ya wena",
+              "Zwiṅuvhedzo zwa tshifhinga tsha u bveledza phungo",
+              "Zwo lugaho nahone zwi vha na vhushaka ha wena",
+              "Muthu wa vhutshilo matshili othe"
+            ],
+            loginTab: "Nghena",
+            signupTab: "Ngoḓisa",
+            googleLogin: "Tshimbila na Google",
+            googleSignup: "Ngoḓisa nga Google",
+            or: "kana",
+            email: "Ḓiresi ya imeili",
+            password: "Luambo lwa phasewete",
+            remember: "Ndi funge",
+            forgot: "Wa vhulaya phasewete?",
+            login: "Nghena",
+            noAccount: "A wa na akhawunti?",
+            signupLink: "Ngoḓisa",
+            name: "Dzina ḽoṱhe",
+            dob: "Duvha ḽa u bebwa",
+            passwordHint: "Phasewete i fanela u vha na maraḓi a malo a saukanyaho aṱanu na nomoro nthihi na tshigwada tsha u ita tshithu tshithihi.",
+            accountTypes: ["Mušumi wa tshifhinga tshothe", "Mme wa u tevhela u bebela", "Muṋe wa vhutshilo"],
+            terms: "Ndi tendelana na Milayo ya Tshumelo na Mulayo wa Vhushaka",
+            createAccount: "Bveledza akhawunti",
+            haveAccount: "Wa vha na akhawunti?",
+            loginLink: "Nghena"
+          },
+          nr: {
+            slogan: "Umqondisi Wakho Wezempilo Yabesifazane",
+            description: "Bheka impilo yakho, thola izinto ezikhethekile, uxhumane nabahlinzeki bezempilo.",
+            features: [
+              "Ukubheka impilo ngokwezifiso",
+              "Izikhumbuzi zesikhathi sokuhleleka",
+              "Kuphephile futhi kuyimfihlo",
+              "Umqondisi wezempilo nsuku zonke"
+            ],
+            loginTab: "Ngena",
+            signupTab: "Bhalisa",
+            googleLogin: "Qhubeka nge-Google",
+            googleSignup: "Bhalisa nge-Google",
+            or: "noma",
+            email: "Ikheli le-imeyili",
+            password: "Iphasiwedi",
+            remember: "Ngikhumbule",
+            forgot: "Ukhohliwe iphasiwedi?",
+            login: "Ngena",
+            noAccount: "Awunayo i-akhawunti?",
+            signupLink: "Bhalisa",
+            name: "Igama eliphelele",
+            dob: "Usuku lokuzalwa",
+            passwordHint: "Iphasiwedi kufanele ibe okungenani izinhlamvu eziyisishiyagalombili enenombolo eyodwa kanye nohlamvu olukhethekile olulodwa.",
+            accountTypes: ["Umsebenzisi ojwayelekile", "Umama olindele ukubeletha", "Umhlinzeki wezempilo"],
+            terms: "Ngiyavuma imigomo yesevisi kanye nenqubomgomo yobumfihlo",
+            createAccount: "Dala i-akhawunti",
+            haveAccount: "Usuvele unayo i-akhawunti?",
+            loginLink: "Ngena"
+          }
+        };
+
+        // Toggle Forms
+        const loginTab = document.getElementById('login-tab');
+        const signupTab = document.getElementById('signup-tab');
+        const wrapper = document.querySelector('.wrapper');
+        const switchToSignup = document.getElementById('switch-to-signup');
+        const switchToLogin = document.getElementById('switch-to-login');
+        
+        // Password visibility toggle
+        const loginEye = document.getElementById('login-eye');
+        const loginPassword = document.getElementById('login-password');
+        const signupEye = document.getElementById('signup-eye');
+        const signupPassword = document.getElementById('signup-password');
+        
+        // Form submission
+        const loginSubmit = document.getElementById('login-submit');
+        const signupSubmit = document.getElementById('signup-submit');
+        
+        // Language selector
+        const languageSelector = document.getElementById('language-selector');
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+          // Set active form based on URL hash
+          if (window.location.hash === '#signup') {
+            wrapper.classList.add('active');
+            signupTab.classList.add('active');
+            loginTab.classList.remove('active');
+          }
+          
+          // Set initial language
+          updateLanguage('en');
+        });
+        
+        // Language change handler
+        languageSelector.addEventListener('change', (e) => {
+          updateLanguage(e.target.value);
+        });
+        
+        // Update language function
+        function updateLanguage(lang) {
+          const translation = translations[lang];
+          
+          // Update left panel
+          document.querySelector('.slogan').textContent = translation.slogan;
+          document.querySelector('.description').textContent = translation.description;
+          
+          // Update feature items
+          const featureItems = document.querySelectorAll('.feature-item span');
+          featureItems.forEach((item, index) => {
+            item.textContent = translation.features[index];
+          });
+          
+          // Update tabs
+          loginTab.textContent = translation.loginTab;
+          signupTab.textContent = translation.signupTab;
+          
+          // Update login form
+          document.getElementById('login-google').innerHTML = `
+            <ion-icon name="logo-google" class="social-login-icon"></ion-icon>
+            ${translation.googleLogin}
+          `;
+          document.querySelector('.login-form .divider').textContent = translation.or;
+          document.querySelector('.login-form .input-label').textContent = translation.email;
+          document.querySelectorAll('.login-form .input-label')[1].textContent = translation.password;
+          document.querySelector('.login-form [for="remember-me"]').textContent = translation.remember;
+          document.querySelector('.login-form .forgot-link').textContent = translation.forgot;
+          document.getElementById('login-submit').textContent = translation.login;
+          document.querySelector('.login-form .switch-form').innerHTML = `
+            ${translation.noAccount}<a href="#" id="switch-to-signup">${translation.signupLink}</a>
+          `;
+          
+          // Update signup form
+          document.getElementById('signup-google').innerHTML = `
+            <ion-icon name="logo-google" class="social-login-icon"></ion-icon>
+            ${translation.googleSignup}
+          `;
+          document.querySelector('.signup-form .divider').textContent = translation.or;
+          document.querySelector('.signup-form .input-label').textContent = translation.name;
+          document.querySelectorAll('.signup-form .input-label')[1].textContent = translation.email;
+          document.querySelectorAll('.signup-form .input-label')[2].textContent = translation.password;
+          document.querySelector('.signup-form .health-info').textContent = translation.passwordHint;
+          document.querySelectorAll('.signup-form .input-label')[3].textContent = translation.dob;
+          
+          // Update account type radio buttons
+          const radioLabels = document.querySelectorAll('.radio-label');
+          radioLabels.forEach((label, index) => {
+            label.textContent = translation.accountTypes[index];
+          });
+          
+          document.querySelector('.signup-form [for="terms"]').innerHTML = `
+            ${translation.terms}
+          `;
+          document.getElementById('signup-submit').textContent = translation.createAccount;
+          document.querySelector('.signup-form .switch-form').innerHTML = `
+            ${translation.haveAccount}<a href="#" id="switch-to-login">${translation.loginLink}</a>
+          `;
+        }
+        
+        // Toggle password visibility
+        if (loginEye && loginPassword) {
+          loginEye.addEventListener('click', () => {
+            if (loginPassword.type === 'password') {
+              loginPassword.type = 'text';
+              loginEye.setAttribute('name', 'eye-off-outline');
+            } else {
+              loginPassword.type = 'password';
+              loginEye.setAttribute('name', 'eye-outline');
+            }
+          });
+        }
+        
+        if (signupEye && signupPassword) {
+          signupEye.addEventListener('click', () => {
+            if (signupPassword.type === 'password') {
+              signupPassword.type = 'text';
+              signupEye.setAttribute('name', 'eye-off-outline');
+            } else {
+              signupPassword.type = 'password';
+              signupEye.setAttribute('name', 'eye-outline');
+            }
+          });
+        }
+        
+        // Form tab switching
+        loginTab.addEventListener('click', () => {
+          wrapper.classList.remove('active');
+          loginTab.classList.add('active');
+          signupTab.classList.remove('active');
+          window.location.hash = '';
+        });
+        
+        signupTab.addEventListener('click', () => {
+          wrapper.classList.add('active');
+          signupTab.classList.add('active');
+          loginTab.classList.remove('active');
+          window.location.hash = 'signup';
+        });
+        
+        switchToSignup.addEventListener('click', (e) => {
+          e.preventDefault();
+          wrapper.classList.add('active');
+          signupTab.classList.add('active');
+          loginTab.classList.remove('active');
+          window.location.hash = 'signup';
+        });
+        
+        switchToLogin.addEventListener('click', (e) => {
+          e.preventDefault();
+          wrapper.classList.remove('active');
+          loginTab.classList.add('active');
+          signupTab.classList.remove('active');
+          window.location.hash = '';
+        });
+        
+        // Social Login Buttons
+        const loginGoogle = document.getElementById('login-google');
+        const signupGoogle = document.getElementById('signup-google');
+        
+        loginGoogle.addEventListener('click', () => {
+          alert('Google login functionality would be implemented here');
+        });
+        
+        signupGoogle.addEventListener('click', () => {
+          alert('Google signup functionality would be implemented here');
+        });
+        
+        // Form submissions
+        loginSubmit.addEventListener('click', (e) => {
+          e.preventDefault();
+          const email = document.getElementById('login-email').value;
+          const password = document.getElementById('login-password').value;
+          
+          if (email && password) {
+            // Redirect to landing page after successful login
+            window.location.href = "index.html";
+          } else {
+            alert('Please fill in all fields');
+          }
+        });
+        
+        signupSubmit.addEventListener('click', (e) => {
+          e.preventDefault();
+          const name = document.getElementById('signup-name').value;
+          const email = document.getElementById('signup-email').value;
+          const password = document.getElementById('signup-password').value;
+          const dob = document.getElementById('signup-dob').value;
+          const accountType = document.querySelector('input[name="account-type"]:checked').value;
+          const terms = document.getElementById('terms').checked;
+          
+          if (name && email && password && dob && terms) {
+            // Redirect to landing page after successful signup
+            window.location.href = "index.html";
+          } else {
+            alert('Please fill in all fields and accept the terms');
+          }
+        });
+      </script>
+</body>
+</html>

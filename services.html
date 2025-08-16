@@ -1,0 +1,1456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services - HerVital Health</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4a1d41;
+            --secondary-color: #d43d8b;
+            --accent-color: #20b2aa;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+            --text-color: #495057;
+            --white: #ffffff;
+            --card-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f5f9;
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: all 0.3s ease;
+        }
+
+        /* Header/Navbar */
+        header {
+            background: linear-gradient(135deg, #ff6b8b, #a78bfa);
+            color: white;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            font-size: 1.8rem;
+            color: white;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .logo h1 {
+            font-size: 35px;
+        }
+
+        .her {
+            color: #ff6b8b;
+        }
+
+        .vital {
+            color: var(--accent-color);
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        nav ul li a.active {
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        .profile-dropdown {
+            position: relative;
+            margin-right: 90px;
+        }
+
+        .profile-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-right: 20px;
+        }
+
+        .profile-btn:hover {
+            color: var(--accent-color);
+            transform: scale(1.1);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            right: 0;
+            top: 100%;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            width: 250px;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+        }
+
+        .dropdown-menu.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu ul {
+            list-style: none;
+            padding: 0.5rem 0;
+        }
+
+        .dropdown-menu ul li {
+            padding: 0.5rem 1rem;
+        }
+
+        .dropdown-menu ul li a, 
+        .dropdown-menu ul li button {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            text-align: left;
+            background: none;
+            border: none;
+            color: var(--text-color);
+            text-decoration: none;
+            cursor: pointer;
+            padding: 0.5rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .dropdown-menu ul li a:hover, 
+        .dropdown-menu ul li button:hover {
+            color: var(--secondary-color);
+            background: rgba(212, 61, 139, 0.1);
+        }
+
+        .dropdown-menu ul li.divider {
+            border-top: 1px solid #eee;
+            margin: 0.5rem 0;
+        }
+
+        .language-submenu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            padding-left: 1.5rem;
+        }
+
+        .language-submenu.active {
+            max-height: 300px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(74, 29, 65, 0.8), rgba(212, 61, 139, 0.8)), 
+                        url('https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 4rem 0;
+        }
+
+        .service-card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .service-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .service-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .service-card:hover .service-img img {
+            transform: scale(1.1);
+        }
+
+        .service-content {
+            padding: 1.5rem;
+        }
+
+        .service-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+
+        .service-content p {
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--accent-color);
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Special Programs Section */
+        .programs {
+            background: linear-gradient(135deg, #f9f0ff 0%, #e6f9ff 100%);
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .section-title p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--text-color);
+        }
+
+        .program-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .program-card {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 2rem;
+            width: 300px;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .program-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .program-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .program-card h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 4rem 0;
+            background: var(--white);
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: var(--light-color);
+            padding: 2rem;
+            border-radius: 10px;
+            position: relative;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .testimonial-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            font-size: 5rem;
+            color: rgba(212, 61, 139, 0.1);
+            position: absolute;
+            top: 10px;
+            left: 20px;
+        }
+
+        .testimonial-content {
+            margin-bottom: 1.5rem;
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .author-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 1rem;
+        }
+
+        .author-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .author-info h4 {
+            color: var(--primary-color);
+        }
+
+        .author-info p {
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+        }
+
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta p {
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .cta .btn {
+            background: white;
+            color: var(--primary-color);
+        }
+
+        .cta .btn:hover {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, var(--dark-color), #2d1327);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--secondary-color);
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px) scale(1.1);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Theme Classes */
+        .theme-light {
+            --primary-color: #4a1d41;
+            --secondary-color: #d43d8b;
+            --accent-color: #20b2aa;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+            --text-color: #495057;
+            --white: #ffffff;
+            background-color: #f9f5f9;
+        }
+
+        .theme-dark {
+            --primary-color: #d43d8b;
+            --secondary-color: #8a2be2;
+            --accent-color: #20b2aa;
+            --light-color: #343a40;
+            --dark-color: #212529;
+            --text-color: #e9ecef;
+            --white: #212529;
+            background-color: #121212;
+            color: #e9ecef;
+        }
+
+        .theme-blue {
+            --primary-color: #4169E1;
+            --secondary-color: #87CEEB;
+            --accent-color: #20b2aa;
+            --light-color: #e6f9ff;
+            --dark-color: #1e3a8a;
+            --text-color: #2d3748;
+            --white: #ffffff;
+            background-color: #f0f9ff;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .service-card, .program-card {
+                width: 100%;
+            }
+
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .header-content {
+                position: relative;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p, .section-title p, .cta p {
+                font-size: 1rem;
+            }
+            
+            .section-title h2, .cta h2 {
+                font-size: 2rem;
+            }
+
+            .program-cards {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .program-card {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body class="theme-light">
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-heartbeat"></i>
+                    <h1 class="logo-text"><span class="her">Her</span><span class="vital">Vital</span></h1>
+                </div>
+                <div class="header-right">
+                    <nav id="mainNav">
+                        <ul>
+                            <li><a href="index.html"><i class="fas fa-home"></i> <span data-translate="nav_home">Home</span></a></li>
+                            <li><a href="services.html" class=""><i class="fas fa-concierge-bell"></i> <span data-translate="nav_services">Services</span></a></li>
+                            <li><a href="features.html"><i class="fas fa-star"></i> <span data-translate="nav_features">Features</span></a></li>
+                            <li><a href="about.html"><i class="fas fa-info-circle"></i> <span data-translate="nav_about">About</span></a></li>
+                            <li><a href="find-care.html"><i class="fas fa-search-location"></i> <span data-translate="nav_find_care">Find Care</span></a></li>
+                            <li><a href="contact.html"><i class="fas fa-envelope"></i> <span data-translate="nav_contact">Contact</span></a></li>
+                        </ul>
+                    </nav>
+                    <button class="mobile-menu-btn" id="mobileMenuBtn">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="profile-dropdown">
+                        <button class="profile-btn" id="profileBtn">
+                            <i class="fas fa-bars"></i>
+                    
+                        </button>
+                        <div class="dropdown-menu" id="dropdownMenu">
+                            <ul>
+                                <li>
+                                    <button onclick="toggleLanguageMenu()">
+                                        <i class="fas fa-language"></i>
+                                        <span data-translate="language">Language</span>
+                                        <i class="fas fa-chevron-down" id="languageChevron"></i>
+                                    </button>
+                                    <div class="language-submenu" id="languageSubmenu">
+                                        <button onclick="changeLanguage('en')"><span>English</span></button>
+                                        <button onclick="changeLanguage('zu')"><span>isiZulu</span></button>
+                                        <button onclick="changeLanguage('xh')"><span>isiXhosa</span></button>
+                                        <button onclick="changeLanguage('af')"><span>Afrikaans</span></button>
+                                        <button onclick="changeLanguage('nso')"><span>Sesotho sa Leboa</span></button>
+                                        <button onclick="changeLanguage('tn')"><span>Setswana</span></button>
+                                        <button onclick="changeLanguage('st')"><span>Sesotho</span></button>
+                                        <button onclick="changeLanguage('ts')"><span>Xitsonga</span></button>
+                                        <button onclick="changeLanguage('ss')"><span>siSwati</span></button>
+                                        <button onclick="changeLanguage('ve')"><span>Tshivenda</span></button>
+                                        <button onclick="changeLanguage('nr')"><span>isiNdebele</span></button>
+                                    </div>
+                                </li>
+                                <li>
+                                    <button onclick="toggleThemeMenu()">
+                                        <i class="fas fa-palette"></i>
+                                        <span data-translate="theme">Theme</span>
+                                        <i class="fas fa-chevron-down" id="themeChevron"></i>
+                                    </button>
+                                    <div class="language-submenu" id="themeSubmenu">
+                                        <button onclick="setTheme('light')"><span data-translate="theme_light">Light</span></button>
+                                        <button onclick="setTheme('dark')"><span data-translate="theme_dark">Dark</span></button>
+                                        <button onclick="setTheme('blue')"><span data-translate="theme_blue">Blue</span></button>
+                                    </div>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="#" onclick="logout()">
+                                        <i class="fas fa-sign-out-alt"></i>
+                                        <span data-translate="logout">Logout</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1 data-translate="hero_title">Comprehensive Women's Health Services</h1>
+            <p data-translate="hero_subtitle">Empowering women with personalized healthcare solutions tailored to every stage of life</p>
+            <a href="#services" class="btn" data-translate="hero_button">Explore Our Services</a>
+        </div>
+    </section>
+
+    <section id="services" class="container services-grid">
+        <div class="service-card">
+            <div class="service-img">
+                <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Pregnancy Care">
+            </div>
+            <div class="service-content">
+                <div class="service-icon">
+                    <i class="fas fa-baby-carriage"></i>
+                </div>
+                <h3 data-translate="service1_title">Pregnancy & Prenatal Care</h3>
+                <p data-translate="service1_desc">Comprehensive support from conception to delivery, including ultrasounds, nutritional counseling, and birth planning.</p>
+                <a href="#" class="btn" data-translate="learn_more">Learn More</a>
+            </div>
+        </div>
+
+        <div class="service-card">
+            <div class="images/gyn.jpeg" alt="Gynecological Care">
+            </div>
+            <div class="service-content">
+                <div class="service-icon">
+                    <i class="fas fa-female"></i>
+                </div>
+                <h3 data-translate="service2_title">Gynecological Services</h3>
+                <p data-translate="service2_desc">Annual exams, Pap smears, STD testing, and treatment for conditions like PCOS and endometriosis.</p>
+                <a href="#" class="btn" data-translate="learn_more">Learn More</a>
+            </div>
+        </div>
+
+        <div class="service-card">
+            <div class="service-img">
+                <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Family Planning">
+            </div>
+            <div class="service-content">
+                <div class="service-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <h3 data-translate="service3_title">Family Planning</h3>
+                <p data-translate="service3_desc">Contraceptive counseling, fertility awareness education, and preconception health services.</p>
+                <a href="#" class="btn" data-translate="learn_more">Learn More</a>
+            </div>
+        </div>
+
+        <div class="service-card">
+            <div class="service-img">
+                <img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Mental Health">
+            </div>
+            <div class="service-content">
+                <div class="service-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h3 data-translate="service4_title">Mental Health Support</h3>
+                <p data-translate="service4_desc">Specialized counseling for postpartum depression, anxiety, and women's mental health concerns.</p>
+                <a href="#" class="btn" data-translate="learn_more">Learn More</a>
+            </div>
+        </div>
+
+        <div class="service-card">
+            <div class="service-img">
+                <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Nutrition">
+            </div>
+            <div class="service-content">
+                <div class="service-icon">
+                    <i class="fas fa-utensils"></i>
+                </div>
+                <h3 data-translate="service5_title">Nutrition & Wellness</h3>
+                <p data-translate="service5_desc">Personalized dietary plans for pregnancy, menopause, and women's specific nutritional needs.</p>
+                <a href="#" class="btn" data-translate="learn_more">Learn More</a>
+            </div>
+        </div>
+
+        <div class="service-card">
+            <div class="service-img">
+                <img src="https://images.unsplash.com/photo-1579684453423-f84349ef60b0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Telemedicine">
+            </div>
+            <div class="service-content">
+                <div class="service-icon">
+                    <i class="fas fa-laptop-medical"></i>
+                </div>
+                <h3 data-translate="service6_title">Telemedicine</h3>
+                <p data-translate="service6_desc">Virtual consultations with our healthcare providers from the comfort of your home.</p>
+                <a href="#" class="btn" data-translate="learn_more">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="programs">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-translate="programs_title">Specialized Programs</h2>
+                <p data-translate="programs_desc">Our targeted health initiatives designed to address specific women's health needs</p>
+            </div>
+            <div class="program-cards">
+                <div class="program-card">
+                    <h3 data-translate="program1_title">Teen Health Initiative</h3>
+                    <p data-translate="program1_desc">Comprehensive sexual education and health services tailored for adolescents.</p>
+                    <a href="#" class="btn" data-translate="explore">Explore</a>
+                </div>
+                <div class="program-card">
+                    <h3 data-translate="program2_title">Menopause Support</h3>
+                    <p data-translate="program2_desc">Holistic approaches to managing symptoms and maintaining health during menopause.</p>
+                    <a href="#" class="btn" data-translate="explore">Explore</a>
+                </div>
+                <div class="program-card">
+                    <h3 data-translate="program3_title">Cancer Screening</h3>
+                    <p data-translate="program3_desc">Early detection programs for breast, cervical, and ovarian cancers.</p>
+                    <a href="#" class="btn" data-translate="explore">Explore</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-translate="testimonials_title">Patient Stories</h2>
+                <p data-translate="testimonials_desc">Hear from women whose lives have been transformed through our services</p>
+            </div>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p data-translate="testimonial1">The prenatal care I received was exceptional. My doctor took time to answer all my questions and made me feel empowered throughout my pregnancy journey.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-img">
+                            <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Sarah M.">
+                        </div>
+                        <div class="author-info">
+                            <h4>Sarah M.</h4>
+                            <p data-translate="testimonial1_role">Prenatal Patient</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p data-translate="testimonial2">After struggling with PCOS for years, the team at HerVital helped me find a treatment plan that actually works. I've never felt better!</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-img">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Nomvula K.">
+                        </div>
+                        <div class="author-info">
+                            <h4>Nomvula K.</h4>
+                            <p data-translate="testimonial2_role">Gynecology Patient</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p data-translate="testimonial3">The mental health support I received postpartum was life-changing. I'm so grateful for their compassionate care during my most vulnerable time.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-img">
+                            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Amina J.">
+                        </div>
+                        <div class="author-info">
+                            <h4>Amina J.</h4>
+                            <p data-translate="testimonial3_role">Mental Health Patient</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="container">
+            <h2 data-translate="cta_title">Ready to Prioritize Your Health?</h2>
+            <p data-translate="cta_desc">Schedule an appointment with one of our women's health specialists today</p>
+            <a href="contact.html" class="btn" data-translate="cta_button">Book an Appointment</a>
+        </div>
+    </section>
+
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3 data-translate="footer_about">HerVital</h3>
+                    <p data-translate="footer_description">Digital tools and services that improve women's access to essential healthcare, maternal health support, and preventive care.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3 data-translate="footer_links">Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html" data-translate="nav_home"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="services.html" data-translate="nav_services"><i class="fas fa-concierge-bell"></i> Services</a></li>
+                        <li><a href="features.html" data-translate="nav_features"><i class="fas fa-star"></i> Features</a></li>
+                        <li><a href="about.html" data-translate="nav_about"><i class="fas fa-info-circle"></i> About</a></li>
+                        <li><a href="contact.html" data-translate="nav_contact"><i class="fas fa-envelope"></i> Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3 data-translate="footer_services">Services</h3>
+                    <ul>
+                        <li><a href="#" data-translate="service1_title"><i class="fas fa-baby-carriage"></i> Pregnancy Care</a></li>
+                        <li><a href="#" data-translate="service2_title"><i class="fas fa-female"></i> Gynecology</a></li>
+                        <li><a href="#" data-translate="service4_title"><i class="fas fa-brain"></i> Mental Health</a></li>
+                        <li><a href="#" data-translate="service5_title"><i class="fas fa-utensils"></i> Nutrition</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3 data-translate="footer_contact">Contact Us</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Health St, Durban</li>
+                        <li><i class="fas fa-phone"></i> (031) 456-7890</li>
+                        <li><i class="fas fa-envelope"></i> info@hervital.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 HerVital. <span data-translate="footer_rights">All rights reserved.</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Language translations for all 11 South African languages
+        const translations = {
+            en: {
+                // Navigation
+                "nav_home": "Home",
+                "nav_services": "Services",
+                "nav_features": "Features",
+                "nav_about": "About",
+                "nav_find_care": "Find Care",
+                "nav_contact": "Contact",
+                
+                // Profile dropdown
+                "profile": "Profile",
+                "language": "Language",
+                "theme": "Theme",
+                "theme_light": "Light",
+                "theme_dark": "Dark",
+                "theme_blue": "Blue",
+                "logout": "Logout",
+                
+                // Hero section
+                "hero_title": "Comprehensive Women's Health Services",
+                "hero_subtitle": "Empowering women with personalized healthcare solutions tailored to every stage of life",
+                "hero_button": "Explore Our Services",
+                
+                // Services
+                "service1_title": "Pregnancy & Prenatal Care",
+                "service1_desc": "Comprehensive support from conception to delivery, including ultrasounds, nutritional counseling, and birth planning.",
+                "service2_title": "Gynecological Services",
+                "service2_desc": "Annual exams, Pap smears, STD testing, and treatment for conditions like PCOS and endometriosis.",
+                "service3_title": "Family Planning",
+                "service3_desc": "Contraceptive counseling, fertility awareness education, and preconception health services.",
+                "service4_title": "Mental Health Support",
+                "service4_desc": "Specialized counseling for postpartum depression, anxiety, and women's mental health concerns.",
+                "service5_title": "Nutrition & Wellness",
+                "service5_desc": "Personalized dietary plans for pregnancy, menopause, and women's specific nutritional needs.",
+                "service6_title": "Telemedicine",
+                "service6_desc": "Virtual consultations with our healthcare providers from the comfort of your home.",
+                "learn_more": "Learn More",
+                
+                // Programs
+                "programs_title": "Specialized Programs",
+                "programs_desc": "Our targeted health initiatives designed to address specific women's health needs",
+                "program1_title": "Teen Health Initiative",
+                "program1_desc": "Comprehensive sexual education and health services tailored for adolescents.",
+                "program2_title": "Menopause Support",
+                "program2_desc": "Holistic approaches to managing symptoms and maintaining health during menopause.",
+                "program3_title": "Cancer Screening",
+                "program3_desc": "Early detection programs for breast, cervical, and ovarian cancers.",
+                "explore": "Explore",
+                
+                // Testimonials
+                "testimonials_title": "Patient Stories",
+                "testimonials_desc": "Hear from women whose lives have been transformed through our services",
+                "testimonial1": "The prenatal care I received was exceptional. My doctor took time to answer all my questions and made me feel empowered throughout my pregnancy journey.",
+                "testimonial1_role": "Prenatal Patient",
+                "testimonial2": "After struggling with PCOS for years, the team at HerVital helped me find a treatment plan that actually works. I've never felt better!",
+                "testimonial2_role": "Gynecology Patient",
+                "testimonial3": "The mental health support I received postpartum was life-changing. I'm so grateful for their compassionate care during my most vulnerable time.",
+                "testimonial3_role": "Mental Health Patient",
+                
+                // CTA
+                "cta_title": "Ready to Prioritize Your Health?",
+                "cta_desc": "Schedule an appointment with one of our women's health specialists today",
+                "cta_button": "Book an Appointment",
+                
+                // Footer
+                "footer_about": "HerVital",
+                "footer_description": "Digital tools and services that improve women's access to essential healthcare, maternal health support, and preventive care.",
+                "footer_links": "Quick Links",
+                "footer_services": "Services",
+                "footer_contact": "Contact Us",
+                "footer_rights": "All rights reserved."
+            },
+            zu: {
+                // isiZulu translations
+                "nav_home": "Ikhaya",
+                "nav_services": "Amasevisi",
+                "nav_features": "Izici",
+                "nav_about": "Mayelana",
+                "nav_find_care": "Thola Ukunakekelwa",
+                "nav_contact": "Xhumana",
+                
+                "profile": "Iphrofayili",
+                "language": "Ulimi",
+                "theme": "Itimu",
+                "theme_light": "Kukhanya",
+                "theme_dark": "Kumnyama",
+                "theme_blue": "Luhlaza",
+                "logout": "Phuma",
+                
+                "hero_title": "Amasevisi Ezempilo Abesifazane Ahlanganisiwe",
+                "hero_subtitle": "Ukuhlomisa abesifazane ngezixazululo zokunakekelwa kwezempilo ezihleliwe ezihambisana nezinyanga zonke zempilo",
+                "hero_button": "Hlola Amasevisi Ethu",
+                
+                "service1_title": "Ukunakekelwa Kokukhulelwa Nangaphambi Kokubeletha",
+                "service1_desc": "Ukusekelwa okugcwele kusukela ekukhiqizweni kuya ekubeletheni, okuhlanganisa ukuhlolwa nge-ultrasound, izeluleko zezakhi zomzimba, nokuhlela ukubeletha.",
+                "learn_more": "Funda Okuningi"
+            },
+            xh: {
+                // isiXhosa translations
+                "nav_home": "Ekhaya",
+                "nav_services": "Inkonzo",
+                "nav_features": "Imisebenzi",
+                "nav_about": "Malunga",
+                "nav_find_care": "Fumana Uncedo",
+                "nav_contact": "Qhagamshelana",
+                
+                "profile": "Iprofayile",
+                "language": "Ulwimi",
+                "theme": "Itemu",
+                "theme_light": "Kukhanyayo",
+                "theme_dark": "Mnyama",
+                "theme_blue": "Luhlaza",
+                "logout": "Phuma",
+                
+                "hero_title": "Inkonzo Yempilo Yabafazi Ebanzi",
+                "hero_subtitle": "Ukunika amandla abafazi ngezisombululo zempilo ezilungelelanisiwe ezilungele zonke iinkalo zempilo",
+                "hero_button": "Hlola Inkonzo Yethu"
+            },
+            af: {
+                // Afrikaans translations
+                "nav_home": "Tuis",
+                "nav_services": "Dienste",
+                "nav_features": "Kenmerke",
+                "nav_about": "Oor Ons",
+                "nav_find_care": "Vind Sorg",
+                "nav_contact": "Kontak",
+                
+                "profile": "Profiel",
+                "language": "Taal",
+                "theme": "Tema",
+                "theme_light": "Lig",
+                "theme_dark": "Donker",
+                "theme_blue": "Blou",
+                "logout": "Teken Uit",
+                
+                "hero_title": "Omvattende Vrouegesondheidsdienste",
+                "hero_subtitle": "Bemagtiging van vroue met persoonlike gesondheidsoplossings wat aangepas is vir elke lewensfase",
+                "hero_button": "Verken Ons Dienste"
+            },
+            nso: {
+                // Sesotho sa Leboa translations
+                "nav_home": "Gae",
+                "nav_services": "Ditirelo",
+                "nav_features": "Dikgono",
+                "nav_about": "Ka Ga Rena",
+                "nav_find_care": "Hlokomela",
+                "nav_contact": "Ikopanye",
+                
+                "profile": "Profaele",
+                "language": "Polelo",
+                "theme": "Tema",
+                "theme_light": "Lesedi",
+                "theme_dark": "Leswiswi",
+                "theme_blue": "Tala",
+                "logout": "Tswa",
+                
+                "hero_title": "Ditirelo tša Boitekanelo bja Basadi",
+                "hero_subtitle": "Go tliša maatla go basadi ka ditharollo tša tlhokomelo ya maphelo tšeo di loketšego maemo ohle a maphelo"
+            },
+            tn: {
+                // Setswana translations
+                "nav_home": "Gae",
+                "nav_services": "Ditirelo",
+                "nav_features": "Dikgono",
+                "nav_about": "Ka Ga Rona",
+                "nav_find_care": "Batla Tlhokomelo",
+                "nav_contact": "Ikanyego",
+                
+                "profile": "Porofaele",
+                "language": "Puo",
+                "theme": "Tema",
+                "theme_light": "Lesedi",
+                "theme_dark": "Leswiswi",
+                "theme_blue": "Tala",
+                "logout": "Tswa",
+                
+                "hero_title": "Ditirelo tsa Boitekanelo jwa Basadi",
+                "hero_subtitle": "Go tsenya maatla mo basading ka dithuso tsa tlhokomelo ya maphelo tse di ikanyegang mo maemong otlhe a botshelo"
+            },
+            st: {
+                // Sesotho translations
+                "nav_home": "Lehae",
+                "nav_services": "Litšebeletso",
+                "nav_features": "Likarolo",
+                "nav_about": "Mabapi le Rona",
+                "nav_find_care": "Fumana Tlhokomelo",
+                "nav_contact": "Ikopanye",
+                
+                "profile": "Profaele",
+                "language": "Puo",
+                "theme": "Tema",
+                "theme_light": "Lesedi",
+                "theme_dark": "Leffifi",
+                "theme_blue": "Tala",
+                "logout": "Tsoa",
+                
+                "hero_title": "Litšebeletso tsa Bophelo bo Botle ba Basali",
+                "hero_subtitle": "Ho matlafatsa basali ka ditharollo tsa tlhokomelo ya bophelo tse lokiselitsoeng maemo ohle a bophelo"
+            },
+            ts: {
+                // Xitsonga translations
+                "nav_home": "Kaya",
+                "nav_services": "Tinhlengeletano",
+                "nav_features": "Swikili",
+                "nav_about": "Hi Hina",
+                "nav_find_care": "Kuma Vutshunguri",
+                "nav_contact": "Tihlanganisi",
+                
+                "profile": "Purofayili",
+                "language": "Ririmi",
+                "theme": "Thema",
+                "theme_light": "Ku vonaka",
+                "theme_dark": "Ku nyama",
+                "theme_blue": "Rihlaza",
+                "logout": "Humela",
+                
+                "hero_title": "Tinhlengeletano ta Vutshunguri bya Vavasati",
+                "hero_subtitle": "Ku herisa vavasati hi tindzulamiso ta vutshunguri bya vutomi lebyi byi ringanisiwaka hi nkarhi hinkwawo wa vutomi"
+            },
+            ss: {
+                // siSwati translations
+                "nav_home": "Ekhaya",
+                "nav_services": "Tisebenti",
+                "nav_features": "Tinhlelo",
+                "nav_about": "Mayelana Natsi",
+                "nav_find_care": "Thola Inhlonipho",
+                "nav_contact": "Xhumana",
+                
+                "profile": "Iphrofayili",
+                "language": "Lulwimi",
+                "theme": "Itimu",
+                "theme_light": "Kukhanya",
+                "theme_dark": "Kumnyama",
+                "theme_blue": "Luhlaza",
+                "logout": "Phuma",
+                
+                "hero_title": "Tisebenti Letiphelele Tetempilo Yebantfwana",
+                "hero_subtitle": "Kutfutfukisa bantfwana ngetincumo tetempilo letibekwe ngendlela lebantfwana labayitfola kuso sonkhe sikhatsi sempilo"
+            },
+            ve: {
+                // Tshivenda translations
+                "nav_home": "Hayani",
+                "nav_services": "Mishumo",
+                "nav_features": "Zwiitwa",
+                "nav_about": "Nga Hone",
+                "nav_find_care": "Wana Thogomelo",
+                "nav_contact": "Tshimbila",
+                
+                "profile": "Purofaele",
+                "language": "Luambo",
+                "theme": "Thema",
+                "theme_light": "Tshivhase",
+                "theme_dark": "Ngoi",
+                "theme_blue": "Tshidudzane",
+                "logout": "Bva",
+                
+                "hero_title": "Mishumo ya Vhutshilo ha Vhafumakadzi",
+                "hero_subtitle": "U ita uri vhafumakadzi vha vhe na maanḓa nga zwibveledzwa zwa vhutshilo zwo tevhelaho zwine zwa shumiswa nga nḓila yo tevhelaho zwine zwa shumiswa nga nḓila yo tevhelaho"
+            },
+            nr: {
+                // isiNdebele translations
+                "nav_home": "Ekhaya",
+                "nav_services": "Amasevisi",
+                "nav_features": "Izici",
+                "nav_about": "Ngathi",
+                "nav_find_care": "Thola Ukunakekelwa",
+                "nav_contact": "Xhumana",
+                
+                "profile": "Iphrofayili",
+                "language": "Ulimi",
+                "theme": "Itimu",
+                "theme_light": "Kukhanya",
+                "theme_dark": "Kumnyama",
+                "theme_blue": "Luhlaza",
+                "logout": "Phuma",
+                
+                "hero_title": "Amasevisi Ezempilo Abesifazane Ahlanganisiwe",
+                "hero_subtitle": "Ukuhlomisa abesifazane ngezixazululo zokunakekelwa kwezempilo ezihleliwe ezihambisana nezinyanga zonke zempilo"
+            }
+        };
+
+        // Current language
+        let currentLanguage = 'en';
+
+        // Function to change language
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+            updateTexts();
+            
+            // Close language submenu
+            document.getElementById('languageSubmenu').classList.remove('active');
+            document.getElementById('languageChevron').classList.remove('fa-chevron-up');
+            document.getElementById('languageChevron').classList.add('fa-chevron-down');
+            
+            // Save language preference
+            localStorage.setItem('language', lang);
+        }
+
+        // Function to update all texts on the page
+        function updateTexts() {
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[currentLanguage] && translations[currentLanguage][key]) {
+                    element.textContent = translations[currentLanguage][key];
+                    
+                    // For input placeholders
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = translations[currentLanguage][key];
+                    }
+                }
+            });
+        }
+
+        // Toggle language menu
+        function toggleLanguageMenu() {
+            const submenu = document.getElementById('languageSubmenu');
+            const chevron = document.getElementById('languageChevron');
+            
+            submenu.classList.toggle('active');
+            
+            if (submenu.classList.contains('active')) {
+                chevron.classList.remove('fa-chevron-down');
+                chevron.classList.add('fa-chevron-up');
+            } else {
+                chevron.classList.remove('fa-chevron-up');
+                chevron.classList.add('fa-chevron-down');
+            }
+        }
+
+        // Toggle theme menu
+        function toggleThemeMenu() {
+            const submenu = document.getElementById('themeSubmenu');
+            const chevron = document.getElementById('themeChevron');
+            
+            submenu.classList.toggle('active');
+            
+            if (submenu.classList.contains('active')) {
+                chevron.classList.remove('fa-chevron-down');
+                chevron.classList.add('fa-chevron-up');
+            } else {
+                chevron.classList.remove('fa-chevron-up');
+                chevron.classList.add('fa-chevron-down');
+            }
+        }
+
+        // Profile dropdown functionality
+        const profileBtn = document.getElementById('profileBtn');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+
+        // Toggle dropdown menu
+        profileBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dropdownMenu.classList.toggle('active');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!profileBtn.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                dropdownMenu.classList.remove('active');
+            }
+        });
+
+        // Mobile menu functionality
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mainNav = document.getElementById('mainNav');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mainNav.querySelector('ul').classList.toggle('active');
+            mobileMenuBtn.querySelector('i').classList.toggle('fa-bars');
+            mobileMenuBtn.querySelector('i').classList.toggle('fa-times');
+        });
+
+        // Theme functionality
+        function setTheme(theme) {
+            // Remove all theme classes from body
+            document.body.classList.remove('theme-light', 'theme-dark', 'theme-blue');
+            
+            // Add selected theme class
+            document.body.classList.add(`theme-${theme}`);
+            
+            // Close theme submenu
+            document.getElementById('themeSubmenu').classList.remove('active');
+            document.getElementById('themeChevron').classList.remove('fa-chevron-up');
+            document.getElementById('themeChevron').classList.add('fa-chevron-down');
+            
+            // Save theme preference
+            localStorage.setItem('theme', theme);
+        }
+
+        // Logout function
+        function logout() {
+            alert(currentLanguage === 'en' ? 'You have been logged out successfully!' : 
+                  currentLanguage === 'zu' ? 'Uphumile ngempumelelo!' :
+                  currentLanguage === 'xh' ? 'Uphume ngempumelelo!' :
+                  currentLanguage === 'af' ? 'Jy het suksesvol afgemeld!' :
+                  currentLanguage === 'nso' ? 'O tswile ka katlego!' :
+                  currentLanguage === 'tn' ? 'O tswetse ka katlego!' :
+                  currentLanguage === 'st' ? 'U tsoile ka katleho!' :
+                  currentLanguage === 'ts' ? 'U humele hi ku humelela!' :
+                  currentLanguage === 'ss' ? 'Uphumile ngephumelelo!' :
+                  currentLanguage === 've' ? 'Wa bva nga mulalo!' :
+                  'Uphumile ngempumelelo!');
+            
+            // Close dropdown
+            dropdownMenu.classList.remove('active');
+            
+            // Redirect to login page or home page
+            window.location.href = 'index.html';
+        }
+
+        // Load saved preferences
+        function loadPreferences() {
+            // Load language
+            const savedLanguage = localStorage.getItem('language');
+            if (savedLanguage && translations[savedLanguage]) {
+                changeLanguage(savedLanguage);
+            }
+            
+            // Load theme
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                setTheme(savedTheme);
+            }
+        }
+
+        // Animation on scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.service-card, .program-card, .testimonial-card');
+            const windowHeight = window.innerHeight;
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementPosition < windowHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Initialize
+        window.addEventListener('load', () => {
+            loadPreferences();
+            animateOnScroll();
+            
+            // Set up intersection observer for animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            document.querySelectorAll('.service-card, .program-card, .testimonial-card').forEach(card => {
+                observer.observe(card);
+            });
+        });
+
+        window.addEventListener('scroll', animateOnScroll);
+    </script>
+</body>
+</html>
